@@ -1,0 +1,26 @@
+{{ #acf }}
+  <div class="topbar">
+    <button class="leaveSingle">
+      <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+    </button>
+    <div class="title">
+    </div>
+    <button class="menuButton">
+      <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+    </button>
+  </div>
+  <div class="content">
+    {{ #acf.image_principale }}
+      <div class="single_thumbnail" style="background-image: url({{ sizes.extra }});">
+
+      </div>
+    {{ /acf.image_principale }}
+    <!--<div class="single_slider">
+      {{ #acf.images_de_la_galerie }}
+        <div class="single_slide" style="background-image: url({{ sizes.extra }});">
+
+        </div>
+      {{ /acf.images_de_la_galerie }}
+    </div>-->
+  </div>
+{{ /acf }}

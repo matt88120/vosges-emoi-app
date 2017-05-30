@@ -1,0 +1,23 @@
+{{ #restaurants }}
+  <div id="{{ id }}" class="{{ type }} category" data-type="{{ type }}">
+    <div class="thumbnail" style="background-image: url({{ acf.image_principale.sizes.large }});">
+    </div>
+    <h1 class="name">{{ title.rendered }}</h1>
+    <div class="sub-content">
+      <div class="presentation">
+        <p class="address">
+          {{ acf.adresse_postale }}
+        </p>
+        <p class="zip_code">
+          {{ acf.code_postal }} {{ acf.ville }}
+        </p>
+        <p class="distance" data-lat="{{ acf.situation_sur_la_carte.lat }}" data-lng="{{ acf.situation_sur_la_carte.lng }}">
+        </p>
+      </div>
+      <div class="contacts">
+        <a class="circle marker" data-lat="{{ acf.situation_sur_la_carte.lat }}" data-lng="{{ acf.situation_sur_la_carte.lng }}"><i class="fa fa-map-marker" aria-hidden="true"></i></a>
+        <a class="circle phone" href="tel:{{ acf.telephone }}"><i class="fa fa-phone" aria-hidden="true"></i></a>
+      </div>
+    </div>
+  </div>
+{{ /restaurants }}
