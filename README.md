@@ -1,2 +1,2 @@
 # vosges-emoi-app
-Application Vosges Emoi
+Application Vosges Emoi 2017
