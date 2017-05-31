@@ -157,12 +157,31 @@
   }
 
   //[LOAD CONTENT PART]
+function loadArticles() {
+  $.getJSON(API_URL + "posts?per_page=99")
+  .done(function(data) {
+    jsonData['posts'] = data;
+    if (typeof events_template === "undefined") {
+      $.get(TEMPLATES_FOLDER + 'posts.mst')
+      .done(function(template) {
+        events_template = template.toString();
+        var rendered = Mustache.render(events_template, jsonData);
+        var content = document.createElement('div');
+        content.className = "content";
+        $(content).html(rendered);
+        $('#agenda').append(content);
+      });
+    }
+  });
+}
+
   function loadCategory(cname, template) {
     console.log(cname);
-    $.getJSON(API_URL + cname)
+    $.getJSON(API_URL + cname + "?per_page=99")
     .done(function(data) {
       jsonData[cname] = data;
       jsonData[cname] = jsonData[cname].map(function(r) {
+        console.log(unescape(r.title.rendered));
         r.acf.telephone = r.acf.telephone.replace(/ /g, "");
         return r;
       });
@@ -177,7 +196,8 @@
           $(content).html(rendered);
           $('#' + cname).append(content);
           getGeolocation($('#' + cname + ' .' + cname + '.distance'));
-          $('.' + cname + '.category .thumbnail, .' + cname + ' .category h1').click(loadSingleTemplate);
+          $('.' + cname + '.category .thumbnail').click(loadSingleTemplate);
+          //$('.' + cname + '.category .name').click(loadSingleTemplate);
           $('.' + cname + '.category .phone').click(function(e) {
             e.preventDefault();
             makePhoneCall($(this).attr('href'));
@@ -192,34 +212,96 @@
   }
   //[/LOAD CONTENT PART]
   //[SINGLE PART]
+  function findOtherType(id, typeFilter) {
+    var ret = [];
+    for (prop in jsonData) {
+      if (prop !== typeFilter) {
+        console.log(jsonData);
+        ret.push(_.find(jsonData[prop], function(row) {
+          return (row.acf.adherent_responsable_de_cette_fiche.ID == id);
+        }));
+      }
+    }
+    if (ret.length == 0)
+      return null;
+    ret = _.filter(ret, function(r) {
+      return (typeof r !== "undefined");
+    });
+    ret = ret.map(function(el) {
+      if (typeof el === "object") {
+        el.inf_name = el.type.substring(0, el.type.lastIndexOf('s'));
+        if (el.type == "restaurants") {
+          el.comeSee = "Voir la fiche du restaurant";
+          el.icon = "fa fa-cutlery fa-3x";
+        } else if (el.type == "hebergements") {
+          el.comeSee = "Voir la fiche de l'hébergement";
+          el.icon = "fa fa-bed fa-3x";
+        } else if (el.type == "activites") {
+          el.comeSee = "Voir la fiche de l'hébergement";
+          el.icon = "fa fa-eye fa-3x";
+        }
+        return el;
+      }
+    });
+    return (ret);
+  }
+
+  function findArticles(id) {
+    var ret = [];
+
+  }
+
+  function deleteSingle() {
+    var singleDiv = $(this).parent().parent();
+    singleDiv.addClass('disappearFromRight');
+    setTimeout(function() {
+      singleDiv.remove();
+      $('footer').show();
+    }, 250);
+  }
+
+  function scrollInSingle() {
+    var target = $($(this).data('target'));
+    console.log(target);
+    var offsetTop = target.offset().top;
+    console.log(offsetTop);
+    $('#' + type + ' .single').animate({ scrollTop: offsetTop }, 750);
+    return false;
+  }
+
   function loadSingleTemplate() {
-    var id = $(this).attr('id');
-    var type = $(this).data('type');
+    _this = $(this).parent();
+    console.log(_this);
+    var id = _this.attr('id');
+    var type = _this.data('type');
     var single;
     var single_container;
     if ((typeof id !== "undefined") && (typeof type !== "undefined")) {
       single = _.find(jsonData[type], function(row) {
-        return row.id == id;
+        return (row.id == id);
       });
+      single.otherType = findOtherType(single.acf.adherent_responsable_de_cette_fiche.ID, single.type);
+      console.log(single.otherType);
+      single.inf_name = single.type.substring(0, single.type.lastIndexOf('s'));
       if (typeof single != "undefined") {
         single_container = document.createElement('div');
         single_container.className = "single single_" + type;
         $.get(TEMPLATES_FOLDER + 'single.mst')
         .done(function(data) {
           single_template = data.toString();
-          console.log(single);
           var rendered = Mustache.render(single_template, single);
           $(single_container).html(rendered);
-          console.log(single_container);
           $('#' + type).append(single_container);
           $('footer').hide();
+          //$('.single .single_nav div').click(showSingleInfos);
           setTimeout(function() {
-            $('#' + type + ' .single').addClass('inter');
+            $('#' + type + ' .single').addClass('appearFromRight');
           }, 10);
-          setTimeout(function() {
-            $('#' + type + ' .single').addClass('show');
-            $('#' + type + ' .single').removeClass('inter');
-          }, 10);
+          $('#' + type + ' .single .single_nav div').click(scrollInSingle);
+          $('#' + type + ' .single .gallery .seeMore').click(function() {
+            $(this).parent().find('a')[0].click();
+          });
+          $('#' + type + ' .single .topbar .leaveSingle').click(deleteSingle);
         });
       }
     }
@@ -279,8 +361,7 @@
     loadCategory('restaurants', restaurants_template);
     loadCategory('hebergements', hebergements_template);
     loadCategory('activites', activites_template);
-    //loadRestaurants();
-    //loadHebergements();
+    loadArticles()
   });
   init();
 })( jQuery );

@@ -1,6 +1,6 @@
 {{ #hebergements }}
   <div id="{{ id }}" class="{{ type }} category" data-type="{{ type }}">
-    <div class="thumbnail" style="background-image: url({{ acf.image_principale.sizes.medium }});">
+    <div class="thumbnail" style="background-image: url({{ acf.image_principale.sizes.large }});">
     </div>
     <h1 class="name">{{ title.rendered }}</h1>
     <div class="sub-content">
