@@ -1,0 +1,83 @@
+// main: ./main.less
+/*.home-screen, footer {
+  display: none !important;
+}*/
+.photoZone {
+  display: none;
+  background-color: @noir;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  .modifyPhoto {
+    position: absolute;
+    width: 100vw;
+    justify-content: space-between;
+    height: 60px;
+    bottom: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.2);
+    .flex();
+    div {
+      flex: 1;
+      .flex();
+      justify-content: center;
+      align-items: center;
+    }
+    .modify-submenu {
+      &.getFilters {
+        .filters {
+          position: absolute;
+          button {
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 65px;
+            height: 35px;
+            border: none;
+            border-radius: 30px;
+            &.plain {
+              background-image: url(../img/plain.png);
+            }
+            &.cover {
+              background-image: url(../img/cover.png);
+            }
+          }
+        }
+        &.selected {
+          color: #1E37C1;
+          .filters {
+            .flex();
+          }
+        }
+      }
+      &.change-filter-color {
+        .filter-color {
+          button {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+          }
+          background-color: rgba(255, 255, 255, 0.4);
+          border-radius: 30px;
+        }
+        &.selected {
+          color: #1E37C1;
+          .filter-color {
+            .flex();
+          }
+        }
+      }
+      .filters, .filter-color {
+        display: none;
+        position: absolute;
+        left: 30%;
+        width: 40vw;
+        height: 35px;
+        top: -50px;
+        justify-content: space-around;
+      }
+    }
+  }
+}

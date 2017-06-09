@@ -1,0 +1,93 @@
+// main: ./main.less
+main {
+  .home-screen {
+    margin-top: -20px;
+    height: 100%;
+    position: absolute;
+    z-index: 9997;
+    width: 100%;
+    left: 0;
+    .flex();
+    .content {
+      width: 100%;
+      height: 100%;
+      position: relative;
+      background-color: @blanc;
+      .topContent {
+        width: 100vw;
+        height: 70%;
+        img {
+          width: 100vw;
+          height: 100%;
+          @media screen and (max-width: 380px) {
+            max-height: 90%;
+          }
+        }
+      }
+      .bottomContent {
+        width: 100vw;
+        height: calc(~"30% - 20px");
+        position: relative;
+        color: @blanc;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        .hello {
+          text-align: center;
+          color: @vem;
+          font-size: 1.2em;
+          font-weight: 500;
+          line-height: 1.2;
+          .username {
+            font-size: 1.4em;
+          }
+        }
+      }
+    }
+    &.screen {
+      display: none;
+    }
+    &.active {
+      .flex();
+      .animation(appearFromLeft 0.3s @easeInOutCirc backwards);
+    }
+    .takePhoto {
+      background-color: transparent;
+      border: none;
+      position: fixed;
+      z-index: 999;
+      top: 0;
+      left: 0;
+      width: 80px;
+      height: 100px;
+      cursor: pointer;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      background-image: url(../img/icone-btn-photo.png);
+    }
+    .topbar {
+      top: 0;
+      left: 0;
+      padding: 0 15px 0 0;
+      .hamburger {
+        background-color: transparent;
+        margin-top: 40px;
+        outline: none;
+        .hamburger-inner {
+          background-color: @vem;
+          .radius(0);
+          &:before {
+            background-color: @vem;
+            .radius(0);
+          }
+          &:after {
+            background-color: @vem;
+            .radius(0);
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,193 @@
+// main: ./main.less
+main {
+  .intro-screen {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 9998;
+    background-color: @vem;
+    &.appearFromLeft {
+      .flex();
+    }
+    #intro-slick {
+      min-width: 100vw;
+      height: 100vh;
+      .slick-slide {
+        z-index: 9998;
+        min-width: 100vw !important;
+        height: 100vh !important;
+        .transition();
+      }
+      .slick-track {
+        //width: 400vw !important;
+      }
+      .slick-list {
+        width: auto;
+        height: 100vh;
+        z-index: 9998;
+      }
+      .slick-dots {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        list-style: none;
+        .flex();
+        align-items: center;
+        padding-left: 0;
+        width: 100vw;
+        height: 150px;
+        justify-content: center;
+        box-sizing: border-box;
+        margin-bottom: 0;
+        li {
+          position: relative;
+          z-index: 9999;
+          width: 20px;
+          height: 20px;
+          text-align: center;
+          button {
+            width: 15px;
+            height: 15px;
+            font-size: 0;
+            line-height: 0;
+            background-color: transparent;
+            border: 1px solid @blanc;
+            border-radius: 50%;
+            &:focus {
+              outline: none;
+            }
+          }
+          &.slick-active {
+            button {
+              background-color: @blanc;
+            }
+          }
+        }
+        &.slick-dots-buttons {
+          button {
+            border: 1px solid @vem;
+          }
+          .slick-active {
+            button {
+              background-color: @vem;
+            }
+          }
+        }
+      }
+      .subScreen {
+        .flex();
+        flex-direction: column;
+        .top-ellipse {
+          width: 100vw;
+          height: 130px;
+          background-color: @vemfonce;
+          clip-path: ellipse(60vw 28vw at 50vw 0);
+          position: absolute;
+          z-index: 9999;
+        }
+        .content {
+          top: 0;
+          height: calc(~"100vh - 150px");
+          width: 100vw;
+          z-index: 9999;
+          .flex();
+          flex-direction: column;
+          color: @blanc;
+          align-items: center;
+          .topContent {
+            width: 100%;
+            .flex();
+            flex-direction: column;
+            align-items: center;
+            font-size: 20px;
+            font-weight: lighter;
+            margin-top: 20px;
+            margin-bottom: 60px;
+            img {
+              width: 150px;
+            }
+            .biggerText {
+              font-size: 35px;
+              margin-bottom: 5px;
+            }
+            p {
+              margin-bottom: 2px;
+            }
+          }
+          .bottomContent {
+            width: 240px;
+            margin: 0 auto;
+            .row {
+              justify-content: space-around;
+              .category {
+                width: 120px;
+                .flex();
+                flex-direction: column;
+                align-items: center;
+                i {
+                  font-size: 38px;
+                }
+              }
+              .upperText {
+                text-transform: uppercase;
+              }
+              &:first-child {
+                margin-bottom: 40px;
+              }
+            }
+          }
+        }
+      }
+      .firstScreen {
+        align-items: center;
+        justify-content: center;
+      }
+      .fourthScreen {
+        .topContent {
+          img {
+            margin-top: 30px;
+            margin-bottom: 20px;
+          }
+        }
+        .bottomContent {
+          position: relative;
+          button {
+            border: 1px solid @blanc;
+            border-radius: 25px;
+            background-color: transparent;
+            padding: 12px 15px;
+            &:focus {
+              outline: none;
+            }
+            &.discover {
+              padding: 0;
+              border: none;
+              border-bottom: 1px solid @blanc;
+              background-color: transparent;
+              border-radius: inherit;
+              margin-top: 40px;
+            }
+          }
+        }
+      }
+    }
+    .rectangle {
+      position: fixed;
+      width: 100%;
+      height: 150px;
+      background-color: #FFF;
+      bottom: 0;
+      opacity: 0;
+      .transition(opacity 300ms ease);
+      .ellipse {
+        width: 100%;
+        height: 75px;
+        background-color: @vem;
+        clip-path: ellipse(50% 65px at 50% 0px);
+      }
+    }
+  }
+}

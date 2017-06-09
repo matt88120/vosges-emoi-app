@@ -1,0 +1,32 @@
+// main: ./main.less
+.topbar {
+  position: fixed;
+  z-index: 9998;
+  background-color: @blanc;
+  color: @vem;
+  height: 70px;
+  width: 100%;
+  top: 0px;
+  left: 0;
+  padding: 0 15px;
+  padding-top: 20px;
+  .flex();
+  justify-content: space-between;
+  align-items: center;
+  .menuButton {
+
+  }
+  .title  {
+    text-transform: uppercase;
+  }
+}
+
+.home-screen {
+  .topbar {
+    background-color: transparent;
+    color: @noir;
+  }
+  .takePhoto {
+    color: @blanc;
+  }
+}

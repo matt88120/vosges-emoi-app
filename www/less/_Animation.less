@@ -1,0 +1,173 @@
+// main: ./main.less
+@keyframes appearFromLeft {
+	0% {
+		.transform(translateX(-100%));
+	}
+	100% {
+		.transform(translateX(0%));
+	}
+}
+
+@keyframes appearFromRight {
+	0% {
+		.transform(translateX(100%));
+	}
+	100% {
+		.transform(translateX(0%));
+	}
+}
+
+@keyframes appearFromBottom {
+	0% {
+		.transform(translateY(100%));
+	}
+	100% {
+		.transform(translateY(0%));
+	}
+}
+
+@keyframes appearFromTop{
+	0% {
+		.transform(translateY(-100%));
+	}
+	100% {
+		.transform(translateY(0%));
+	}
+}
+
+@keyframes disappearFromLeft {
+	0% {
+		opacity: 1;
+		.transform(translateX(0%));
+	}
+	25% {
+		opacity: .75;
+	}
+	50% {
+		opacity: .5;
+	}
+	75% {
+		opacity: .25;
+	}
+	100% {
+		opacity: 0;
+		.transform(translateX(-100%));
+	}
+}
+
+@keyframes disappearFromRight {
+	0% {
+		opacity: 1;
+		.transform(translateX(0%));
+	}
+	25% {
+		opacity: .75;
+	}
+	50% {
+		opacity: .5;
+	}
+	75% {
+		opacity: .25;
+	}
+	100% {
+		opacity: 0;
+		.transform(translateX(100%));
+	}
+}
+
+@keyframes disappearFromBottom {
+	0% {
+		opacity: 1;
+		.transform(translateY(0%));
+	}
+	25% {
+		opacity: .75;
+	}
+	50% {
+		opacity: .5;
+	}
+	75% {
+		opacity: .25;
+	}
+	100% {
+		opacity: 0;
+		.transform(translateY(100%));
+	}
+}
+
+@keyframes disappearFromTop{
+	0% {
+		opacity: 1;
+		.transform(translateY(0%));
+	}
+	25% {
+		opacity: .75;
+	}
+	50% {
+		opacity: .5;
+	}
+	75% {
+		opacity: .25;
+	}
+	100% {
+		opacity: 0;
+		.transform(translateY(-100%));
+	}
+}
+
+@keyframes enter {
+	0% {
+		.transform(translateX(100%));
+	}
+	100% {
+		.transform(translateX(0));
+	}
+}
+@keyframes enter {
+	0% {
+		.transform(translateX(0));
+	}
+	100% {
+		.transform(translateX(-20%));
+	}
+}
+
+.appearFromLeft {
+	.animation(appearFromLeft 1.0s @easeInOutCirc backwards);
+}
+
+.appearFromRight {
+	.animation(appearFromRight 1.0s @easeInOutCirc backwards);
+}
+
+.appearFromTop {
+	.animation(appearFromTop 1.0s @easeInOutCirc backwards);
+}
+
+.appearFromBottom {
+	.animation(appearFromBottom 1.0s @easeInOutCirc backwards);
+}
+
+.disappearFromLeft {
+	.animation(disappearFromLeft 1.0s @easeInOutCirc backwards);
+	.flex();
+	//opacity: 0 !important;
+}
+
+.disappearFromRight {
+	.animation(disappearFromRight 1.2s @easeInOutCirc backwards);
+	.flex();
+	//opacity: 0 !important;
+}
+
+.disappearFromTop {
+	.animation(disappearFromTop 1.2s @easeInOutCirc backwards);
+	.flex();
+	//opacity: 0 !important;
+}
+
+.disappearFromBottom {
+	.animation(disappearFromBottom 1.2s @easeInOutCirc backwards);
+	.flex();
+	opacity: 0 !important;
+}

@@ -6,11 +6,12 @@
     <meta name="msapplication-tap-highlight" content="no" />
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
     <meta http-equiv="Access-Control-Allow-Origin" content="*">
-    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline' 'unsafe-eval' http://www.vosgesemoi.fr/vosgesemoi2017/wp-json/wp/v2/"/>
     <link rel="stylesheet" href="./css/main.css" type="text/css">
     <link rel="stylesheet" href="./css/fancybox.css" type="text/css">
   </head>
   <body>
+    <div class="statusBar">
+    </div>
     <main role="main" id="main">
       <div class="intro-screen screen">
         <div id="intro-slick">
@@ -125,15 +126,44 @@
           </div>
         </div>
       </div>
-      <div class="home-screen">
+      <div class="photoZone">
+        <canvas>
+
+        </canvas>
+        <div class="modifyPhoto">
+          <div class="leavePhotoZone">
+            Annuler
+          </div>
+          <div class="modify-submenu getFilters">
+            Filtres
+            <div class="filters">
+              <button class="plain" data-filter="plain"></button>
+              <button class="cover" data-filter="cover"></button>
+            </div>
+          </div>
+          <div class="modify-submenu change-filter-color">
+            Couleurs
+            <div class="filter-color">
+              <button class="filter-color-button" style="background-color: #1E37C1;" data-color="#1E37C1"></button>
+              <button class="filter-color-button" style="background-color: #D00046;" data-color="#D00046"></button>
+              <button class="filter-color-button" style="background-color: #2CE379;" data-color="#2CE379"></button>
+            </div>
+          </div>
+          <div class="modify-submenu">
+            Terminé
+          </div>
+        </div>
+      </div>
+      <div class="home-screen screen active">
+        <button class="takePhoto">
+        </button>
         <div class="topbar">
-          <button class="takePhoto">
-            <i class="fa fa-camera fa-2x" aria-hidden="true"></i>
-          </button>
           <div>
           </div>
-          <button class="menuButton">
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+          <button class="hamburger hamburger--collapse" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
           </button>
         </div>
         <div class="content">
@@ -142,10 +172,8 @@
           </div>
           <div class="bottomContent">
             <p class="hello">
-              Bonjour <span class="username"></span>
-            </p>
-            <p class="hello">
-              trouvez le meilleur des Vosges
+              <span data-aos="fade-up">Bonjour <span class="username">Julien</span></span><br />
+              <span data-aos="fade-up" data-aos-delay="300">trouvez le meilleur des Vosges !</span>
             </p>
           </div>
         </div>
@@ -247,6 +275,26 @@
             <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
           </button>
         </div>
+        <div class="content">
+          <div class="chooseMap">
+            <span data-target="photos" class="active_map">photomaton</span>
+            <span data-target="restaurants">restaurants</span>
+            <span data-target="hebergements">hebergements</span>
+            <span data-target="activites ">activités</span>
+          </div>
+          <div data-content="photos" class="photos gmap active_map">
+
+          </div>
+          <div data-content="restaurants" class="restaurants gmap">
+
+          </div>
+          <div data-content="hebergements" class="hebergements gmap">
+
+          </div>
+          <div data-content="activites" class="activites gmap">
+
+          </div>
+        </div>
       </div>
     </main>
     <footer>
@@ -297,10 +345,13 @@
     <script src="./js/bootstrap.min.js"></script>
     <script src="./js/mustache.min.js"></script>
     <script src="./js/underscore-min.js"></script>
+    <script src="./js/fastclick.js"></script>
     <script src="./js/hammer.min.js"></script>
-    <script src="./js/hammer-time.min.js"></script>
     <script src="./js/slick.min.js"></script>
     <script src="./js/aos.js"></script>
+    <script src="./js/localforage.min.js"></script>
+    <script src="./js/jquery-scrolltofixed-min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvbb3iILXsW46fwkMa8nSQEAqHH5yQiSE&ver=4.7.5"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>

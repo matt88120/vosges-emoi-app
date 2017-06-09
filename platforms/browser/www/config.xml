@@ -15,8 +15,6 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
     <access launch-external="yes" origin="tel:*" />
     <access launch-external="yes" origin="geo:*" />
     <allow-intent href="http://*/*" />

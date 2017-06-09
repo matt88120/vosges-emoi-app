@@ -1,0 +1,117 @@
+// main: ./main.less
+main {
+  .screen {
+    height: 100%;
+    display: none;
+    position: relative;
+    z-index: 0;
+    width: 100vw;
+    &.active {
+      .flex();
+      .animation(enter 0.4s @easeInOutCirc backwards);
+      z-index: 9998;
+    }
+    &.exit {
+      .flex();
+      .animation(exit 0.3s @easeInOutCirc backwards);
+      z-index: 9997;
+    }
+    .load_zone {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 40px;
+      left: 0;
+      z-index: 999;
+      background-color: @noir_transparent;
+      .loader {
+        width: 100%;
+        height: 40px;
+        position: absolute;
+        top: calc(~"50% - 40px");
+        padding: 0 20px;
+        .progress {
+          .progress-bar {
+            background-color: @vemfonce;
+            width: 100%;
+            height: 20px;
+          }
+        }
+      }
+    }
+    .content {
+      position: relative;
+      width: 100%;
+      height: calc(~"100% - 40px");
+    }
+  }
+  #restaurants, #hebergements, #activites {
+    overflow: scroll;
+    flex-direction: column;
+    padding: 25px;
+    padding-bottom: 150px;
+    height: auto;
+    .restaurants, .hebergements, .activites {
+      width: 100%;
+      margin-bottom: 40px;
+      .thumbnail {
+        width: 100%;
+        height: 220px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        @media screen and (max-width: 359px) {
+          height: 160px;
+        }
+        @media screen and (min-width: 360px) and (max-width: 380px) {
+          height: 180px;
+        }
+      }
+      .sub-content {
+        .flex();
+        padding-top: 15px;
+        justify-content: space-between;
+      }
+      .name {
+        font-size: 20px;
+        color: @vem;
+        line-height: 30px;
+        padding-right: 5px;
+      }
+      .address, .zip_code {
+        font-size: 15px;
+        color: @vemgris;
+        margin-bottom: 0.3rem;
+      }
+      .distance {
+        font-weight: bold;
+        font-size: 15px;
+        color: @vem;
+      }
+      .contacts {
+        .circle {
+          width: 40px;
+          height: 40px;
+          background-color: @vemgris;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          color: @blanc;
+          margin-bottom: 20px;
+          i {
+            font-size: 1.6em;
+          }
+          &.phone {
+            .transform(rotateZ(260deg));
+          }
+        }
+      }
+    }
+  }
+  #restaurants, #hebergements, #activites {
+    .single {
+    }
+  }
+}

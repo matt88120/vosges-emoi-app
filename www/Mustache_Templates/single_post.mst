@@ -1,0 +1,26 @@
+{{ #acf }}
+<div class="topbar">
+  <button class="leavePost">
+    <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+  </button>
+  <div class="title">
+  </div>
+  <button class="menuButton">
+    <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
+  </button>
+</div>
+<div class="content_container">
+  {{ #acf.images }}
+    <div class="single_thumbnail" style="background-image: url({{ sizes.extra }});">
+
+    </div>
+  {{ /acf.images }}
+  <div class="single_name">
+    <h2></h2>
+    <h1>{{ title.rendered }}</h1>
+  </div>
+  <div class="content">
+    {{{ content.rendered }}}
+  </div>
+</div>
+{{ /acf}}
