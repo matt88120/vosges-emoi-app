@@ -308,14 +308,13 @@
   }
 
   function showScreen(target) {
+      console.log(target);
     try {
       if (target.length == 1) {
         if (target.not('.active')) {
           $('body').scrollTop(0);
           var activeElement = $('main .screen.active');
           if (activeElement.length == 1) {
-            var newZI = activeElement.css("z-index") - 1;
-            //activeElement.css("z-index", newZI);
             target.addClass('active');
             activeElement.removeClass('active').addClass('exit');
             setTimeout(function() {
@@ -328,7 +327,7 @@
               });
             }, 50);
           } else {
-            $('.home-screen').addClass('exit');
+            $('.home-screen').removeClass('active').addClass('exit');
             target.addClass('active');
             setTimeout(function() {
               activeElement.removeClass('exit');
@@ -363,15 +362,24 @@
     }
   }
 
-  function changeContent(e, _this) {
+  function changeContent(e) {
     try {
-      var el = $(_this);
-      var target = $(el.data('target'));
-      if (target.not('.selected')) {
+      var el = $(this);
+      
+      var target = el.data('target');
+      var current_screen = $(".screen.active");
+      
+      current_screen.removeClass("active").addClass("exit");
+      $(target).addClass("active");
+      setTimeout(function() {
+          current_screen.removeClass("exit")
+      }, 700);
+      
+      if ($(target).not('.selected')) {
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
-        showScreen(target);
-        loadBG(target);
+        //showScreen(target);
+        loadBG($(target));
       }
     } catch(err) {
       console.error(err);
@@ -727,7 +735,7 @@
             $('#agenda').append(content);
             setTimeout(function() {
               $('#agenda .content .post').click(openPost);
-              $('#agenda .topbar .returnHome').click(returnHome());
+              $('#agenda .topbar .returnHome').click(returnHome);
               $('#agenda .content').slick({
                 dots: true,
                 arrows: false,
@@ -881,13 +889,7 @@
   }
 
   function initFooter() {
-    var footer = document.getElementsByTagName('footer')[0];
-    _.map(footer.getElementsByTagName('button'), function(el) {
-      var mc = new Hammer(el);
-      mc.on('tap', function(e) {
-        changeContent(e, el);
-      });
-    });
+    $('footer button').click(changeContent);
   }
 
   function loadAllContent() {

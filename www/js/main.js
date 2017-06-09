@@ -308,6 +308,7 @@
   }
 
   function showScreen(target) {
+      console.log(target);
     try {
       if (target.length == 1) {
         if (target.not('.active')) {
@@ -361,15 +362,24 @@
     }
   }
 
-  function changeContent(e, _this) {
+  function changeContent(e) {
     try {
-      var el = $(_this);
-      var target = $(el.data('target'));
-      if (target.not('.selected')) {
+      var el = $(this);
+      
+      var target = el.data('target');
+      var current_screen = $(".screen.active");
+      
+      current_screen.removeClass("active").addClass("exit");
+      $(target).addClass("active");
+      setTimeout(function() {
+          current_screen.removeClass("exit")
+      }, 700);
+      
+      if ($(target).not('.selected')) {
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
-        showScreen(target);
-        loadBG(target);
+        //showScreen(target);
+        loadBG($(target));
       }
     } catch(err) {
       console.error(err);
@@ -725,7 +735,7 @@
             $('#agenda').append(content);
             setTimeout(function() {
               $('#agenda .content .post').click(openPost);
-              $('#agenda .topbar .returnHome').click(returnHome());
+              $('#agenda .topbar .returnHome').click(returnHome);
               $('#agenda .content').slick({
                 dots: true,
                 arrows: false,
@@ -879,9 +889,7 @@
   }
 
   function initFooter() {
-    $('footer').find('button').each(function(idx, el) {
-      $(el).click(changeContent);
-    });
+    $('footer button').click(changeContent);
   }
 
   function loadAllContent() {

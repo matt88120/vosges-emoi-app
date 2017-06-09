@@ -3,18 +3,27 @@ main {
   .screen {
     height: 100%;
     display: none;
-    position: relative;
+    position: absolute;
     z-index: 0;
+    top: 0;
+    left: 0;
     width: 100vw;
+    min-height: 100vh;
+    background: @blanc;
     &.active {
-      .flex();
-      .animation(enter 0.4s @easeInOutCirc backwards);
-      z-index: 9998;
+        .materialshadow3();
+        .animation(enter .5s @easeInOutCirc forwards);
+        .flex();
+        z-index: 9998;
+        position: relative;
     }
     &.exit {
-      .flex();
-      .animation(exit 0.3s @easeInOutCirc backwards);
-      z-index: 9997;
+        position: absolute;
+        top: 0;
+        left: 0;
+       .flex();
+       .animation(exit .25s @easeInOutCirc forwards);
+       z-index: 9997;
     }
     .load_zone {
       display: none;
