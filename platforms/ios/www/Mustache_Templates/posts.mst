@@ -1,0 +1,30 @@
+{{ #posts }}
+  <div id="{{ id }}" class="post" data-type="posts">
+    <div class="thumbnail" data-thumb="{{ acf.images.sizes.large }}">
+      <div class="loadbg">
+        <div class="sk-circle">
+          <div class="sk-circle1 sk-child"></div>
+          <div class="sk-circle2 sk-child"></div>
+          <div class="sk-circle3 sk-child"></div>
+          <div class="sk-circle4 sk-child"></div>
+          <div class="sk-circle5 sk-child"></div>
+          <div class="sk-circle6 sk-child"></div>
+          <div class="sk-circle7 sk-child"></div>
+          <div class="sk-circle8 sk-child"></div>
+          <div class="sk-circle9 sk-child"></div>
+          <div class="sk-circle10 sk-child"></div>
+          <div class="sk-circle11 sk-child"></div>
+          <div class="sk-circle12 sk-child"></div>
+        </div>
+      </div>
+      <div class="date">
+        Du {{ acf.date_de_debut }} au {{ acf.date_de_debut }}
+        {{ #acf.heure_de_debut }}
+        - {{ acf.heure_de_debut }}
+        {{ /acf.heure_de_debut}}
+      </div>
+    </div>
+    <h2 class="title">{{ title.rendered }}</h2>
+    <div class="description">{{{ acf.description }}}</div>
+  </div>
+{{ /posts }}
