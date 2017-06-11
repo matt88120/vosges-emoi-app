@@ -19,10 +19,17 @@
     border-top: 1px solid rgba(0, 0, 0, 0.2);
     .flex();
     div {
+      color: @vemgris;
       flex: 1;
       .flex();
       justify-content: center;
       align-items: center;
+      &.saveAndSendPhoto {
+        color: @vert;
+      }
+      &.leavePhotoZone {
+        color: @rouge;
+      }
     }
     .modify-submenu {
       &.getFilters {
@@ -45,7 +52,8 @@
           }
         }
         &.selected {
-          color: #1E37C1;
+          background-color: @vem;
+          color: @blanc;
           .filters {
             .flex();
           }
@@ -63,7 +71,8 @@
           border-radius: 30px;
         }
         &.selected {
-          color: #1E37C1;
+          background-color: @vem;
+          color: @blanc;
           .filter-color {
             .flex();
           }

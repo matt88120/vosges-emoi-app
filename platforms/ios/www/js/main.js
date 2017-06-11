@@ -11,6 +11,7 @@
   var photomaton_map_template;
   var common_map_template;
   var maps = [];
+  var favorites = [];
 
   /*
   *  new_map
@@ -270,7 +271,12 @@
   function returnHome() {
     try {
       removeOtherElementsClass('footer button', 'selected');
-      showScreen($('.home-screen'));
+      var current_screen = $(".screen.active");
+      current_screen.removeClass("active").addClass("exit-to-home");
+      $('.home-screen').addClass("active");
+      setTimeout(function() {
+          current_screen.removeClass("exit-to-home");
+      }, 700);
     } catch(err) {
       console.error(err);
     }
@@ -307,45 +313,6 @@
     }, 500);
   }
 
-  function showScreen(target) {
-      console.log(target);
-    try {
-      if (target.length == 1) {
-        if (target.not('.active')) {
-          $('body').scrollTop(0);
-          var activeElement = $('main .screen.active');
-          if (activeElement.length == 1) {
-            target.addClass('active');
-            activeElement.removeClass('active').addClass('exit');
-            setTimeout(function() {
-              activeElement.removeClass('exit');
-            }, 400);
-            setTimeout(function() {
-              maps.map(function(map) {
-                google.maps.event.trigger(map, 'resize');
-                center_map(map);
-              });
-            }, 50);
-          } else {
-            $('.home-screen').removeClass('active').addClass('exit');
-            target.addClass('active');
-            setTimeout(function() {
-              activeElement.removeClass('exit');
-            }, 400);
-            setTimeout(function() {
-              maps.map(function(map) {
-                google.maps.event.trigger(map, 'resize');
-                center_map(map);
-              });
-            }, 50);
-          }
-        }
-      }
-    } catch(err) {
-      console.error(err);
-    }
-  }
-
   function removeOtherElementsClass(targetedElementsName, targetedClass) {
     try {
       var targetedElements = $(targetedElementsName + '.' + targetedClass);
@@ -365,21 +332,24 @@
   function changeContent(e) {
     try {
       var el = $(this);
-      
       var target = el.data('target');
-      var current_screen = $(".screen.active");
-      
-      current_screen.removeClass("active").addClass("exit");
-      $(target).addClass("active");
-      setTimeout(function() {
-          current_screen.removeClass("exit")
-      }, 700);
-      
-      if ($(target).not('.selected')) {
+      if (!el.hasClass('selected')) {
+        $('body').scrollTop(0);
+        var current_screen = $(".screen.active");
+        current_screen.removeClass("active").addClass("exit");
+        $(target).addClass("active");
+        setTimeout(function() {
+            current_screen.removeClass("exit")
+        }, 500);
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
-        //showScreen(target);
         loadBG($(target));
+        setTimeout(function() {
+          maps.map(function(map) {
+            google.maps.event.trigger(map, 'resize');
+            center_map(map);
+          });
+        }, 50);
       }
     } catch(err) {
       console.error(err);
@@ -923,26 +893,21 @@
   function insertPhotoIntoCanvas() {
     var context = window.photoCanvas.getContext('2d');
     window.photoCanvas.width = window.innerWidth;
-    window.photoCanvas.height = window.innerWidth / 0.75;
-    if ((window.innerWidth / window.takenPhoto.width) < 1) {
-      if (window.takenPhoto.height > window.takenPhoto.width) {
-        context.scale((window.innerWidth / window.takenPhoto.width), ((window.innerWidth / 0.75) / 800));
-      } else {
-        context.scale(((window.innerWidth / 0.75) / 800), (window.innerWidth / window.takenPhoto.width));
-      }
-      context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);
-    }
+    window.photoCanvas.height = window.innerWidth;
+    var ratio = window.photoCanvas.width / 800;
+    //context.scale(ratio, ratio);
+    context.drawImage(window.takenPhoto, 0, 0, window.photoCanvas.width, window.photoCanvas.height);
   }
 
   function loadSVGIntoCanvas(svg, canvas) {
     var context = canvas.getContext('2d');
     try {
-      var image = new Image(800, 600);
+      var image = new Image(800, 800);
       image.onload = function(e) {
-      	context.drawImage(image, 0, 0);
+      	context.drawImage(image, 0, 0, window.photoCanvas.width, window.photoCanvas.height);
       };
       var xml = new XMLSerializer();
-      var url = xml.serializeToString(svg)
+      var url = xml.serializeToString(svg);
       image.src = "data:image/svg+xml," + encodeURIComponent(url);
     } catch(err) {
       alert(err);
@@ -954,9 +919,9 @@
     ctx.clearRect(0, 0, canvas.width, canvas.height);
   }
 
-  function LoadCamera() {
-    console.log(Camera);
+  function loadCamera() {
     var Camera = (typeof navigator.camera !== "undefined") ? navigator.camera : Camera;
+    alert(Camera);
     var opts = {
       quality: 100,
       destinationType: Camera.DestinationType.FILE_URI,
@@ -982,11 +947,25 @@
       }
       window.photoCanvas = document.getElementsByTagName('canvas')[0];
       context = window.photoCanvas.getContext('2d');
-      var tmp = new Image();
-      window.takenPhoto = new Image();
-      takenPhoto.addEventListener('load', function(e) {
-        tmp.remove();
+      window.takenPhoto = new Image(800, 800);
+      window.takenPhoto.addEventListener('load', function(e) {
         try {
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
+          insertPhotoIntoCanvas();
           insertPhotoIntoCanvas();
           insertPhotoIntoCanvas();
           insertPhotoIntoCanvas();
@@ -998,6 +977,21 @@
                 var photoCanvas = document.getElementsByTagName('canvas')[0];
                 if (window.appliedFilter) {
                   clearCanvas(photoCanvas);
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
+                  insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
@@ -1044,26 +1038,14 @@
           alert(err);
         }
       });
-      tmp.addEventListener('load', function() {
-        if (tmp.width > tmp.height) {
-          window.takenPhoto.wdth = 800;
-          window.takenPhoto.height = 600;
-        } else {
-          window.takenPhoto.width = 600;
-          window.takenPhoto.height = 800;
-        }
-        takenPhoto.src = data;
-      });
-      tmp.src = data;
+      takenPhoto.src = data;
     }, function cameraError(err) {
       console.error(err);
     }, opts);
   }
-
   function initCameraButton() {
-    if (navigator.onLine) {
-      $('.home-screen .takePhoto').click(LoadCamera);
-    } else {
+    $('.home-screen .takePhoto').click(loadCamera);
+    if (!navigator.onLine) {
       $('.home-screen .takePhoto').prop('disabled', true);
     }
     $(window).on('offline', function() {
@@ -1094,14 +1076,39 @@
     });
   }
 
-  $(window).on('load', function() {
-    initCameraButton();
-  });
+  function showFavorites() {
+    
+  }
+
+  function getFavorites() {
+    if (!favorites.length) {
+       localforage.getItem('favorites').then(function(data) {
+         if ((typeof data !== "undefined") && (data.length)) {
+           favorites = data;
+         }
+       }).catch(function(err) {
+         alert("Les favoris n'ont pas pu être récupérés !");
+       });
+    }
+  }
+
+  function addToFavorites() {
+    var fiche = $(this.parent().parent());
+    var id = fiche.id;
+    favorites.push(id);
+    //changer le nombre de favoris au total
+    localforage.setItem('favorites', favorites).then(function() {
+      alert("Votre nouceau favoris à bien été sauvegardé !");
+    }).catch(function(err) {
+      alert("Une erreur est survenue lors de la sauvegarde des favoris !");
+    });
+  }
 
   $(document).ready(function(e) {
     init();
     initFooter();
     initMenu();
+    initCameraButton();
     var now = new Date();
     localforage.getItem('lastLoadedDate').then(function(lastLoadedDate) {
       if ((typeof lastLoadedDate !== undefined) && (lastLoadedDate != null)) {

@@ -37,80 +37,36 @@
 
 @keyframes disappearFromLeft {
 	0% {
-		opacity: 1;
 		.transform(translateX(0%));
 	}
-	25% {
-		opacity: .75;
-	}
-	50% {
-		opacity: .5;
-	}
-	75% {
-		opacity: .25;
-	}
 	100% {
-		opacity: 0;
 		.transform(translateX(-100%));
 	}
 }
 
 @keyframes disappearFromRight {
 	0% {
-		opacity: 1;
 		.transform(translateX(0%));
 	}
-	25% {
-		opacity: .75;
-	}
-	50% {
-		opacity: .5;
-	}
-	75% {
-		opacity: .25;
-	}
 	100% {
-		opacity: 0;
 		.transform(translateX(100%));
 	}
 }
 
 @keyframes disappearFromBottom {
 	0% {
-		opacity: 1;
 		.transform(translateY(0%));
 	}
-	25% {
-		opacity: .75;
-	}
-	50% {
-		opacity: .5;
-	}
-	75% {
-		opacity: .25;
-	}
 	100% {
-		opacity: 0;
 		.transform(translateY(100%));
 	}
 }
 
 @keyframes disappearFromTop{
 	0% {
-		opacity: 1;
 		.transform(translateY(0%));
 	}
-	25% {
-		opacity: .75;
-	}
-	50% {
-		opacity: .5;
-	}
-	75% {
-		opacity: .25;
-	}
 	100% {
-		opacity: 0;
 		.transform(translateY(-100%));
 	}
 }
@@ -131,6 +87,14 @@
 		.transform(translateX(-20%));
 	}
 }
+@keyframes exitToHome {
+	0% {
+		.transform(translateX(0));
+	}
+	100% {
+		.transform(translateX(20%));
+	}
+}
 
 .appearFromLeft {
 	.animation(appearFromLeft 1.0s @easeInOutCirc backwards);
@@ -149,25 +113,25 @@
 }
 
 .disappearFromLeft {
-	.animation(disappearFromLeft 1.0s @easeInOutCirc backwards);
+	.animation(disappearFromLeft .25s @easeInOutCirc backwards);
 	.flex();
 	//opacity: 0 !important;
 }
 
 .disappearFromRight {
-	.animation(disappearFromRight 1.2s @easeInOutCirc backwards);
+	.animation(disappearFromRight .25s @easeInOutCirc backwards);
 	.flex();
 	//opacity: 0 !important;
 }
 
 .disappearFromTop {
-	.animation(disappearFromTop 1.2s @easeInOutCirc backwards);
+	.animation(disappearFromTop .25s @easeInOutCirc backwards);
 	.flex();
 	//opacity: 0 !important;
 }
 
 .disappearFromBottom {
-	.animation(disappearFromBottom 1.2s @easeInOutCirc backwards);
+	.animation(disappearFromBottom .25s @easeInOutCirc backwards);
 	.flex();
 	opacity: 0 !important;
 }

@@ -22,8 +22,16 @@ main {
         top: 0;
         left: 0;
        .flex();
-       .animation(exit .25s @easeInOutCirc forwards);
+       .animation(exit .5s @easeInOutCirc forwards);
        z-index: 9997;
+    }
+    &.exit-to-home {
+      position: absolute;
+      top: 0;
+      left: 0;
+     .flex();
+     .animation(exitToHome .5s @easeInOutCirc forwards);
+     z-index: 9997;
     }
     .load_zone {
       display: none;
@@ -61,6 +69,9 @@ main {
     padding: 25px;
     padding-bottom: 150px;
     height: auto;
+    .content {
+      top: 50px;
+    }
     .restaurants, .hebergements, .activites {
       width: 100%;
       margin-bottom: 40px;
