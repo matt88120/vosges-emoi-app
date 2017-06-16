@@ -112,7 +112,11 @@
             };
             if (typeof photomaton_map_template === "undefined") {
               loadTemplate('photomaton_map', photomaton_map_template).then(function(template) {
-                var rendered = Mustache.render(template, data);
+                try {
+                  var rendered = Mustache.render(template, data);
+                } catch (err) {
+                  console.error(err);
+                }
                 $.fancybox.open({
                   src: rendered,
                   type: 'inline'
@@ -120,7 +124,11 @@
                 $('.fancybox-slide .seeSingle').click(loadSingleTemplateFromFancybox);
               });
             } else {
-              var rendered = Mustache.render(photomaton_map_template, data);
+              try {
+                var rendered = Mustache.render(photomaton_map_template, data);
+              } catch (err) {
+                console.error(err);
+              }
               $.fancybox.open({
                 src: rendered,
                 type: 'inline'
@@ -139,7 +147,11 @@
             };
             if (typeof common_map_template === "undefined") {
               loadTemplate('common_map', common_map_template).then(function(template) {
-                var rendered = Mustache.render(template, data);
+                try {
+                  var rendered = Mustache.render(template, data);
+                } catch (err) {
+                  console.error(err);
+                }
                 $.fancybox.open({
                   src: rendered,
                   type: 'inline'
@@ -147,7 +159,11 @@
                 $('.fancybox-slide .seeSingle').click(loadSingleTemplateFromFancybox);
               });
             } else {
-              var rendered = Mustache.render(common_map_template, data);
+              try {
+                var rendered = Mustache.render(common_map_template, data);
+              } catch(err) {
+                console.error(err);
+              }
               $.fancybox.open({
                 src: rendered,
                 type: 'inline'
@@ -218,13 +234,14 @@
       req.onload = function() {
         // This is called even on 404 etc
         // so check the status
-        if (req.status == 200) {
+        if (req.status == 200 || req.status == 0) {
           // Resolve the promise with the response text
           resolve(req.response);
         }
         else {
           // Otherwise reject with the status text
           // which will hopefully be a meaningful error
+          console.error(req);
           reject(Error(req.statusText));
         }
       };
@@ -273,7 +290,7 @@
   function returnHome() {
     try {
       if ($('.screen.active').hasClass('single')) {
-        deleteSingle();
+        deleteSingle(true);
       }
       else {
         removeOtherElementsClass('footer button', 'selected');
@@ -291,13 +308,18 @@
     }
   }
 
-  function deleteSingle() {
+  function deleteSingle(scroll) {
     $('.screen.exit').removeClass('exit').addClass('active').show();
     $('.single.active').removeClass('active').addClass('exit');
     $('.single_contacts').addClass('inactive');
     $('.single_contacts .single_phone').attr('href', "");
     $('.single_contacts .single_map').data('lat', '');
     $('.single_contacts .single_map').data('lng', '');
+    if (scroll) {
+      $('html, body').scrollTop(window.previousScroll);
+    } else {
+      $('html, body').scrollTop(0);
+    }
     setTimeout(function() {
       $('.single').remove()
       $('footer').show();
@@ -367,6 +389,30 @@
     }
   }
 
+  function distance(lon1, lat1, lon2, lat2) {
+    try {
+      if (typeof(Number.prototype.toRad) === "undefined") {
+        Number.prototype.toRad = function() {
+          return this * Math.PI / 180;
+        }
+      }
+      var R = 6371; // Radius of the earth in km
+      var dLat = (lat2 - lat1).toRad();  // Javascript functions in radians
+      var dLon = (lon2 - lon1).toRad();
+      var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+              Math.cos(lat1.toRad()) * Math.cos(lat2.toRad()) *
+              Math.sin(dLon / 2) * Math.sin(dLon / 2);
+      var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+      var d = R * c; // Distance in km
+      return (Math.round(d * 100) / 100).toFixed(2);
+    } catch(err) {
+      if (err) {
+        console.error(err);
+        return null;
+      }
+    }
+  }
+
   function getGeolocation(geoCoords) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(myPos) {
@@ -380,7 +426,7 @@
   }
 
   function navigateToDest(e) {
-    e.preventDefault()
+    e.preventDefault();
     try {
       var _this = $(this);
       if ((typeof _this.data('lat') !== "undefined") && (typeof _this.data('lng') !== "undefined")) {
@@ -388,12 +434,8 @@
           lat: _this.data('lat'),
           lng: _this.data('lng')
         }
-        alert(launchnavigator);
         navigator.geolocation.getCurrentPosition(function(userPos) {
-          console.log(userPos);
           var start = userPos.coords.latitude + ", " + userPos.coords.longitude;
-          alert("launching navigation");
-          alert(JSON.stringify(launchnavigator));
           launchnavigator.navigate([dest.lat, dest.lng], {
             start: start
           });
@@ -402,7 +444,7 @@
         });
       }
     } catch(err) {
-      alert(err);
+      console.error(err);
     }
   }
 
@@ -428,7 +470,7 @@
   }
 
   function loadTemplate(tName, tVar) {
-    return new Promise(function(res, rej) {
+    return (new Promise(function(res, rej) {
       get(TEMPLATES_FOLDER + tName + '.mst').then(function(data) {
         if (typeof data !== "undefined") {
           tVar = data.toString();
@@ -437,7 +479,7 @@
       }).catch(function(err) {
         rej(err);
       });
-    });
+    }));
   }
 
   function findOtherType(respID, type) {
@@ -531,6 +573,8 @@
             } else {
               loadTemplate('posts', posts_template).then(function(template) {
                 res(Mustache.render(template, ret));
+              }).catch(function(err) {
+                console.error(err);
               });
             }
           } else {
@@ -570,11 +614,14 @@
           $('.screen.active').removeClass('active').addClass('exit');
           $('.single').addClass('active');
           $('.single_contacts').removeClass('inactive');
+          window.previousScroll = $('body').scrollTop();
           var reg = new RegExp(' ', 'g');
           $('.single_contacts .single_phone').attr('href', "tel://" + single.acf.telephone.replace(reg, ''));
           $('.single_contacts .single_map').data('lat', single.acf.situation_sur_la_carte.lat.toString());
           $('.single_contacts .single_map').data('lng', single.acf.situation_sur_la_carte.lng.toString());
+          $('.single_contacts .single_map').click(navigateToDest);
           setTimeout(function() {
+            $('html, body').scrollTop(0);
             $('.screen.exit').hide();
           }, 400);
           if (typeof single_template === "undefined") {
@@ -582,7 +629,7 @@
               $('.single').html(Mustache.render(template, single));
               $('.single .relativePosts').append(single.posts);
               $('.single .relativePosts .post').click(openPost);
-              //fixTop($('.single .single_name'));
+              //$('.single .single_name').scrollToFixed();
               $('.single .relativePosts').slick({
                 dots: true,
             		arrows: false,
@@ -636,14 +683,18 @@
     }
 
   function loadSingleTemplateFromFancybox() {
+    var _this = this;
     $.fancybox.close();
-    loadSingleTemplate.apply(this);
+    setTimeout(function() {
+      loadSingleTemplate.apply(_this);
+    }, 600);
   }
 
   function loadSingleTemplateFromOtherType() {
-    $('.leaveSingle').click();
+    $('.single').removeClass('active').addClass('exit');
     loadSingleTemplate.apply(this);
-
+    $('.single.exit').remove();
+    $('.html, body').scrollTop(0);
   }
 
   function loadCommonContent(tName, tVar) {
@@ -653,14 +704,18 @@
           if (typeof el.acf.telephone != "undefined")
             el.acf.telephone = el.acf.telephone.replace(new RegExp(' ', 'g'), '');
           return (el);
-        })
+        });
         try {
           var tab = {
             datas : data
           }
           var content = document.createElement('div');
           content.className = "content";
-          $(content).html(Mustache.render(template, tab));
+          try {
+            $(content).html(Mustache.render(template, tab));
+          } catch(err) {
+            console.error(err);
+          }
           $('#' + tName).append(content);
           getGeolocation($('#' + tName + ' .' + tName + ' .distance'));
           $('.' + tName + '.category .thumbnail').click(loadSingleTemplate);
@@ -740,7 +795,11 @@
           try {
             var content = document.createElement('div');
             content.className = "content";
-            $(content).html(Mustache.render(template, tmp));
+            try {
+              $(content).html(Mustache.render(template, tmp));
+            } catch(err) {
+              console.error(err);
+            }
             $('#agenda').append(content);
             setTimeout(function() {
               $('#agenda .content .post').click(openPost);
@@ -765,7 +824,11 @@
         try {
           var content = document.createElement('div');
           content.className = "content";
-          $(content).html(Mustache.render(posts_template, data));
+          try {
+            $(content).html(Mustache.render(posts_template, data));
+          } catch(err) {
+            console.error(err);
+          }
           $('#agenda').append(content);
           setTimeout(function() {
             $('#agenda .content .post').click(openPost);
@@ -833,6 +896,8 @@
               }, 50);
             }
           }
+        }).catch(function(err) {
+          console.error(err);
         });
       }
     });
@@ -847,7 +912,11 @@
       if (mustData.markers.length) {
         if (typeof markers_template === "undefined") {
           loadTemplate('markers', markers_template).then(function(template) {
-            $('#carte .content .' + collectionName).html(Mustache.render(template, mustData));
+            try {
+              $('#carte .content .' + collectionName).html(Mustache.render(template, mustData));
+            } catch(err) {
+              console.error(err);
+            }
             maps.push(new_map($('#carte .content .' + collectionName)));
             setTimeout(function() {
               maps.map(function(map) {
@@ -857,7 +926,11 @@
             }, 50);
           });
         } else {
-          $('#carte .content .' + collectionName).html(Mustache.render(markers_template, mustData));
+          try {
+            $('#carte .content .' + collectionName).html(Mustache.render(markers_template, mustData));
+          } catch(err) {
+            console.error(err);
+          }
           maps.push(new_map($('#carte .content .' + collectionName)));
           setTimeout(function() {
             maps.map(function(map) {
@@ -928,7 +1001,7 @@
       loadCommonContent('hebergements', hebergements_template);
       loadCommonContent('activites', activites_template);
     } catch (err) {
-      alert(err);
+      console.error(err);
     }
     if (window.navigator.onLine) {
       loadAndStore('photomaton', '?per_page=99').then(function(data) {
@@ -962,7 +1035,7 @@
       var url = xml.serializeToString(svg);
       image.src = "data:image/svg+xml," + encodeURIComponent(url);
     } catch(err) {
-      alert(err);
+      console.error(err);
     }
   }
 
@@ -994,7 +1067,7 @@
         navigator.geolocation.getCurrentPosition(function(pos) {
           lat = pos.coords.latitude;
           lng = pos.coords.longitude;
-          alert(lat + " " + lng);
+          console.error(lat + " " + lng);
           $.ajax({
             url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/photomaton",
             method: 'POST',
@@ -1010,16 +1083,16 @@
             }
           }).then(function(data) {
 
-            alert("Votre image à bien été enregistrée !");
+            console.error("Votre image à bien été enregistrée !");
           }).catch(function(err) {
-            alert("ERROR " + JSON.stringify(err));
+            console.error("ERROR " + JSON.stringify(err));
           });
         }).catch(function(err) {
-          alert("ERROR " + JSON.stringify(err));
+          console.error("ERROR " + JSON.stringify(err));
         });
       });
     } catch(err) {
-      alert("ERROR 2 : " + JSON.stringify(err));
+      console.error("ERROR 2 : " + JSON.stringify(err));
     }
   }
 
@@ -1049,7 +1122,7 @@
           $('.photoZone').hide();
         });
       } catch(err) {
-        alert(err);
+        console.error(err);
       }
       window.photoCanvas = document.getElementsByTagName('canvas')[0];
       context = window.photoCanvas.getContext('2d');
@@ -1112,7 +1185,7 @@
                   loadSVGIntoCanvas(window.loadedSVG, window.photoCanvas);
                   //window.photoCanvas.getContext('2d').drawImage(window.loadedSVG, 0, 0);
                 }).catch(function(err) {
-                  alert(err);
+                  console.error(err);
                 });
               });
             });
@@ -1137,12 +1210,12 @@
               });
               $(this).addClass('selected');
             } else {
-              alert("Veuillez d'abord séléctionner un filtre =)");
+              console.error("Veuillez d'abord séléctionner un filtre =)");
             }
           });
           $('.photoZone .saveAndSendPhoto').click(sendPhotomaton);
         } catch(err) {
-          alert(err);
+          console.error(err);
         }
       });
       takenPhoto.src = data;
@@ -1287,7 +1360,11 @@
               return (_.contains(favorites, row.id.toString()));
             });
           }
-          $('main').append(Mustache.render(template, favorites_data));
+          try {
+            $('main').append(Mustache.render(template, favorites_data));
+          } catch (err) {
+            console.error(err);
+          }
           $('.favorites .category .thumbnail').click(loadSingleTemplate);
           $('.favorites .topbar .leaveFavorites').click(leaveFavorites);
           $('.favorites .category .fa-heart').each(function(idx, el) {
@@ -1316,8 +1393,11 @@
           favorites_data[commonDatasName[i]] = _.find(datas[i], function(row) {
             return (_.contains(favorites, row.id));
           });
-          $('main').append(Mustache.render(template, favorites_data));
-
+          try {
+            $('main').append(Mustache.render(template, favorites_data));
+          } catch (err) {
+            console.error(err);
+          }
         }
       });
     }
@@ -1391,13 +1471,12 @@
       console.log("favorites updated");
       $('.favNumber').html(favorites.length);
     }).catch(function(err) {
-      alert("Une erreur est survenue lors de la sauvegarde des favoris !");
+      console.error("Une erreur est survenue lors de la sauvegarde des favoris !");
     });
   }
 
   $(window).on('load', function(e) {
-    try {
-      alert("device ready !");
+      console.error("device ready !");
       init();
       initFooter();
       initContentTopbar();
@@ -1419,6 +1498,8 @@
           }
         }
         initCameraButton();
+      }).catch(function(err) {
+        console.error(err);
       });
       localforage.getItem('lastLoadedDate').then(function(lastLoadedDate) {
         if ((typeof lastLoadedDate !== undefined) && (lastLoadedDate != null)) {
@@ -1433,10 +1514,7 @@
           loadAllContent();
         }
       }).catch(function(err) {
-        alert(err);
+        console.error(err);
       });
-  } catch(err) {
-    alert(err);
-  }
   });
 })( jQuery );
