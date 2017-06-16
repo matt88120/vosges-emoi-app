@@ -1,19 +1,44 @@
 // main: ./main.less
 main {
   .screen {
-    height: 100%;
+    height: auto;
     display: none;
-    position: relative;
+    position: absolute;
     z-index: 0;
+    top: 0;
+    left: 0;
     width: 100vw;
+    min-height: 100vh;
+    background: @blanc;
     &.active {
-      .flex();
-      .animation(enter 0.4s @easeInOutCirc backwards);
-      z-index: 9998;
+        .materialshadow3();
+        .animation(enter .5s @easeInOutCirc forwards);
+        .flex();
+        z-index: 9998;
+        position: relative;
     }
     &.exit {
+        position: absolute;
+        top: 0;
+        left: 0;
+       .flex();
+       .animation(exit .5s @easeInOutCirc forwards);
+       z-index: 9997;
+    }
+    &.exit-to-home {
+      position: absolute;
+      top: 0;
+      left: 0;
+     .flex();
+     .animation(exitToHome .5s @easeInOutCirc forwards);
+     z-index: 9997;
+    }
+    &.exit-for-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
       .flex();
-      .animation(exit 0.3s @easeInOutCirc backwards);
+      .animation(exitForMenu .5s @easeInOutCirc forwards);
       z-index: 9997;
     }
     .load_zone {
@@ -52,7 +77,11 @@ main {
     padding: 25px;
     padding-bottom: 150px;
     height: auto;
+    .content {
+      top: 50px;
+    }
     .restaurants, .hebergements, .activites {
+      position: relative;
       width: 100%;
       margin-bottom: 40px;
       .thumbnail {
@@ -66,6 +95,22 @@ main {
         }
         @media screen and (min-width: 360px) and (max-width: 380px) {
           height: 180px;
+        }
+        .loadbg {
+          position: relative;
+        }
+        .fa {
+          font-size: 3em;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          .transition();
+          &.fa-heart-o {
+            color: @blanc;
+          }
+          &.fa-heart {
+            color: @vem;
+          }
         }
       }
       .sub-content {

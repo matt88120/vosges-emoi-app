@@ -132,7 +132,7 @@
         </canvas>
         <div class="modifyPhoto">
           <div class="leavePhotoZone">
-            Annuler
+            <i class="fa fa-times" aria-hidden="true"></i>
           </div>
           <div class="modify-submenu getFilters">
             Filtres
@@ -149,8 +149,77 @@
               <button class="filter-color-button" style="background-color: #2CE379;" data-color="#2CE379"></button>
             </div>
           </div>
-          <div class="modify-submenu">
-            Terminé
+          <form id="sendPhoto">
+            <input id="new_photomaton" name="new_photomaton" type="file" />
+          </form>
+          <div class="modify-submenu saveAndSendPhoto">
+            <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+      <div id="menu" class="screen">
+        <div class="topbar">
+          <div>
+          </div>
+          <button class="hamburger hamburger--collapse is-active exit" type="button">
+            <span class="hamburger-box">
+              <span class="hamburger-inner"></span>
+            </span>
+          </button>
+        </div>
+        <div class="avatar">
+
+        </div>
+        <div class="loggedin-username">
+
+        </div>
+        <div class="connect">
+          <button>Connexion</button>
+        </div>
+        <div class="connect-area">
+          <div class="input-area">
+            <div class="alert alert-warning" role="alert">
+              Vos Informations de connexion semblent erronées.
+            </div>
+            <label for="username">Nom d'utilisateur ou Adresse Mail</label>
+            <input type="text" id="username" />
+            <label for="pass">Mot de passe</label>
+            <input type="password" id="pass" />
+            <button id="connect">Connexion</button>
+          </div>
+        </div>
+        <div class="userspace offline">
+          <div class="userspace-title">
+            <span>Mon espace</span>
+          </div>
+          <div class="usersettings">
+            <div class="profil set">
+              <i class="fa fa-user fa-3x" aria-hidden="true"></i>
+              <div>
+                Profil
+              </div>
+            </div>
+            <div class="loadfavorites set">
+              <i class="fa fa-heart fa-3x" aria-hidden="true"></i>
+              <div class="favorites-num">
+
+              </div>
+              <div>
+                Ma Liste
+              </div>
+            </div>
+            <div class="camera set">
+              <i class="fa fa-camera fa-3x" aria-hidden="true"></i>
+              <div>
+                Appareil Photo
+              </div>
+            </div>
+            <div class="app-settings set">
+              <i class="fa fa-cogs fa-3x" aria-hidden="true"></i>
+              <div>
+                Paramètres
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -178,6 +247,19 @@
           </div>
         </div>
       </div>
+      <div class="topbar content-topbar inactive">
+        <button class="returnHome">
+          <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
+        </button>
+        <div class="title">
+        </div>
+        <button class="showFavorites"><i class="fa fa-heart" aria-hidden="true"><span class="favNumber"></span></i></button>
+        <button class="hamburger hamburger--collapse" type="button">
+          <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+          </span>
+        </button>
+      </div>
       <div id="restaurants" class="screen">
         <div class="load_zone">
           <div class="loader">
@@ -187,17 +269,6 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="topbar">
-          <button class="returnHome">
-            <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-          </button>
-          <div class="title">
-            Où manger
-          </div>
-          <button class="menuButton">
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-          </button>
         </div>
       </div>
       <div id="hebergements" class="screen">
@@ -210,34 +281,12 @@
             </div>
           </div>
         </div>
-        <div class="topbar">
-          <button class="returnHome">
-            <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-          </button>
-          <div class="title">
-            Où dormir
-          </div>
-          <button class="menuButton">
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-          </button>
-        </div>
       </div>
       <div id="activites" class="screen">
         <div class="load_zone">
           <div class="loader">
 
           </div>
-        </div>
-        <div class="topbar">
-          <button class="returnHome">
-            <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-          </button>
-          <div class="title">
-            Activités
-          </div>
-          <button class="menuButton">
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-          </button>
         </div>
       </div>
       <div id="agenda" class="screen">
@@ -246,34 +295,12 @@
 
           </div>
         </div>
-        <div class="topbar">
-          <button class="returnHome">
-            <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-          </button>
-          <div class="title">
-            Agenda
-          </div>
-          <button class="menuButton">
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-          </button>
-        </div>
       </div>
       <div id="carte" class="screen">
         <div class="load_zone">
           <div class="loader">
 
           </div>
-        </div>
-        <div class="topbar">
-          <button class="returnHome">
-            <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-          </button>
-          <div class="title">
-            Carte
-          </div>
-          <button class="menuButton">
-            <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-          </button>
         </div>
         <div class="content">
           <div class="chooseMap">
@@ -297,6 +324,10 @@
         </div>
       </div>
     </main>
+    <div class="single_contacts inactive">
+      <a class="single_phone" href><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>
+      <a class="single_map" href><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
+    </div>
     <footer>
       <button data-target="#restaurants">
         <div>
@@ -352,6 +383,7 @@
     <script src="./js/localforage.min.js"></script>
     <script src="./js/jquery-scrolltofixed-min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCvbb3iILXsW46fwkMa8nSQEAqHH5yQiSE&ver=4.7.5"></script>
+    <script src="./js/md5.min.js"></script>
     <script src="./js/main.js"></script>
   </body>
 </html>

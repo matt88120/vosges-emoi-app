@@ -19,6 +19,28 @@
   .title  {
     text-transform: uppercase;
   }
+  .showFavorites {
+    position: absolute;
+    right: 90px;
+    font-size: 2em;
+    background-color: transparent;
+    @media screen and (max-width: 380px) {
+      right: 80px;
+    }
+    i {
+      position: relative;
+    }
+    .favNumber {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      font-size: .4em;
+      color: white;
+      width: 32px;
+      height: 32px;
+      font-weight: bold;
+    }
+  }
 }
 
 .home-screen {
@@ -29,4 +51,37 @@
   .takePhoto {
     color: @blanc;
   }
+}
+.content-topbar {
+  button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    &:focus {
+      outline: none;
+    }
+    &.returnHome {
+      margin-bottom: 5px;
+    }
+    &.hamburger {
+      background-color: transparent;
+      outline: none;
+      .hamburger-inner {
+        background-color: @vem;
+        .radius(0);
+        &:before {
+          background-color: @vem;
+          .radius(0);
+        }
+        &:after {
+          background-color: @vem;
+          .radius(0);
+        }
+      }
+    }
+  }
+  &.inactive {
+    display: none;
+  }
+  z-index: 9999;
 }

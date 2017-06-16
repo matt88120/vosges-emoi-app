@@ -72,6 +72,9 @@
         },
         "call-number": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
+        },
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+            "PACKAGE_NAME": "com.vosgesemoi.app"
         }
     },
     "dependent_plugins": {}
