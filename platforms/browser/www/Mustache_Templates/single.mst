@@ -17,7 +17,7 @@
     {{ /acf.image_principale }}
     <div class="single_name">
       <h2>{{ inf_name }}</h2>
-      <h1>{{ title.rendered }}</h1>
+      <h1>{{{ title.rendered }}}</h1>
       <div class="single_nav">
         <div data-target="#onglet_{{ inf_name }}">
           {{ inf_name }}
