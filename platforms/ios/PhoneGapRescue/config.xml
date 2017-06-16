@@ -78,6 +78,12 @@
     <feature name="CallNumber">
         <param name="ios-package" value="CFCallNumber" />
     </feature>
+    <feature name="ActionSheet">
+        <param name="ios-package" value="ActionSheet" />
+    </feature>
+    <feature name="LaunchNavigator">
+        <param name="ios-package" value="LaunchNavigator" />
+    </feature>
     <name>PhoneGapRescue</name>
     <description>
         A blank PhoneGap app.
@@ -100,7 +106,6 @@
     <allow-intent href="itms-apps:*" />
     <preference name="AllowInlineMediaPlayback" value="false" />
     <preference name="BackupWebStorage" value="cloud" />
-    <preference name="DisallowOverscroll" value="true" />
     <preference name="EnableViewportScale" value="false" />
     <preference name="KeyboardDisplayRequiresUserAction" value="true" />
     <preference name="MediaPlaybackRequiresUserAction" value="false" />
@@ -113,12 +118,12 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="DisallowOverscroll" value="false" />
     <preference name="phonegap-version" value="cli-6.5.0" />
-    <preference name="permissions" value="none" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
     <preference name="fullscreen" value="false" />
-    <preference name="webviewbounce" value="true" />
+    <preference name="webViewBounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
     <preference name="ios-statusbarstyle" value="black-opaque" />

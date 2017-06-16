@@ -86,9 +86,5 @@
           {{ /hasPosts }}
       </div>
     </div>
-    <div class="single_contacts">
-      <a class="single_phone" href="tel://{{ acf.telephone }}"><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>
-      <a class="single_map" href data-lat="{{ acf.situation_sur_la_carte.lat }}" data-lng="{{ acf.situation_sur_la_carte.lng }}"><i class="fa fa-map-marker fa-2x" aria-hidden="true"></i></a>
-    </div>
   </div>
 {{ /acf }}

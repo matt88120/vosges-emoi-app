@@ -62,5 +62,19 @@
     </dict>
     <key>NSMicrophoneUsageDescription</key>
     <string/>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>citymapper</string>
+      <string>comgooglemaps</string>
+      <string>navigon</string>
+      <string>transit</string>
+      <string>waze</string>
+      <string>yandexnavi</string>
+      <string>uber</string>
+      <string>tomtomhome</string>
+      <string>com.sygic.aura</string>
+      <string>here-route</string>
+      <string>moovit</string>
+    </array>
   </dict>
 </plist>

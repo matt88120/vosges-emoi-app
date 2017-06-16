@@ -1,7 +1,7 @@
 // main: ./main.less
 main {
   .screen {
-    height: 100%;
+    height: auto;
     display: none;
     position: absolute;
     z-index: 0;
@@ -32,6 +32,14 @@ main {
      .flex();
      .animation(exitToHome .5s @easeInOutCirc forwards);
      z-index: 9997;
+    }
+    &.exit-for-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      .flex();
+      .animation(exitForMenu .5s @easeInOutCirc forwards);
+      z-index: 9997;
     }
     .load_zone {
       display: none;
@@ -73,6 +81,7 @@ main {
       top: 50px;
     }
     .restaurants, .hebergements, .activites {
+      position: relative;
       width: 100%;
       margin-bottom: 40px;
       .thumbnail {
@@ -86,6 +95,22 @@ main {
         }
         @media screen and (min-width: 360px) and (max-width: 380px) {
           height: 180px;
+        }
+        .loadbg {
+          position: relative;
+        }
+        .fa {
+          font-size: 3em;
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          .transition();
+          &.fa-heart-o {
+            color: @blanc;
+          }
+          &.fa-heart {
+            color: @vem;
+          }
         }
       }
       .sub-content {
