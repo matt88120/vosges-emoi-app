@@ -11,26 +11,36 @@ main {
     min-height: 100vh;
     background: @blanc;
     &.active {
-        .materialshadow3();
-        .animation(enter .5s @easeInOutCirc forwards);
+        .shadow(@string: -5px 0px 10px rgba(0,0,0,0.05));
         .flex();
         z-index: 9998;
         position: relative;
+        &.left {
+            .animation(enterLeft .5s @ease forwards);
+        }
+        &.right {
+            .animation(enterRight .5s @ease forwards);
+        }
     }
     &.exit {
         position: absolute;
         top: 0;
         left: 0;
        .flex();
-       .animation(exit .5s @easeInOutCirc forwards);
        z-index: 9997;
+       &.left {
+          .animation(exitLeft .5s @ease forwards); 
+       }
+       &.right {
+           .animation(exitRight .5s @ease forwards);
+       }
     }
     &.exit-to-home {
       position: absolute;
       top: 0;
       left: 0;
      .flex();
-     .animation(exitToHome .5s @easeInOutCirc forwards);
+     .animation(exitToHome .5s @ease forwards);
      z-index: 9997;
     }
     &.exit-for-menu {
@@ -38,7 +48,7 @@ main {
       top: 0;
       left: 0;
       .flex();
-      .animation(exitForMenu .5s @easeInOutCirc forwards);
+      .animation(exitForMenu .5s @ease forwards);
       z-index: 9997;
     }
     .load_zone {

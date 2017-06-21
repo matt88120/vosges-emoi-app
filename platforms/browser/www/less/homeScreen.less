@@ -15,18 +15,14 @@ main {
       background-color: @blanc;
       .topContent {
         width: 100vw;
-        height: 70%;
-        img {
-          width: 100vw;
-          height: 100%;
-          @media screen and (max-width: 380px) {
-            max-height: 90%;
-          }
-        }
+        height: 70vh;
+        background: url(../img/home.png) center center no-repeat;
+        background-size: cover;
+        
       }
       .bottomContent {
         width: 100vw;
-        height: calc(~"30% - 20px");
+        height: calc(~"30vh - 80px");
         position: relative;
         color: @blanc;
         display: flex;
@@ -43,9 +39,6 @@ main {
             font-size: 1.4em;
             text-transform: uppercase;
           }
-        }
-        @media screen and (max-width: 380px) {
-          justify-content: inherit;
         }
       }
     }
