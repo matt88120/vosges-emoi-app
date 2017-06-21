@@ -220,6 +220,12 @@
   }
 
   function init() {
+    setTimeout(function() {
+        $("#animation-splash").addClass("hidden");
+    }, 4000);
+    setTimeout(function() {
+        $("#animation-splash").removeClass("hidden").addClass("delete");
+    }, 4500);
     AOS.init();
     FastClick.attach(document.body);
   }
@@ -387,7 +393,7 @@
         $(target).addClass("active");
         setTimeout(function() {
             current_screen.removeClass("exit")
-        }, 600);
+        }, 650);
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
         $('.content-topbar .name').html("<h1>" + $('footer .selected div').last().html() + "</h1>");
@@ -937,7 +943,7 @@
               loadTemplate('markers', markers_template).then(function(template) {
                 var photo_map
                 $('#carte .content .photos').html(Mustache.render(template, mustData));
-                maps.push(new_map($('#carte .content .photos'), '../img/pins/marker-photo.png'));
+                maps.push(new_map($('#carte .content .photos'), 'img/pins/marker-photo.png'));
                 setTimeout(function() {
                   maps.map(function(map) {
                     google.maps.event.trigger(map, 'resize');
@@ -947,7 +953,7 @@
               });
             } else {
               $('#carte .content .photos').html(Mustache.render(markers_template, mustData));
-              maps.push(new_map($('#carte .content .photos'), '../img/pins/marker-photo.png'));
+              maps.push(new_map($('#carte .content .photos'), 'img/pins/marker-photo.png'));
               setTimeout(function() {
                 maps.map(function(map) {
                   google.maps.event.trigger(map, 'resize');
@@ -977,7 +983,7 @@
             } catch(err) {
               console.error(err);
             }
-            maps.push(new_map($('#carte .content .' + collectionName), '../img/pins/marker-' + collectionName + '.png'));
+            maps.push(new_map($('#carte .content .' + collectionName), 'img/pins/marker-' + collectionName + '.png'));
             setTimeout(function() {
               maps.map(function(map) {
                 google.maps.event.trigger(map, 'resize');
@@ -991,7 +997,7 @@
           } catch(err) {
             console.error(err);
           }
-          maps.push(new_map($('#carte .content .' + collectionName), '../img/pins/marker-' + collectionName + '.png'));
+          maps.push(new_map($('#carte .content .' + collectionName), 'img/pins/marker-' + collectionName + '.png'));
           setTimeout(function() {
             maps.map(function(map) {
               google.maps.event.trigger(map, 'resize');
@@ -1673,7 +1679,7 @@
               window.current_user.user_object = data;
               loggedInUserUI();
               localforage.setItem('currentUser', window.current_user).then(function() {
-                console.log("user updated");
+                alert("user updated");
               });
             });
           } else {
