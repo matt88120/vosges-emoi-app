@@ -220,12 +220,6 @@
   }
 
   function init() {
-    setTimeout(function() {
-        $("#animation-splash").addClass("hidden");
-    }, 4000);
-    setTimeout(function() {
-        $("#animation-splash").removeClass("hidden").addClass("delete");
-    }, 4500);
     AOS.init();
     FastClick.attach(document.body);
   }
