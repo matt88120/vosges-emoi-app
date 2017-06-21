@@ -27,24 +27,7 @@
     animation: inherit;
     &.showItems {
       .takePhoto {
-        display: block;
-        background-color: transparent;
-        border: none;
-        position: fixed;
-        z-index: 9999;
-        top: 70px;
-        left: 0;
-        width: 80px;
-        height: 100px;
-        cursor: pointer;
-        touch-action: manipulation;
-        background-position: center center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-image: url(../img/icone-btn-photo.png);
-        &:focus {
-          outline: none;
-        }
+        display: none;
         &.disabled {
           opacity: 0.4;
         }
