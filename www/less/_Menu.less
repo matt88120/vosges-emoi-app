@@ -1,24 +1,28 @@
 // main: ./main.less
 #menu {
   width: 100vw;
-  height: 0;
+  height: auto;
   background-color: @vem;
   z-index: 10000;
   .flex();
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   color: @blanc;
   text-transform: uppercase;
   position: fixed;
   top: 70px;
   left: 0;
+  overflow-y: auto;
   .transition(all .6s @easeInOutCirc);
-  .takePhoto, .avatar, .loggedin-username, .connect, .connect-area, .userspace {
+  .takePhoto, .avatar, .loggedin-username, .connect, .userspace {
     display: none;
   }
+  #become_member {
+      display: none;
+  }
   &.active {
-    height: calc(~"100vh - 60px");
+      min-height: calc(~"100vh - 70px");
     -webit-animation: inherit;
     animation: inherit;
     &.showItems {
@@ -67,8 +71,29 @@
       .connect {
         width: 100%;
         text-align: center;
-        padding-bottom: 60px;
+        padding-bottom: 10px;
         display: block;
+        .userspace-title {
+          text-align: center;
+          position: relative;
+          span {
+              padding: 5px 20px;
+              text-align: center;
+              z-index: 2;
+              position: relative;
+              background: @vem;
+              letter-spacing: .05em;
+          }
+          &:before {
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 50%;
+              height: 1px;
+              content: "";
+              background: fadeOut(@blanc, 70%);
+          }
+        }
         button {
           background-color: transparent !important;
           border: none;
@@ -80,14 +105,11 @@
         }
       }
       .connect-area {
-        position: absolute;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: transparent;
         flex-direction: column;
         color: @vemgris;
         width: 100%;
         height: 100%;
-        top: 0;
-        left: 0;
         justify-content: center;
         box-sizing: border-box;
         &.connecting {
@@ -96,29 +118,48 @@
         .input-area {
           padding: 30px;
           width: 100vw;
-          background-color: @blanc;
-          .flex();
-          flex-direction: column;
-          .animation(appearFromTop 0.4s @easeInOutCirc backwards);
           .alert {
             font-size: 0.65em;
             display: none;
           }
         }
+        label {
+            font-size: .7em;
+            text-transform: uppercase;
+            font-weight: normal;
+            color: @blanc;
+            display: block;
+            text-align: left;
+        }
         input {
-          border: 1px solid @vemgris;
-          &#username {
-            margin-bottom: 30px;
-          }
-          &#pass {
-            margin-bottom: 30px;
+          background: @vem;
+          border: solid 1px fadeOut(@blanc, 70%);
+          width: 100%;
+          display: block;
+          height: 40px;
+          line-height: 40px;
+          color: @blanc;
+          outline: none;
+          margin-bottom: 10px;
+          padding: 0 20px;
+          .transition();
+          &:focus {
+              border: solid 1px fadeOut(@blanc, 30%);
           }
         }
         #connect {
-          background-color: @vem;
-          margin: 0 auto;
-          color: @blanc;
-          padding: 10px 30px;
+          background-color: @blanc !important;
+          color: @vem;
+          display: block;
+          text-align: center;
+          font-size: .7em;
+          font-weight: bold;
+          letter-spacing: .05em;
+          width: 100%;
+          height: 40px;
+          line-height: 40px;
+          outline: none;
+          border: none;
         }
       }
       .userspace {
@@ -127,6 +168,24 @@
         flex-direction: column;
         .userspace-title {
           text-align: center;
+          position: relative;
+          span {
+              padding: 5px 20px;
+              text-align: center;
+              z-index: 2;
+              position: relative;
+              background: @vem;
+              letter-spacing: .05em;
+          }
+          &:before {
+              position: absolute;
+              left: 0;
+              right: 0;
+              top: 50%;
+              height: 1px;
+              content: "";
+              background: fadeOut(@blanc, 70%);
+          }
         }
         .logout {
           &.not-loggedin {
@@ -142,13 +201,40 @@
           .set {
             .flex();
             flex: 0 0 50%;
-            padding: 30px 0;
+            padding: 15px 0;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            text-transform: none;
+            font-size: 15px;
           }
         }
       }
     }
+    &.disconnected {
+          .takePhoto {
+              display: none;
+          }
+          .avatar {
+              display: none;
+          }
+          #become_member {
+              display: block;
+              background: @blanc;
+              color: @vem;
+              text-align: center;
+              padding: 10px;
+              text-transform: none;
+              font-weight: normal;
+              width: 100%;
+          }
+      }
+      &.connected {
+          
+          .takePhoto {
+              top: 0px;
+          }
+      }
   }
+  
 }
