@@ -49,16 +49,17 @@
     .transition();
     h2 {
       color: @vemgris;
-      font-size: 24px;
+      font-size: 18px;
       line-height: 26px;
       text-transform: uppercase;
       font-weight: 200;
+      letter-spacing: .05em;
       .transition();
     }
     h1 {
       padding-bottom: 50px;
-      font-size: 32px;
-      line-height: 37px;
+      font-size: 26px;
+      line-height: 1.2;
       color: @vem;
       .transition();
     }
@@ -84,22 +85,17 @@
       bottom: 0;
       background-color: @blanc;
       width: 100vw;
-      height: 60px;
       .flex();
       align-items: center;
       text-transform: uppercase;
-      justify-content: space-around;
       color: @vemgris;
-      -moz-box-shadow: 0px 1px 5px 0px #656565;
-      -webkit-box-shadow: 0px 1px 5px 0px #656565;
-      -o-box-shadow: 0px 1px 5px 0px #656565;
-      box-shadow: 0px 1px 5px 0px #656565;
-      filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+      .shadow(0 0 5px fadeOut(@noir, 95%));
       .transition();
       div {
         height: 100%;
-        .flex();
-        align-items: center;
+        font-size: 12px;
+        flex: 1;
+        padding: 10px 5px;
       }
       .onglet_actif {
         position: relative;
@@ -177,7 +173,7 @@
           content: '';
           width: 100%;
           height: 1px;
-          background-color: @vem_trait;
+          background-color: fadeOut(@vem_trait, 80%);
           display: block;
         }
       }
@@ -196,7 +192,7 @@
           content: '';
           width: 100%;
           height: 1px;
-          background-color: @vem_trait;
+          background-color: fadeOut(@vem_trait, 80%);
           display: block;
         }
       }
@@ -215,7 +211,7 @@
           content: '';
           width: 100%;
           height: 1px;
-          background-color: @vem_trait;
+          background-color: fadeOut(@vem_trait, 80%);
           display: block;
         }
       }
@@ -339,7 +335,7 @@
           content: '';
           width: 100%;
           height: 1px;
-          background-color: @vem_trait;
+          background-color: fadeOut(@vem_trait, 80%);
           display: block;
         }
       }
