@@ -1,0 +1,163 @@
+#animation-splash {
+    position: fixed;
+    z-index: 9999999;
+    background: @blanc;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    .transition();
+    .logotrue {
+        position: absolute;
+        max-width: 80%;
+        width: 512px;
+        top: 50%;
+        height: 512px; 
+        .transform(scale(0.45) translateY(-50%));
+        transform-origin: top;
+        .transition();
+          svg {
+            position: absolute;
+            top: 124px;
+            left: 68px;
+            opacity: 0;
+            .animation(fadeIn 1s @easeInOutCirc forwards);
+            .animation-delay(1s);
+           
+          }
+          .circle {
+            border-radius: 50%;
+            background: @rose;
+            position: absolute;
+            transform: scale(0);
+            &.circle-1 {
+              left: 31px;
+              top: 91.5px;
+              width: 184px;
+              height: 184px;
+              animation: explose 1s @easeInOutCirc forwards;
+            }
+            &.circle-2 {
+              left: 137px;
+              top: 102px;
+              width: 226px;
+              height: 226px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .3s;
+            }
+             &.circle-3 {
+              left: 310px;
+              top: 131px;
+              width: 139px;
+              height: 139px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .5s;
+            }
+            &.circle-4 {
+              left: 326px;
+              top: 215px;
+              width: 154px;
+              height: 154px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .4s;
+            }
+            &.circle-5 {
+              left: 243px;
+              top: 252px;
+              width: 125px;
+              height: 125px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .6s;
+            }
+            &.circle-6 {
+              left: 175px;
+              top: 314px;
+              width: 55px;
+              height: 55px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .5s;
+            }
+            &.circle-7 {
+              left: 96px;
+              top: 241px;
+              width: 82px;
+              height: 82px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .3s;
+            }
+            &.circle-8 {
+              left: 76px;
+              top: 288px;
+              width: 26px;
+              height: 26px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .5s;
+            }
+            &.circle-9 {
+              left: 153px;
+              top: 364px;
+              width: 26px;
+              height: 26px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .4s;
+            }
+            &.circle-10 {
+              left: 184px;
+              top: 406px;
+              width: 26px;
+              height: 26px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .2s;
+            }
+            &.circle-11 {
+              left: 276px;
+              top: 79px;
+              width: 52px;
+              height: 52px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .1s;
+            }
+            &.circle-12 {
+              left: 337px;
+              top: 76px;
+              width: 26px;
+              height: 26px;
+              animation: explose 1s @easeInOutCirc forwards;
+              animation-delay: .4s;
+            }
+            
+        }
+   	}
+    &.hidden {
+        opacity: 0;
+    }
+    &.delete {
+        display: none;
+    }
+}
+
+@keyframes explose {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+
+setTimeout(function() {
+    $("#animation-splash").addClass("hidden");
+}, 2000);
+setTimeout(function() {
+    $("#animation-splash").removeClass("hidden").addClass("delete");
+}, 2500);
