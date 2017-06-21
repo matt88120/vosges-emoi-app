@@ -1,17 +1,14 @@
 // main: ./main.less
 main {
   .intro-screen {
-    display: none;
+    display: block;
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    z-index: 9998;
+    z-index: 10000;
     background-color: @vem;
-    &.appearFromLeft {
-      .flex();
-    }
     #intro-slick {
       min-width: 100vw;
       height: 100vh;

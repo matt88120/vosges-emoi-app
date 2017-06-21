@@ -87,12 +87,12 @@
     <feature name="PhoneCaller">
         <param name="ios-package" value="PhoneCaller" />
     </feature>
-    <name>PhoneGapRescue</name>
+    <name>Vosges Emoi</name>
     <description>
-        A blank PhoneGap app.
+        Application mobile de Vosges E;oi
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
-        PhoneGap Team
+        Lezards Creation
     </author>
     <content src="index.html" />
     <allow-navigation href="*" />
