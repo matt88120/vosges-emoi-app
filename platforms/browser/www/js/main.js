@@ -1601,6 +1601,7 @@
           if (seenIntro) {
             $('.intro-screen').remove();
           } else {
+            $('.intro-screen').show();
             $('#intro-slick').slick({
           		dots: true,
           		arrows: false,
@@ -1632,6 +1633,7 @@
             });
           }
         } else {
+          $('.intro-screen').show();
           $('#intro-slick').slick({
             dots: true,
             arrows: false,
