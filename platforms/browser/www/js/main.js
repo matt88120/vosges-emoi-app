@@ -321,8 +321,8 @@
 
 
   function deleteSinglePost() {
-    $('.screen.exit').removeClass('exit').addClass('active').show();
-    $('.single_post.active').removeClass('active').addClass('exit');
+    $('.screen.exit').removeClass('exit left right').addClass('active right').show();
+    $('.single_post.active').removeClass('active left right').addClass('exit right');
     $('.content-topbar .name').html("<h1>" + $('footer .selected div').last().html() + "</h1>");
     $('html, body').scrollTop(0);
     setTimeout(function() {
@@ -332,8 +332,8 @@
   }
 
   function deleteSingle(scroll) {
-    $('.screen.exit').removeClass('exit').addClass('active').show();
-    $('.single.active').removeClass('active').addClass('exit');
+    $('.screen.exit').removeClass('exit left right').addClass('active right').show();
+    $('.single.active').removeClass('active left right').addClass('exit right');
     $('.single_contacts').addClass('inactive');
     $('.single_contacts .single_phone').attr('href', "");
     $('.single_contacts .single_map').data('lat', '');
@@ -392,11 +392,19 @@
       if (!el.hasClass('selected')) {
         $('body').scrollTop(0);
         var current_screen = $(".screen.active");
-        current_screen.removeClass("active").addClass("exit");
-        $(target).addClass("active");
-        setTimeout(function() {
-            current_screen.removeClass("exit")
-        }, 750);
+        if (el.next('button.selected').length == 0) {
+          current_screen.removeClass("active right left").addClass("exit left");
+          $(target).addClass("active left");
+          setTimeout(function() {
+              current_screen.removeClass("exit left")
+          }, 650);
+        } else {
+          current_screen.removeClass("active right left").addClass("exit right");
+          $(target).addClass("active right");
+          setTimeout(function() {
+              current_screen.removeClass("exit right")
+          }, 650);
+        }
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
         $('.content-topbar .name').html("<h1>" + $('footer .selected div').last().html() + "</h1>");
@@ -636,8 +644,8 @@
           single_container = document.createElement('div');
           single_container.className = "single single_" + type + " screen";
           $('main').append(single_container);
-          $('.screen.active').removeClass('active').addClass('exit');
-          $('.single').addClass('active');
+          $('.screen.active').removeClass('active left right').addClass('exit left');
+          $('.single').addClass('active left');
           $('.single_contacts').removeClass('inactive');
           window.previousScroll = $('body').scrollTop();
           var reg = new RegExp(' ', 'g');
@@ -729,8 +737,8 @@
             });
             $('footer').hide();
             //$('.single .single_nav div').click(showSingleInfos);
-            $('.screen.active').removeClass('active').addClass('exit');
-            $('.single').addClass('active');
+            $('.screen.active').removeClass('active left right').addClass('exit left');
+            $('.single').addClass('active left');
             $('.single .single_nav div').click(scrollInSingle);
             $('.single .gallery .seeMore').click(function() {
               $(this).parent().find('a')[0].click();
