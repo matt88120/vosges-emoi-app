@@ -1,14 +1,4 @@
 {{ #acf }}
-  <div class="topbar">
-    <button class="leaveSingle">
-      <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
-    </button>
-    <div class="title">
-    </div>
-    <button class="menuButton">
-      <i class="fa fa-bars fa-2x" aria-hidden="true"></i>
-    </button>
-  </div>
   <div class="content">
     {{ #acf.image_principale }}
       <div class="single_thumbnail" style="background-image: url({{ sizes.extra }});">
@@ -39,7 +29,7 @@
         </div>
         <div class="gallery">
           {{ #acf.images_de_la_galerie }}
-            <a data-fancybox="gallery" href="{{ sizes.extra }}" style="background-image: url({{ sizes.extra }});"></a>
+            <a data-fancybox="gallery" class="gallery-photo" href="{{ sizes.extra }}" style="background-image: url({{ sizes.extra }});"></a>
           {{ /acf.images_de_la_galerie}}
           <div class="seeMore">
             <i class="fa fa-camera fa-3x" aria-hidden="true"></i>

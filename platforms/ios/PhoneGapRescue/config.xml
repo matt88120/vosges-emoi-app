@@ -84,6 +84,9 @@
     <feature name="LaunchNavigator">
         <param name="ios-package" value="LaunchNavigator" />
     </feature>
+    <feature name="PhoneCaller">
+        <param name="ios-package" value="PhoneCaller" />
+    </feature>
     <name>PhoneGapRescue</name>
     <description>
         A blank PhoneGap app.

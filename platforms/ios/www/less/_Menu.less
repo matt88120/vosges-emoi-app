@@ -1,138 +1,153 @@
 // main: ./main.less
 #menu {
   width: 100vw;
-  height: 100vh;
+  height: 0;
   background-color: @vem;
   z-index: 10000;
-  display: none;
+  .flex();
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: @blanc;
   text-transform: uppercase;
   position: fixed;
-  top: 0;
+  top: 70px;
   left: 0;
+  .transition(all .6s @easeInOutCirc);
+  .takePhoto, .avatar, .loggedin-username, .connect, .connect-area, .userspace {
+    display: none;
+  }
   &.active {
-    .flex();
-    .animation(appearFromTop 0.4s @easeInOutCirc backwards);
-  }
-  .topbar {
-    background-color: transparent;
-    button {
-      color: @blanc;
-      background-color: transparent;
-      border: none;
-      outline: none;
-      &:focus {
-        outline: none;
+    height: calc(~"100vh - 60px");
+    -webit-animation: inherit;
+    animation: inherit;
+    &.showItems {
+      .takePhoto {
+        display: block;
+        background-color: transparent;
+        border: none;
+        position: fixed;
+        z-index: 9999;
+        top: 70px;
+        left: 0;
+        width: 80px;
+        height: 100px;
+        cursor: pointer;
+        touch-action: manipulation;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url(../img/icone-btn-photo.png);
+        &:focus {
+          outline: none;
+        }
+        &.disabled {
+          opacity: 0.4;
+        }
       }
-      .hamburger-inner {
+      .avatar {
+        width: 96px;
+        height: 96px;
         background-color: @blanc;
-        &:before {
-          background-color: @blanc;
-        }
-        &:after {
-          background-color: @blanc;
-        }
+        border-radius: 50%;
+        margin-bottom: 30px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        display: block;
       }
-    }
-  }
-  .avatar {
-    width: 130px;
-    height: 130px;
-    background-color: @blanc;
-    border-radius: 50%;
-    margin-bottom: 30px;
-    background-size: cover;
-    background-position: center center;
-    background-repeat: no-repeat;
-  }
-  .loggedin-username {
-    display: none;
-    font-size: 24px;
-    width: 100%;
-    text-align: center;
-    padding: 0 15px;
-    padding-bottom: 60px;
-  }
-  .connect {
-    width: 100%;
-    text-align: center;
-    padding-bottom: 60px;
-    button {
-      background-color: transparent !important;
-      border: none;
-      outline: none;
-      text-transform: uppercase;
-      &:focus {
-        outline: none;
-      }
-    }
-  }
-  .connect-area {
-    display: none;
-    position: absolute;
-    background-color: rgba(0, 0, 0, 0.5);
-    flex-direction: column;
-    color: @vemgris;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    justify-content: center;
-    box-sizing: border-box;
-    &.connecting {
-      .flex();
-    }
-    .input-area {
-      padding: 30px;
-      width: 100vw;
-      background-color: @blanc;
-      .flex();
-      flex-direction: column;
-      .animation(appearFromTop 0.4s @easeInOutCirc backwards);
-      .alert {
-        font-size: 0.65em;
+      .loggedin-username {
         display: none;
+        font-size: 24px;
+        width: 100%;
+        text-align: center;
+        padding: 0 15px;
+        padding-bottom: 60px;
       }
-    }
-    input {
-      border: 1px solid @vemgris;
-      &#username {
-        margin-bottom: 30px;
+      .connect {
+        width: 100%;
+        text-align: center;
+        padding-bottom: 60px;
+        display: block;
+        button {
+          background-color: transparent !important;
+          border: none;
+          outline: none;
+          text-transform: uppercase;
+          &:focus {
+            outline: none;
+          }
+        }
       }
-      &#pass {
-        margin-bottom: 30px;
-      }
-    }
-    #connect {
-      background-color: @vem;
-      margin: 0 auto;
-      color: @blanc;
-      padding: 10px 30px;
-    }
-  }
-  .userspace {
-    width: 100%;
-    .flex();
-    flex-direction: column;
-    .userspace-title {
-      text-align: center;
-    }
-    .usersettings {
-      height: auto;
-      .flex();
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      .set {
-        .flex();
-        flex: 0 0 50%;
-        padding: 30px 0;
+      .connect-area {
+        position: absolute;
+        background-color: rgba(0, 0, 0, 0.5);
         flex-direction: column;
-        align-items: center;
+        color: @vemgris;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
         justify-content: center;
+        box-sizing: border-box;
+        &.connecting {
+          .flex();
+        }
+        .input-area {
+          padding: 30px;
+          width: 100vw;
+          background-color: @blanc;
+          .flex();
+          flex-direction: column;
+          .animation(appearFromTop 0.4s @easeInOutCirc backwards);
+          .alert {
+            font-size: 0.65em;
+            display: none;
+          }
+        }
+        input {
+          border: 1px solid @vemgris;
+          &#username {
+            margin-bottom: 30px;
+          }
+          &#pass {
+            margin-bottom: 30px;
+          }
+        }
+        #connect {
+          background-color: @vem;
+          margin: 0 auto;
+          color: @blanc;
+          padding: 10px 30px;
+        }
+      }
+      .userspace {
+        width: 100%;
+        .flex();
+        flex-direction: column;
+        .userspace-title {
+          text-align: center;
+        }
+        .logout {
+          &.not-loggedin {
+            display: none !important;
+          }
+        }
+        .usersettings {
+          height: auto;
+          .flex();
+          flex-wrap: wrap;
+          align-items: center;
+          justify-content: space-between;
+          .set {
+            .flex();
+            flex: 0 0 50%;
+            padding: 30px 0;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+          }
+        }
       }
     }
   }

@@ -1,6 +1,6 @@
 {{ #posts }}
   <div id="{{ id }}" class="post" data-type="posts">
-    <div class="thumbnail" data-thumb="{{ acf.images.sizes.large }}">
+    <div class="thumbnail" data-thumb="{{ acf.image_principale.sizes.large }}">
       <div class="loadbg">
         <div class="sk-circle">
           <div class="sk-circle1 sk-child"></div>

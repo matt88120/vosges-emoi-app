@@ -83,6 +83,9 @@
         },
         "uk.co.workingedge.phonegap.plugin.launchnavigator": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
+        },
+        "cordova-plugin-phonecaller": {
+            "PACKAGE_NAME": "com.vosgesemoi.app"
         }
     },
     "dependent_plugins": {

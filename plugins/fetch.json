@@ -190,5 +190,13 @@
         },
         "is_top_level": false,
         "variables": {}
+    },
+    "cordova-plugin-phonecaller": {
+        "source": {
+            "type": "registry",
+            "id": "cordova-plugin-phonecaller@~0.0.2"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

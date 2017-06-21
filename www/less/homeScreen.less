@@ -41,7 +41,11 @@ main {
           line-height: 1.2;
           .username {
             font-size: 1.4em;
+            text-transform: uppercase;
           }
+        }
+        @media screen and (max-width: 380px) {
+          justify-content: inherit;
         }
       }
     }
@@ -67,6 +71,9 @@ main {
       background-repeat: no-repeat;
       background-size: cover;
       background-image: url(../img/icone-btn-photo.png);
+      &:focus {
+        outline: none;
+      }
       &.disabled {
         opacity: 0.4;
       }
@@ -81,6 +88,18 @@ main {
         background-color: transparent;
         margin-top: 35px;
         outline: none;
+        &.is-active {
+          opacity: 1;
+          .hamburger-inner {
+            background-color: @blanc;
+            &:before {
+              background-color: @blanc;
+            }
+            &:after {
+              background-color: @blanc;
+            }
+          }
+        }
         .hamburger-inner {
           background-color: @vem;
           .radius(0);
