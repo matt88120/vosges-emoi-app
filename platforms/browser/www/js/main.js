@@ -47,6 +47,9 @@
 
     google.maps.event.addListener(map, 'click', function(){
         map.setOptions({ draggable: true });
+        setTimeout(function() {
+          map.setOptions({ draggable: false });
+        }, 1500)
     });
     // add a markers reference
     map.markers = [];
@@ -305,12 +308,12 @@
       } else {
         removeOtherElementsClass('footer button', 'selected');
         var current_screen = $(".screen.active");
-        current_screen.removeClass("active").addClass("exit-to-home");
+        current_screen.removeClass("active left right").addClass("exit right");
         $('.content-topbar').addClass('inactive');
-        $('.home-screen').addClass("active");
+        $('.home-screen').addClass("active right");
         $('footer').show();
         setTimeout(function() {
-            current_screen.removeClass("exit-to-home");
+            current_screen.removeClass("exit left right");
         }, 700);
       }
     } catch(err) {
