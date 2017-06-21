@@ -37,14 +37,17 @@
     var args = {
       zoom		: 16,
       center		: new google.maps.LatLng(0, 0),
-      mapTypeId	: google.maps.MapTypeId.ROADMAP
+      mapTypeId	: google.maps.MapTypeId.ROADMAP,
+      draggable : false
     };
 
 
     // create map
     var map = new google.maps.Map( $el[0], args);
 
-
+    google.maps.event.addListener(map, 'click', function(){
+        map.setOptions({ draggable: true });
+    });
     // add a markers reference
     map.markers = [];
 
