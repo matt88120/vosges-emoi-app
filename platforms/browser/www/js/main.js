@@ -1388,6 +1388,11 @@
         openMenu(this);
       }
     });
+    if (typeof window.current_user !== "undefined") {
+      $('#menu').removeClass('disconnected').addClass('connected');
+    } else {
+      $('#menu').removeClass('connected').addClass('disconnected');
+    }
   }
   function initContentTopbar() {
     $('.content-topbar .returnHome').click(returnHome);
@@ -1401,6 +1406,11 @@
       $('#menu .avatar').css('background-image', 'url(' + window.current_user.user_object.avatar_urls["96"] + ')');
       $('#menu .logout').removeClass('not-loggedin');
       $('#menu .logout').click(logOutUser);
+      if (typeof window.current_user !== "undefined") {
+        $('#menu').removeClass('disconnected').addClass('connected');
+      } else {
+        $('#menu').removeClass('connected').addClass('disconnected');
+      }
     }
   }
 
@@ -1415,6 +1425,11 @@
     $('#menu .avatar').css('background-image', '');
     $('#menu .logout').addClass('not-loggedin');
     initCameraButton();
+    if (typeof window.current_user !== "undefined") {
+      $('#menu').removeClass('disconnected').addClass('connected');
+    } else {
+      $('#menu').removeClass('connected').addClass('disconnected');
+    }
   }
 
   function connectUser() {
