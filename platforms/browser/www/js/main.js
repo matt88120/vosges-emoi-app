@@ -396,7 +396,7 @@
         $(target).addClass("active");
         setTimeout(function() {
             current_screen.removeClass("exit")
-        }, 650);
+        }, 750);
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
         $('.content-topbar .name').html("<h1>" + $('footer .selected div').last().html() + "</h1>");
