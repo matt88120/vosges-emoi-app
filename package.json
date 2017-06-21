@@ -26,17 +26,17 @@
             "cordova-plugin-media": {},
             "cordova-plugin-media-capture": {},
             "cordova-plugin-network-information": {},
-            "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-vibration": {},
             "cordova-plugin-whitelist": {},
-            "cordova-plugin-phonecaller": {}
+            "cordova-plugin-phonecaller": {},
+            "uk.co.workingedge.phonegap.plugin.launchnavigator": {}
         }
     },
     "dependencies": {
-        "cordova-ios": "~8.0.1",
-        "cordova-android": "~6.0.1",
         "call-number": "https://github.com/Rohfosho/CordovaCallNumberPlugin.git",
+        "cordova-android": "~6.0.1",
+        "cordova-ios": "^4.4.0",
         "cordova-plugin-battery-status": "~1.2.4",
         "cordova-plugin-camera": "~2.4.1",
         "cordova-plugin-compat": "~1.1.0",
@@ -54,10 +54,10 @@
         "cordova-plugin-media": "~3.0.1",
         "cordova-plugin-media-capture": "~1.4.3",
         "cordova-plugin-network-information": "~1.3.3",
-        "cordova-plugin-splashscreen": "~4.0.3",
+        "cordova-plugin-phonecaller": "~0.0.2",
         "cordova-plugin-statusbar": "~2.2.3",
         "cordova-plugin-vibration": "~2.1.5",
         "cordova-plugin-whitelist": "~1.3.2",
-        "cordova-plugin-phonecaller": "~0.0.2"
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": "~3.2.2"
     }
 }

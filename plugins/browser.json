@@ -58,9 +58,6 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "com.vosgesemoi.app"
-        },
         "cordova-plugin-statusbar": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },

@@ -1,6 +1,22 @@
 cordova.define('cordova/plugin_list', function(require, exports, module) {
 module.exports = [
     {
+        "id": "call-number.CallNumber",
+        "file": "plugins/call-number/www/CallNumber.js",
+        "pluginId": "call-number",
+        "clobbers": [
+            "call"
+        ]
+    },
+    {
+        "id": "cordova-plugin-actionsheet.ActionSheet",
+        "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
+        "pluginId": "cordova-plugin-actionsheet",
+        "clobbers": [
+            "window.plugins.actionsheet"
+        ]
+    },
+    {
         "id": "cordova-plugin-battery-status.battery",
         "file": "plugins/cordova-plugin-battery-status/www/battery.js",
         "pluginId": "cordova-plugin-battery-status",
@@ -547,11 +563,11 @@ module.exports = [
         ]
     },
     {
-        "id": "cordova-plugin-splashscreen.SplashScreen",
-        "file": "plugins/cordova-plugin-splashscreen/www/splashscreen.js",
-        "pluginId": "cordova-plugin-splashscreen",
+        "id": "cordova-plugin-phonecaller.PhoneCaller",
+        "file": "plugins/cordova-plugin-phonecaller/www/phonecaller.js",
+        "pluginId": "cordova-plugin-phonecaller",
         "clobbers": [
-            "navigator.splashscreen"
+            "PhoneCaller"
         ]
     },
     {
@@ -572,22 +588,6 @@ module.exports = [
         ]
     },
     {
-        "id": "call-number.CallNumber",
-        "file": "plugins/call-number/www/CallNumber.js",
-        "pluginId": "call-number",
-        "clobbers": [
-            "call"
-        ]
-    },
-    {
-        "id": "cordova-plugin-actionsheet.ActionSheet",
-        "file": "plugins/cordova-plugin-actionsheet/www/ActionSheet.js",
-        "pluginId": "cordova-plugin-actionsheet",
-        "clobbers": [
-            "window.plugins.actionsheet"
-        ]
-    },
-    {
         "id": "uk.co.workingedge.phonegap.plugin.launchnavigator.Common",
         "file": "plugins/uk.co.workingedge.phonegap.plugin.launchnavigator/www/common.js",
         "pluginId": "uk.co.workingedge.phonegap.plugin.launchnavigator",
@@ -602,19 +602,13 @@ module.exports = [
         "merges": [
             "launchnavigator"
         ]
-    },
-    {
-        "id": "cordova-plugin-phonecaller.PhoneCaller",
-        "file": "plugins/cordova-plugin-phonecaller/www/phonecaller.js",
-        "pluginId": "cordova-plugin-phonecaller",
-        "clobbers": [
-            "PhoneCaller"
-        ]
     }
 ];
 module.exports.metadata = 
 // TOP OF METADATA
 {
+    "call-number": "0.0.2",
+    "cordova-plugin-actionsheet": "2.3.3",
     "cordova-plugin-battery-status": "1.2.4",
     "cordova-plugin-compat": "1.1.0",
     "cordova-plugin-camera": "2.4.1",
@@ -632,14 +626,11 @@ module.exports.metadata =
     "cordova-plugin-media": "3.0.1",
     "cordova-plugin-media-capture": "1.4.3",
     "cordova-plugin-network-information": "1.3.3",
-    "cordova-plugin-splashscreen": "4.0.3",
+    "cordova-plugin-phonecaller": "0.0.2",
     "cordova-plugin-statusbar": "2.2.3",
     "cordova-plugin-vibration": "2.1.5",
     "cordova-plugin-whitelist": "1.3.2",
-    "call-number": "0.0.2",
-    "cordova-plugin-actionsheet": "2.3.3",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2",
-    "cordova-plugin-phonecaller": "0.0.2"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2"
 };
 // BOTTOM OF METADATA
 });

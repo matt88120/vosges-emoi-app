@@ -7,6 +7,9 @@
         "files": {}
     },
     "installed_plugins": {
+        "call-number": {
+            "PACKAGE_NAME": "com.vosgesemoi.app"
+        },
         "cordova-plugin-battery-status": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
@@ -66,7 +69,7 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
-        "cordova-plugin-splashscreen": {
+        "cordova-plugin-phonecaller": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
         "cordova-plugin-statusbar": {
@@ -78,13 +81,7 @@
         "cordova-plugin-whitelist": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
-        "call-number": {
-            "PACKAGE_NAME": "com.vosgesemoi.app"
-        },
         "uk.co.workingedge.phonegap.plugin.launchnavigator": {
-            "PACKAGE_NAME": "com.vosgesemoi.app"
-        },
-        "cordova-plugin-phonecaller": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         }
     },
