@@ -56,6 +56,7 @@
 		E6A7CFE01FE74E018B6A88AE /* CDVSound.m in Sources */ = {isa = PBXBuildFile; fileRef = E1EA6F28575543AD9407AD0C /* CDVSound.m */; };
 		F50CFB52BB9E44D3B9EB039A /* CDVLocalFilesystem.m in Sources */ = {isa = PBXBuildFile; fileRef = E590F5FDFC8041539FD34DB8 /* CDVLocalFilesystem.m */; };
 		FB1433A331FE4115A36CE492 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84C7ECBCBD5F4CBBBCEB05FC /* AVFoundation.framework */; };
+		0C87FE3ECF9A454C8826A0EE /* PhoneCaller.m in Sources */ = {isa = PBXBuildFile; fileRef = F4837304D5CC48FF984D0702 /* PhoneCaller.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,8 @@
 		F7617C65285F4A92808D291D /* CDVFile.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVFile.m; path = "cordova-plugin-file/CDVFile.m"; sourceTree = "<group>"; };
 		F840E1F0165FE0F500CFE078 /* config.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = config.xml; path = PhoneGapRescue/config.xml; sourceTree = "<group>"; };
 		FA1EC90A87E44292A8F46BB5 /* CDVFileTransfer.m */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 4; includeInIndex = 0; lastKnownFileType = sourcecode.c.objc; name = CDVFileTransfer.m; path = "cordova-plugin-file-transfer/CDVFileTransfer.m"; sourceTree = "<group>"; };
+		F4837304D5CC48FF984D0702 /* PhoneCaller.m */ = {isa = PBXFileReference; name = "PhoneCaller.m"; path = "cordova-plugin-phonecaller/PhoneCaller.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = 0; };
+		70DDD8D3D0EB48CFA84033D6 /* PhoneCaller.h */ = {isa = PBXFileReference; name = "PhoneCaller.h"; path = "cordova-plugin-phonecaller/PhoneCaller.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -358,6 +361,8 @@
 				94BAEEDE0DF34B9A91DF4CA1 /* LaunchNavigator.m */,
 				E5D714A7D48E493EBD01CE89 /* CMMapLauncher.h */,
 				94ACD7B81ED947128993D25D /* LaunchNavigator.h */,
+				F4837304D5CC48FF984D0702 /* PhoneCaller.m */,
+				70DDD8D3D0EB48CFA84033D6 /* PhoneCaller.h */,
 			);
 			name = Plugins;
 			path = PhoneGapRescue/Plugins;
@@ -505,6 +510,7 @@
 				01E6C7A5EA1C4002B49F3F0C /* ActionSheet.m in Sources */,
 				7E2CABECB6504B73A96D2FA6 /* CMMapLauncher.m in Sources */,
 				7CB90B4B44D74B7D959E80E4 /* LaunchNavigator.m in Sources */,
+				0C87FE3ECF9A454C8826A0EE /* PhoneCaller.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

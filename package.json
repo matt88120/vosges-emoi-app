@@ -29,7 +29,8 @@
             "cordova-plugin-splashscreen": {},
             "cordova-plugin-statusbar": {},
             "cordova-plugin-vibration": {},
-            "cordova-plugin-whitelist": {}
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-phonecaller": {}
         }
     },
     "dependencies": {
@@ -56,6 +57,7 @@
         "cordova-plugin-splashscreen": "~4.0.3",
         "cordova-plugin-statusbar": "~2.2.3",
         "cordova-plugin-vibration": "~2.1.5",
-        "cordova-plugin-whitelist": "~1.3.2"
+        "cordova-plugin-whitelist": "~1.3.2",
+        "cordova-plugin-phonecaller": "~0.0.2"
     }
 }

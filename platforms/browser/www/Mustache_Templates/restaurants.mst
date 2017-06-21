@@ -1,7 +1,6 @@
 {{ #datas }}
   <div id="{{ id }}" class="{{ type }} category" data-type="{{ type }}">
     <div class="thumbnail" data-thumb="{{ acf.image_principale.sizes.large }}">
-      <i class="fa fa-heart-o fav" aria-hidden="true"></i>
       <div class="loadbg">
         <div class="sk-circle">
           <div class="sk-circle1 sk-child"></div>
@@ -19,6 +18,7 @@
         </div>
       </div>
     </div>
+    <i class="fa fa-heart-o fav" aria-hidden="true"></i>
     <div class="sub-content">
       <div class="presentation">
       <h1 class="name">{{{ title.rendered }}}</h1>

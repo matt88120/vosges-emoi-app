@@ -107,6 +107,10 @@
                         {
                             "xml": "<feature name=\"LaunchNavigator\"><param name=\"ios-package\" value=\"LaunchNavigator\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"PhoneCaller\"><param name=\"ios-package\" value=\"PhoneCaller\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -236,6 +240,9 @@
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
         "uk.co.workingedge.phonegap.plugin.launchnavigator": {
+            "PACKAGE_NAME": "com.vosgesemoi.app"
+        },
+        "cordova-plugin-phonecaller": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         }
     },
@@ -843,6 +850,14 @@
             "merges": [
                 "launchnavigator"
             ]
+        },
+        {
+            "id": "cordova-plugin-phonecaller.PhoneCaller",
+            "file": "plugins/cordova-plugin-phonecaller/www/phonecaller.js",
+            "pluginId": "cordova-plugin-phonecaller",
+            "clobbers": [
+                "PhoneCaller"
+            ]
         }
     ],
     "plugin_metadata": {
@@ -869,6 +884,7 @@
         "cordova-plugin-whitelist": "1.3.2",
         "call-number": "0.0.2",
         "cordova-plugin-actionsheet": "2.3.3",
-        "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2"
+        "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2",
+        "cordova-plugin-phonecaller": "0.0.2"
     }
 }

@@ -602,6 +602,14 @@ module.exports = [
         "merges": [
             "launchnavigator"
         ]
+    },
+    {
+        "id": "cordova-plugin-phonecaller.PhoneCaller",
+        "file": "plugins/cordova-plugin-phonecaller/www/phonecaller.js",
+        "pluginId": "cordova-plugin-phonecaller",
+        "clobbers": [
+            "PhoneCaller"
+        ]
     }
 ];
 module.exports.metadata = 
@@ -630,7 +638,8 @@ module.exports.metadata =
     "cordova-plugin-whitelist": "1.3.2",
     "call-number": "0.0.2",
     "cordova-plugin-actionsheet": "2.3.3",
-    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2"
+    "uk.co.workingedge.phonegap.plugin.launchnavigator": "3.2.2",
+    "cordova-plugin-phonecaller": "0.0.2"
 };
 // BOTTOM OF METADATA
 });
