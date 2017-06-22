@@ -13,18 +13,13 @@
   .flex();
   justify-content: space-between;
   align-items: center;
-  button {
-      -webkit-appearance: none;
-      border: none;
-      outline: none;
-  }
   .menuButton {
 
   }
   .title  {
     text-transform: uppercase;
   }
-  
+
 }
 
 .home-screen {
@@ -41,6 +36,11 @@
   }
 }
 .content-topbar {
+  &.scrolled {
+    .showFavorites {
+      display: none;
+    }
+  }
   &.vem {
     background-color: @vem;
     color: @blanc;
@@ -50,23 +50,21 @@
             color: @blanc;
           }
         }
-        .buttons {
-            button.hamburger {
-                .hamburger-inner, .hamburger-inner::before, .hamburger-inner::after {
-                    background: @blanc;
-                }
-            }
-        }
-    }
+      }
     .returnHome {
         position: absolute;
-        top: 28px;
     }
-  .buttons {
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    .buttons {
       position: absolute;
       right: 20px;
-      top: 45px;
-      .transform(translateY(-50%));
       button {
         background-color: transparent;
         border: none;
@@ -94,7 +92,7 @@
         }
         &.showFavorites {
             position: absolute;
-            right: 20px;
+            right: 45px;
             font-size: 25px;
             width: 25px;
             height: 25px;
@@ -118,7 +116,7 @@
           }
       }
   }
-  
+
   &.inactive {
     display: none;
   }

@@ -1,7 +1,7 @@
 // main: ./main.less
 #menu {
   width: 100vw;
-  height: auto;
+  height: 0;
   background-color: @vem;
   z-index: 10000;
   .flex();
@@ -14,7 +14,7 @@
   top: 70px;
   left: 0;
   overflow-y: auto;
-  .transition(all .6s @easeInOutCirc);
+  .transition(width .6s @easeInOutCirc);
   .takePhoto, .avatar, .loggedin-username, .connect, .userspace {
     display: none;
   }
@@ -22,7 +22,7 @@
       display: none;
   }
   &.active {
-      min-height: calc(~"100vh - 70px");
+    height: calc(~"100vh - 70px");
     -webit-animation: inherit;
     animation: inherit;
     &.showItems {
@@ -213,11 +213,11 @@
           }
       }
       &.connected {
-          
+
           .takePhoto {
               top: 0px;
           }
       }
   }
-  
+
 }

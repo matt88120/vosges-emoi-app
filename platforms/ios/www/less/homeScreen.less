@@ -1,7 +1,6 @@
 // main: ./main.less
 main {
   .home-screen {
-    margin-top: -20px;
     height: 100%;
     position: absolute;
     z-index: 9997;
@@ -15,18 +14,14 @@ main {
       background-color: @blanc;
       .topContent {
         width: 100vw;
-        height: 70%;
-        img {
-          width: 100vw;
-          height: 100%;
-          @media screen and (max-width: 380px) {
-            max-height: 90%;
-          }
-        }
+        height: 70vh;
+        background: url(../img/home.png) center center no-repeat;
+        background-size: cover;
+
       }
       .bottomContent {
         width: 100vw;
-        height: calc(~"30% - 20px");
+        height: calc(~"30vh - 80px");
         position: relative;
         color: @blanc;
         display: flex;
@@ -40,12 +35,10 @@ main {
           font-weight: 500;
           line-height: 1.2;
           .username {
-            font-size: 1.4em;
-            text-transform: uppercase;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-transform: capitalize;
           }
-        }
-        @media screen and (max-width: 380px) {
-          justify-content: inherit;
         }
       }
     }
@@ -83,10 +76,11 @@ main {
       z-index: 998;
       top: 0;
       left: 0;
-      padding: 0 15px 0 0;
+      height: 70px;
+      padding: 20px 15px 0 0;
       .hamburger {
         background-color: transparent;
-        margin-top: 35px;
+        margin-top: 10px;
         outline: none;
         &.is-active {
           opacity: 1;

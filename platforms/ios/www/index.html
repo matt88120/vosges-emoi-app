@@ -13,11 +13,11 @@
     <div class="statusBar">
     </div>
     <main role="main" id="main">
-        
+
         <div id="animation-splash">
-            
+
             <div class="logotrue">
-  
+
   <div class="circle circle-1"></div>
   <div class="circle circle-2"></div>
   <div class="circle circle-3"></div>
@@ -30,7 +30,7 @@
   <div class="circle circle-10"></div>
   <div class="circle circle-11"></div>
   <div class="circle circle-12"></div>
-  
+
 <svg width="387px" height="208px" viewBox="0 0 387 208" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
     <!-- Generator: Sketch 43.2 (39069) - http://www.bohemiancoding.com/sketch -->
     <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -39,11 +39,11 @@
         </g>
     </g>
 </svg>
-  
+
 </div>
-            
+
         </div>
-        
+
         <div class="intro-screen screen">
             <div id="intro-slick">
               <div class="firstScreen subScreen subScreenActive">
@@ -51,7 +51,7 @@
               </div>
               <div class="sndScreen subScreen">
                 <div class="top-ellipse">
-    
+
                 </div>
                 <div class="content">
                   <div class="topContent">
@@ -100,7 +100,7 @@
               </div>
               <div class="thirdScreen subScreen">
                 <div class="top-ellipse">
-    
+
                 </div>
                 <div class="content">
                   <div class="topContent">
@@ -127,7 +127,7 @@
               </div>
               <div class="fourthScreen subScreen">
                 <div class="top-ellipse">
-    
+
                 </div>
                 <div class="content">
                   <div class="topContent">
@@ -153,18 +153,40 @@
             </div>
             <div class="rectangle">
               <div class="ellipse">
-    
+
               </div>
             </div>
           </div>
-          
+
         <div class="photoZone">
+            <div class="photozonetitle">
+
+                Personnalisez votre photo<br />
+                avant de la partager
+
+            </div>
+            <div class="loadbg">
+              <div class="sk-circle">
+                <div class="sk-circle1 sk-child"></div>
+                <div class="sk-circle2 sk-child"></div>
+                <div class="sk-circle3 sk-child"></div>
+                <div class="sk-circle4 sk-child"></div>
+                <div class="sk-circle5 sk-child"></div>
+                <div class="sk-circle6 sk-child"></div>
+                <div class="sk-circle7 sk-child"></div>
+                <div class="sk-circle8 sk-child"></div>
+                <div class="sk-circle9 sk-child"></div>
+                <div class="sk-circle10 sk-child"></div>
+                <div class="sk-circle11 sk-child"></div>
+                <div class="sk-circle12 sk-child"></div>
+              </div>
+            </div>
             <canvas>
-    
+
             </canvas>
             <div class="modifyPhoto">
               <div class="leavePhotoZone">
-                <i class="fa fa-times" aria-hidden="true"></i>
+
               </div>
               <div class="modify-submenu getFilters">
                 Filtres
@@ -185,35 +207,50 @@
                 <input id="new_photomaton" name="new_photomaton" type="file" />
               </form>
               <div class="modify-submenu saveAndSendPhoto">
-                <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+
               </div>
             </div>
           </div>
-          
+
+          <div class="myPhotos screen">
+
+          </div>
+
         <div id="menu" class="">
             <button class="takePhoto">
             </button>
             <div class="avatar">
-    
+
             </div>
             <div class="loggedin-username">
-    
+
             </div>
+
             <div class="connect">
-              <button>Connexion</button>
-            </div>
-            <div class="connect-area">
-              <div class="input-area">
-                <div class="alert alert-warning" role="alert">
-                  Vos Informations de connexion semblent erronées.
+                <div class="userspace-title">
+                    <span>J'ai déjà un compte</span>
                 </div>
-                <label for="username">Nom d'utilisateur ou Adresse Mail</label>
-                <input type="text" id="username" />
-                <label for="pass">Mot de passe</label>
-                <input type="password" id="pass" />
-                <button id="connect">Connexion</button>
-              </div>
+                <div class="connect-area">
+                  <div class="input-area">
+                        <div class="alert alert-warning" role="alert">
+                            Vos Informations de connexion semblent erronées.
+                        </div>
+
+                        <label for="username">Nom d'utilisateur ou Adresse Mail</label>
+
+                        <input type="text" id="username" />
+
+                        <label for="pass">Mot de passe</label>
+
+                        <input type="password" id="pass" />
+
+                        <button id="connect">Connexion</button>
+                  </div>
+                </div>
             </div>
+
+
+
             <div class="userspace offline">
               <div class="userspace-title">
                 <span>Mon espace</span>
@@ -228,14 +265,14 @@
                 <div class="loadfavorites set">
                   <i class="fa fa-heart fa-3x" aria-hidden="true"></i>
                   <div class="favorites-num">
-    
+
                   </div>
                   <div>
                     Ma Liste
                   </div>
                 </div>
-                <div class="camera set">
-                  <i class="fa fa-camera fa-3x" aria-hidden="true"></i>
+                <div class="gallery set">
+                  <i class="fa fa-picture-o fa-3x" aria-hidden="true"></i>
                   <div>
                     Appareil Photo
                   </div>
@@ -248,8 +285,32 @@
                 </div>
               </div>
             </div>
+
+             <a href="#" id="become_member" data-fancybox>Devenir membre</a>
+
           </div>
-          
+        <div class="favorites_zone screen">
+          <div class="fav_nav">
+            <div class="filter" data-filter=".restaurants_fav">
+              Où manger
+            </div>
+            <div class="filter" data-filter=".hebergements_fav">
+              Où dormir
+            </div>
+            <div class="filter" data-filter=".activites_fav">
+              Activités
+            </div>
+          </div>
+          <div class="restaurants_fav">
+
+          </div>
+          <div class="hebergements_fav">
+
+          </div>
+          <div class="activites_fav">
+
+          </div>
+        </div>
         <div class="home-screen screen active">
             <button class="takePhoto">
             </button>
@@ -264,75 +325,77 @@
             </div>
             <div class="content">
               <div class="topContent">
-                <img src="./img/home.png" />
+
               </div>
               <div class="bottomContent">
                 <p class="hello">
-                  <span data-aos="fade-up">Bonjour <span class="username"></span></span><br />
+                  <span data-aos="fade-up">Bonjour <span class="username"></span></span>,<br />
                   <span data-aos="fade-up" data-aos-delay="300">trouvez le meilleur des Vosges !</span>
                 </p>
               </div>
             </div>
           </div>
-          
+
         <div class="topbar content-topbar inactive">
             <button class="returnHome">
               <i class="fa fa-angle-left fa-2x" aria-hidden="true"></i>
             </button>
             <div class="name">
             </div>
-            <button class="showFavorites"><i class="fa fa-heart" aria-hidden="true"><span class="favNumber"></span></i></button>
-            <button class="hamburger hamburger--collapse" type="button">
-              <span class="hamburger-box">
-                <span class="hamburger-inner"></span>
-              </span>
-            </button>
+            <div class="buttons">
+                <button class="showFavorites"><i class="fa fa-heart" aria-hidden="true"><span class="favNumber"></span></i></button>
+                <button class="hamburger hamburger--collapse" type="button">
+                  <span class="hamburger-box">
+                    <span class="hamburger-inner"></span>
+                  </span>
+                </button>
+            </div>
           </div>
-          
+
         <div id="restaurants" class="screen">
             <div class="load_zone">
               <div class="loader">
                 <div class="progress">
                   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-    
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        
+
         <div id="hebergements" class="screen">
             <div class="load_zone">
               <div class="loader">
                 <div class="progress">
                   <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100">
-    
+
                   </div>
                 </div>
               </div>
             </div>
           </div>
-        
+
         <div id="activites" class="screen">
             <div class="load_zone">
               <div class="loader">
-    
+
               </div>
             </div>
           </div>
-        
+
         <div id="agenda" class="screen">
             <div class="load_zone">
               <div class="loader">
-    
+
               </div>
             </div>
           </div>
-        
+
         <div id="carte" class="screen">
             <div class="load_zone">
               <div class="loader">
-    
+
               </div>
             </div>
             <div class="content">
@@ -343,20 +406,20 @@
                 <span data-target="activites ">activités</span>
               </div>
               <div data-content="photos" class="photos gmap active_map">
-    
+
               </div>
               <div data-content="restaurants" class="restaurants gmap">
-    
+
               </div>
               <div data-content="hebergements" class="hebergements gmap">
-    
+
               </div>
               <div data-content="activites" class="activites gmap">
-    
+
               </div>
             </div>
           </div>
-        
+
     </main>
     <div class="single_contacts inactive">
       <a class="single_phone" href><i class="fa fa-phone fa-2x" aria-hidden="true"></i></a>
