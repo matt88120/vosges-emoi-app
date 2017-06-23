@@ -1,0 +1,31 @@
+{{ #markers }}
+  {{ #isPhotos }}
+    <div class="marker appearFromTop" data-type="{{ type }}" data-lat="{{ acf.latitude }}" data-lng="{{ acf.longitude }}"
+    {{ #better_featured_image.media_details.sizes.large }}
+      data-url="{{{ better_featured_image.media_details.sizes.large.source_url }}}"
+    {{ /better_featured_image.media_details.sizes.large }}
+    {{ ^better_featured_image.media_details.sizes.large }}
+      data-url="{{{ better_featured_image.source_url }}}"
+    {{ /better_featured_image.media_details.sizes.large }}
+    data-author="© photo de <span>{{ author.name }}</span>">
+    </div>
+  {{ /isPhotos }}
+  {{ ^isPhotos }}
+    <div class="marker appearFromTop"
+    data-type="{{ type }}"
+    data-lat="{{ acf.situation_sur_la_carte.lat }}"
+    data-lng="{{ acf.situation_sur_la_carte.lng }}"
+    data-id="{{ id }}"
+    {{ #better_featured_image.media_details.sizes.large }}
+      data-thumbnail="{{{ better_featured_image.media_details.sizes.large.source_url }}}"
+    {{ /better_featured_image.media_details.sizes.large }}
+    {{ ^better_featured_image.media_details.sizes.large }}
+      data-thumbnail="{{{ better_featured_image.source_url }}}"
+    {{ /better_featured_image.media_details.sizes.large }}
+    data-name="{{{ title.rendered }}}"
+    data-phone="{{ acf.telephone }}"
+    data-city="{{ acf.ville }}"
+    data-intro="{{ acf.contenu_de_lintroduction }}">
+    </div>
+  {{ /isPhotos }}
+{{ /markers }}

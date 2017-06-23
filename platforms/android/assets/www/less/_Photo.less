@@ -1,0 +1,178 @@
+// main: ./main.less
+/*.home-screen, footer {
+  display: none !important;
+}*/
+
+.myPhotos {
+  .flex();
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  padding: 70px 15px;
+  padding-bottom: 80px;
+  align-items: flex-start;
+  .image-container {
+    position: relative;
+    width: 50%;
+    padding: 10px;
+    max-width: 50%;
+    .shareOrDeleteZone {
+      display: none;
+      align-items: center;
+      justify-content: space-around;
+      background-color: rgba(0, 0, 0, 0.8);
+      position: absolute;
+      width: calc(~"100% - 20px");
+      height: calc(~"100% - 20px");
+      .transition(all .6s @easeInOutCirc);
+      button {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background-color: transparent;
+        color: white;
+        border: 1px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        i {
+          width: 16px;
+          height: 16px;
+        }
+      }
+      &.show {
+        .flex();
+      }
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  }
+}
+
+.photoZone {
+  display: none;
+  background-color: @noir;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  top: 0;
+  left: 0;
+  text-align: center;
+  color: fadeOut(@blanc, 20%);
+  -webkit-font-smoothing: antialiased;
+  z-index: 999999;
+  .loadbg {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    top: 0;
+    height: 100vh;
+    z-index: 999;
+    left: 0;
+  }
+  .photozonetitle {
+      padding: 30px 20px;
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.4;
+  }
+  .modifyPhoto {
+    position: absolute;
+    width: 100vw;
+    justify-content: center;
+    height: 60px;
+    bottom: 0;
+    border-top: 1px solid fadeOut(@blanc, 80%);
+    .flex();
+    div {
+      color: @vemgris;
+      flex: 1;
+      .flex();
+      justify-content: center;
+      align-items: center;
+      &.saveAndSendPhoto {
+        background: url(../img/check_vosgesemoi.png) center center no-repeat;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 auto;
+        margin-top: 10px;
+        margin-right: 10px;
+      }
+      &.leavePhotoZone {
+        background: url(../img/close_vosgesemoi.png) center center no-repeat;
+        background-size: cover;
+        width: 40px;
+        height: 40px;
+        flex: 0 0 auto;
+        margin-top: 10px;
+        margin-left: 10px;
+      }
+    }
+    #sendPhoto {
+      display: none;
+    }
+    .modify-submenu {
+      &.getFilters {
+        .filters {
+          position: absolute;
+          button {
+            background-color: transparent;
+            background-repeat: no-repeat;
+            background-size: contain;
+            width: 65px;
+            height: 35px;
+            border: none;
+            border-radius: 30px;
+            &.plain {
+              background-image: url(../img/plain.png);
+            }
+            &.cover {
+              background-image: url(../img/cover.png);
+            }
+          }
+        }
+        &.selected {
+          background-color: @vem;
+          color: @blanc;
+          .filters {
+            .flex();
+          }
+        }
+      }
+      &.change-filter-color {
+        .filter-color {
+          button {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+            -webkit-appearance: none;
+          }
+          background-color: rgba(255, 255, 255, 0.4);
+          border-radius: 30px;
+        }
+        &.selected {
+          background-color: @vem;
+          color: @blanc;
+          .filter-color {
+            .flex();
+          }
+        }
+      }
+      .filters, .filter-color {
+        display: none;
+        position: absolute;
+        left: 30%;
+        width: 40vw;
+        height: 35px;
+        top: -50px;
+        justify-content: space-around;
+      }
+    }
+  }
+}

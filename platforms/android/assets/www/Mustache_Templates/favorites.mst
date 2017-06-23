@@ -1,0 +1,8 @@
+<div class="favorites screen">
+    <div class="fav-nav">
+      <button data-target="#rest-fav">Où manger</button>
+      <button data-target="#heb-fav">Où dormir</button>
+      <button data-target="#act-fav">Activités</button>
+      <button data-target="#age-fav">Agenda</button>
+    </div>
+</div>

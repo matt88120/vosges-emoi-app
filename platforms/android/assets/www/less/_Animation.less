@@ -1,0 +1,164 @@
+// main: ./main.less
+@keyframes appearFromLeft {
+	0% {
+		.transform(translateX(-100%));
+	}
+	100% {
+		.transform(translateX(0%));
+	}
+}
+
+@keyframes appearFromRight {
+	0% {
+		.transform(translateX(100%));
+	}
+	100% {
+		.transform(translateX(0%));
+	}
+}
+
+@keyframes appearFromBottom {
+	0% {
+		.transform(translateY(100%));
+	}
+	100% {
+		.transform(translateY(0%));
+	}
+}
+
+@keyframes appearFromTop{
+	0% {
+		.transform(translateY(-100%));
+	}
+	100% {
+		.transform(translateY(0%));
+	}
+}
+
+@keyframes disappearFromLeft {
+	0% {
+		.transform(translateX(0%));
+	}
+	100% {
+		.transform(translateX(-100%));
+	}
+}
+
+@keyframes disappearFromRight {
+	0% {
+		.transform(translateX(0%));
+	}
+	100% {
+		.transform(translateX(100%));
+	}
+}
+
+@keyframes disappearFromBottom {
+	0% {
+		.transform(translateY(0%));
+	}
+	100% {
+		.transform(translateY(100%));
+	}
+}
+
+@keyframes disappearFromTop{
+	0% {
+		.transform(translateY(0%));
+	}
+	100% {
+		.transform(translateY(-100%));
+	}
+}
+
+@keyframes enterLeft {
+	0% {
+		.transform(translateX(100%));
+	}
+	100% {
+		.transform(translateX(0));
+	}
+}
+
+@keyframes enterRight {
+	0% {
+		.transform(translateX(-100%));
+	}
+	100% {
+		.transform(translateX(0));
+	}
+}
+
+@keyframes exitLeft {
+	0% {
+		.transform(translateX(0));
+	}
+	100% {
+		.transform(translateX(-20%));
+	}
+}
+@keyframes exitRight {
+	0% {
+		.transform(translateX(0));
+	}
+	100% {
+		.transform(translateX(20%));
+	}
+}
+@keyframes exitToHome {
+	0% {
+		.transform(translateX(0));
+	}
+	100% {
+		.transform(translateX(20%));
+	}
+}
+
+@keyframes exitForMenu {
+	0% {
+		.transform(translateY(0));
+	}
+	100% {
+		.transform(translateY(20%));
+	}
+}
+
+.appearFromLeft {
+	.animation(appearFromLeft 1.0s @easeInOutCirc backwards);
+}
+
+.appearFromRight {
+	.animation(appearFromRight 1.0s @easeInOutCirc backwards);
+}
+
+.appearFromTop {
+	.animation(appearFromTop 1.0s @easeInOutCirc backwards);
+}
+
+.appearFromBottom {
+	.animation(appearFromBottom 1.0s @easeInOutCirc backwards);
+}
+
+.disappearFromLeft {
+	.animation(disappearFromLeft .25s @easeInOutCirc backwards);
+	.flex();
+	//opacity: 0 !important;
+}
+
+.disappearFromRight {
+	.animation(disappearFromRight .25s @easeInOutCirc backwards);
+	.flex();
+	//opacity: 0 !important;
+}
+
+.disappearFromTop {
+	.animation(disappearFromTop .25s @easeInOutCirc backwards);
+	.flex();
+	//opacity: 0 !important;
+}
+
+.disappearFromBottom {
+	.animation(disappearFromBottom .25s @easeInOutCirc backwards);
+	.flex();
+	opacity: 0 !important;
+}
