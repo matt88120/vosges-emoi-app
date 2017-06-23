@@ -15,6 +15,10 @@
   var favorites = [];
 
 
+function donothing() {
+  console.log("");
+}
+
   /*
   *  new_map
   *
@@ -463,7 +467,7 @@
         loadBG($(target));
         if ($('.screen.active').attr('id') == "carte") {
           setTimeout(function() {
-            alert("Vous devez appuyer sur la carte pour vous déplacer.");
+            navigator.notification.alert("Vous devez appuyer sur la carte pour vous déplacer.", donothing, 'Astuce', 'J\'ai compris.');
           }, 550);
           maps.map(function(map) {
             google.maps.event.trigger(map, 'resize');
@@ -682,10 +686,10 @@
       url: $(this).data('share')
     }
     var onSuccess = function(result) {
-      alert("Votre contenu a bien été partagé !");
+      navigator.notification.alert("Votre contenu a bien été partagé !", donothing, "Partage", "Merci !");
     }
     var onError = function(err) {
-      alert("Le partage de votre contenu a échoué !");
+      navigator.notification.alert("Le partage de votre contenu a échoué !", donothing, "Partage", "D'accord");
     }
     window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
   }
@@ -873,9 +877,9 @@
     var phoneNumber = $(this).attr('href');
     if ((typeof phoneNumber !== "undefined") && (phoneNumber.indexOf('tel:') >= 0)) {
       window.PhoneCaller.call(phoneNumber, function() {
-        alert("L'appel à bien été passé.");
+        navigator.notification.alert("L'appel à bien été passé.", donothing, "Appel", "Merci !");
       }, function() {
-        alert("L'appel n'a pas abouti.");
+        navigator.notification.alert("L'appel n'a pas abouti.", donothing, "Appel", "Merci !");
       });
     }
   }
@@ -1203,14 +1207,36 @@
     loadPosts();
   }
 
+  function cover (ctx, img, x, y, width, height, opts) {
+    opts = Object.assign({ cx: 0.5, cy: 0.5, zoom: 1, alpha: 1 }, opts || {});
+    if (opts.cx < 0 || opts.cx > 1) throw new Error('Make sure 0 < opt.cx < 1 ');
+    if (opts.cy < 0 || opts.cy > 1) throw new Error('Make sure 0 < opt.cy < 1 ');
+    if (opts.zoom < 1) throw new Error('opts.zoom not >= 1');
+
+    const ir = img.width / img.height;
+    const r = width / height;
+    // sw and sh are where we will start from in the image (we may be cropping it)
+    const sw = (ir < r ? img.width : img.height * r) / opts.zoom;
+    const sh = (ir < r ? img.width / r : img.height) / opts.zoom;
+    // sx and sy are the width/height to crop out
+    const sx = (img.width - sw) * opts.cx;
+    const sy = (img.height - sh) * opts.cy;
+    ctx.globalAlpha = opts.alpha;
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, width, height);
+  }
+
   function insertPhotoIntoCanvas() {
     var context = window.photoCanvas.getContext('2d');
+    window.photoCanvas.width = window.innerWidth;
+    window.photoCanvas.height = window.innerWidth;
+    /*var context = window.photoCanvas.getContext('2d');
     window.photoCanvas.width = window.innerWidth;
     window.photoCanvas.height = window.innerWidth;
     var ratio = window.photoCanvas.width / 800;
     //context.scale(ratio, ratio);
     context.scale(ratio, ratio);
-    context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);
+    context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);*/
+    cover(context, window.takenPhoto, 0, 0, 800, 800);
   }
 
   function loadSVGIntoCanvas(svg, canvas) {
@@ -1272,10 +1298,10 @@
           files: [container.find('a').attr('href')],
         }
         var onSuccess = function(result) {
-          alert("Votre contenu a bien été partagé !");
+          navigator.notification.alert("Votre contenu a bien été partagé !");
         }
         var onError = function(err) {
-          alert("Le partage de votre contenu a échoué !");
+          navigator.notification.alert("Le partage de votre contenu a échoué !");
         }
         window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
       });
@@ -1295,14 +1321,14 @@
               }
             });
             if (deleted) {
-              alert("Votre photo a bien été supprimée !");
+              navigator.notification.alert("Votre photo a bien été supprimée !");
               container.remove();
             } else {
-              alert("Une erreur s'est produite lors de la suppression de votre photo");
+              navigator.notification.alert("Une erreur s'est produite lors de la suppression de votre photo");
             }
           }).catch(function(err) {
             if (err) {
-              alert("Une erreur s'est produite lors de la suppression de votre photo");
+              navigator.notification.alert("Une erreur s'est produite lors de la suppression de votre photo");
             }
           });
         }
@@ -1334,7 +1360,7 @@
         navigator.geolocation.getCurrentPosition(function(pos) {
           lat = pos.coords.latitude;
           lng = pos.coords.longitude;
-          alert(lat + " " + lng);
+          navigator.notification.alert(lat + " " + lng);
           $.ajax({
             url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/photomaton",
             method: 'POST',
@@ -1349,7 +1375,7 @@
               lng: lng
             }
           }).then(function(data) {
-            alert("Votre image à bien été enregistrée !");
+            navigator.notification.alert("Votre image à bien été enregistrée !");
             $('.photoZone .loadbg').hide();
             $('.photoZone').hide();
             loadAndStore('photomaton', '?per_page=99').then(function() {
@@ -1362,7 +1388,7 @@
           console.error("ERROR " + JSON.stringify(err));
         });
       }).catch(function(err) {
-        alert(JSON.stringify(err));
+        navigator.notification.alert(JSON.stringify(err));
       });
     } catch(err) {
       console.error("ERROR 2 : " + JSON.stringify(err));
@@ -1377,10 +1403,7 @@
       encodingType: Camera.EncodingType.PNG,
       mediaType: Camera.MediaType.PICTURE,
       pictureSourceType: Camera.PictureSourceType.CAMERA,
-      correctOrientation: true,
-      targetWidth: 800,
-      targetHeight: 800,
-      allowEdit: true
+      correctOrientation: true
     };
     window.appliedFilter = false;
     Camera.getPicture(function cameraSuccess(data) {
@@ -1401,25 +1424,6 @@
       window.takenPhoto.addEventListener('load', function(e) {
         try {
           insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
           $('.photoZone .getFilters').click(function() {
             $('.photoZone .change-filter-color').removeClass('selected');
             $(this).find('button').each(function(idx, $el) {
@@ -1427,24 +1431,6 @@
                 var photoCanvas = document.getElementsByTagName('canvas')[0];
                 if (window.appliedFilter) {
                   clearCanvas(photoCanvas);
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
                 }
                 window.appliedFilter = true;
@@ -1468,9 +1454,6 @@
               $(this).find('button').each(function(idx, el) {
                 $(el).click(function(e) {
                   clearCanvas(photoCanvas);
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
                   var color = $(this).data('color');
                   $(window.loadedSVG).find('.cls-1').each(function(idx, el) {
@@ -1603,7 +1586,7 @@
   function logOutUser() {
     delete window.current_user;
     localforage.removeItem('currentUser').then(function() {
-      alert("Vous êtes maintenant déconnecté !");
+      navigator.notification.alert("Vous êtes maintenant déconnecté !");
     });
     $('.home-screen .username, #menu .loggedin-username').html("");
     $('#menu .loggedin-username').hide();
@@ -1902,7 +1885,7 @@
               window.current_user.user_object = data;
               loggedInUserUI();
               localforage.setItem('currentUser', window.current_user).then(function() {
-                alert("user updated");
+                navigator.notification.alert("user updated");
               });
             });
           } else {
