@@ -48,19 +48,19 @@
       <true/>
     </dict>
     <key>NSCameraUsageDescription</key>
-    <string></string>
+    <string/>
     <key>NSContactsUsageDescription</key>
-    <string></string>
+    <string/>
     <key>NSLocationWhenInUseUsageDescription</key>
-    <string></string>
+    <string/>
     <key>NSMainNibFile</key>
     <string/>
     <key>NSMainNibFile~ipad</key>
     <string/>
     <key>NSMicrophoneUsageDescription</key>
-    <string></string>
+    <string/>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string></string>
+    <string/>
     <key>UIRequiresFullScreen</key>
     <true/>
     <key>UISupportedInterfaceOrientations</key>

@@ -674,6 +674,22 @@
     });
   }
 
+  function shareSingle() {
+    var single = $(this).parent().parent();
+    var options = {
+      message: (single.data('type') == "activites") ? 'J\'ai trouvé une superbe ' + single.data('type').substr(0, single.data('type').length - 1) + ' sur l\'application VosgesEmoi, regarde :' : 'J\'ai trouvé un superbe ' + single.data('type').substr(0, single.data('type').length - 1) + ' sur l\'application VosgesEmoi, regarde :' ,
+      files: [$(this).data('thumbnail')],
+      url: $(this).data('share')
+    }
+    var onSuccess = function(result) {
+      alert("Votre contenu a bien été partagé !");
+    }
+    var onError = function(err) {
+      alert("Le partage de votre contenu a échoué !");
+    }
+    window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
+  }
+
   function loadSingleTemplate() {
     _this = $(this).parent();
     var id = _this.attr('id');
@@ -698,16 +714,10 @@
           single_container = document.createElement('div');
           $(single_container).addClass("single single_" + type + " screen active left");
           $(single_container).attr('id', id);
+          $(single_container).data('type', type);
           $('.screen.active').removeClass('active left right').addClass('exit left');
           $('.content-topbar .name').hide();
           $('main').append(single_container);
-          var tmp = _.find(favorites, function(row) {
-            return row.id == id;
-          });
-          console.log(favorites);
-          if (tmp != null) {
-            $('.single.active .fa-heart-o').removeClass('.fa-heart-o').addClass('.fa-heart');
-          }
           $('.single_contacts').removeClass('inactive');
           window.previousScroll = $('body').scrollTop();
           var reg = new RegExp(' ', 'g');
@@ -723,6 +733,15 @@
           if (typeof single_template === "undefined") {
             loadTemplate('single', single_template).then(function(template) {
               $('.single.active').html(Mustache.render(template, single));
+              var tmp = _.find(favorites, function(row) {
+                return row  == id;
+              });
+              console.log(tmp);
+              if (tmp != null) {
+                $('.single.active .fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
+              }
+              $('.single.active .fav').click(addOrDeleteFavorites);
+              $('.single.active .share').click(shareSingle);
               $('.content-topbar .name').html("");
               $('.single.active .single_name').find('h1').clone().appendTo($('.content-topbar .name'));
               $('.single.active .single_nav').clone().insertAfter('.content-topbar .name');
@@ -768,6 +787,15 @@
             });
           } else {
             $('.single.active').html(Mustache.render(single_template, single));
+            var tmp = _.find(favorites, function(row) {
+              return row  == id;
+            });
+            console.log(tmp);
+            if (tmp != null) {
+              console.log("yay");
+              $('.single.active .fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
+            }
+            $('.single.active .fav').click(addOrDeleteFavorites);
             $('.content-topbar .name').html("");
             $('.single.active .single_name').find('h1').clone().appendTo($('.content-topbar .name'));
             $('.single.active .single_nav').clone().insertAfter('.content-topbar .name');
@@ -1171,7 +1199,7 @@
     }
     setTimeout(function() {
       getFavorites();
-    }, 2000);
+    }, 1000);
     loadPosts();
   }
 
@@ -1239,6 +1267,17 @@
       });
       $('.myPhotos .image-container .shareOrDeleteZone .share').click(function(e) {
         var container = $(this).parent().parent();
+        var options = {
+          message: 'Regarde la photo que j\'ai prise avec l\'application VosgesEmoi !',
+          files: [container.find('a').attr('href')],
+        }
+        var onSuccess = function(result) {
+          alert("Votre contenu a bien été partagé !");
+        }
+        var onError = function(err) {
+          alert("Le partage de votre contenu a échoué !");
+        }
+        window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
       });
       $('.myPhotos .image-container .shareOrDeleteZone .delete').click(function(e) {
         var container = $(this).parent().parent();
@@ -1527,6 +1566,7 @@
     $('#menu .connect button').click(function(e) {
       $('.connect-area').addClass('connecting');
     });
+    $('#menu .loadfavorites').click(showFavorites);
     $('#menu .gallery').click(loadMyPhotos);
     $('.home-screen button.hamburger, .content-topbar button.hamburger').click(function (e) {
       if ($("#menu").hasClass("active")) {
@@ -1632,16 +1672,22 @@
   }
 
   function showFavorites() {
+    closeMenu($('.hamburger.is-active'));
     var commonDatasName = ['restaurants', 'hebergements', 'activites'];
     var favorites_data = {};
+    console.log(favorites);
     Promise.all([localforage.getItem('restaurants'),
     localforage.getItem('hebergements'),
     localforage.getItem('activites')]).then(function(datas) {
+      console.log(datas);
       for (var i = 0; i < commonDatasName.length; i++) {
         favorites_data[commonDatasName[i]] = {};
-        favorites_data[commonDatasName[i]]['datas'] = _.find(datas[i], function(row) {
-          return (_.contains(favorites, row.id.toString()));
-        });
+        favorites_data[commonDatasName[i]].datas = [];
+        for (var j = 0; j < datas[i].length; j++) {
+          if (_.contains(favorites, datas[i][j].id.toString())) {
+            favorites_data[commonDatasName[i]].datas.push(datas[i][j]);
+          }
+        }
       }
       //données filtrées
       $('.screen.active').removeClass('active left right').addClass('exit left');
@@ -1691,6 +1737,8 @@
              $('#' + id).find('.fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
            });
            $('.favNumber').html(favorites.length);
+         } else {
+           $('.favNumber').html(0);
          }
        }).catch(function(err) {
          console.log("no meta");
@@ -1705,6 +1753,12 @@
       var id = fiche[0].id;
       if (!_.contains(favorites, id)) {
         favorites.push(id);
+        localforage.setItem('favorites', favorites).then(function() {
+          console.log("favorites updated");
+          $('.favNumber').html(favorites.length);
+        }).catch(function(err) {
+          console.error("Une erreur est survenue lors de la sauvegarde des favoris !");
+        });
         if (window.current_user) {
           $.ajax({
             url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/favoris",
@@ -1726,11 +1780,18 @@
     } else {
       $(this).removeClass('fa-heart').addClass('fa-heart-o');
       var fiche = $(this).parent();
-      var id = fiche[0].id;
+      var id = fiche.attr('id');
+      if (typeof id === "undefined") {
+        fiche = $(this).parent().parent();
+        id = fiche.attr('id');
+      }
       if (_.contains(favorites, id)) {
         favorites = _.filter(favorites, function(rowID) {
           return rowID != id;
         });
+        if (favorites == null || favorites == "") {
+          favorites = [];
+        }
         if (window.current_user) {
           $.ajax({
             url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/delete/favoris",
@@ -1748,14 +1809,14 @@
             }
           });
         }
+        localforage.setItem('favorites', favorites).then(function() {
+          console.log("favorites updated");
+          $('.favNumber').html(favorites.length);
+        }).catch(function(err) {
+          console.error("Une erreur est survenue lors de la sauvegarde des favoris !");
+        });
       }
     }
-    localforage.setItem('favorites', favorites).then(function() {
-      console.log("favorites updated");
-      $('.favNumber').html(favorites.length);
-    }).catch(function(err) {
-      console.error("Une erreur est survenue lors de la sauvegarde des favoris !");
-    });
   }
 
   $(window).on('load', function(e) {
