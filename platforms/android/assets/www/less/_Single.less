@@ -1,0 +1,424 @@
+// main: ./main.less
+.single {
+  /*.flex();
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: auto;
+  opacity: 1;
+  border-radius: 0;
+  background-color: @blanc;
+  z-index: 9999;
+  overflow: auto;
+  .topbar {
+    background-color: transparent !important;
+    button {
+      border: none;
+      background-color: transparent;
+    }
+  }*/
+  .content {
+    top: 0 !important;
+  }
+  .single_thumbnail {
+    width: 100vw;
+    height: 60vh;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    top: 0;
+    @media screen and (max-height: 600px) {
+      height: calc(~"60vh - 60px");
+    }
+    @media screen and (min-height: 600px) and (max-height: 680px) {
+      height: calc(~"65vh - 60px");
+    }
+  }
+  .fa-heart-o, .fa-heart {
+    color: @blanc;
+    position: absolute;
+    top: 80px;
+    right: 10px;
+  }
+  .fa-heart {
+    color: @vem;
+  }
+  .fa-share-alt {
+    color: @blanc;
+    position: absolute;
+    top: 80px;
+    right: 70px;
+  }
+  .single_name {
+    .flex();
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 210px;
+    width: 100vw;
+    background-color: @grisclair;
+    padding: 0 15px;
+    text-align: center;
+    .transition();
+    img {
+      left: 0;
+      width: 100vw;
+      height: auto;
+      position: absolute;
+      bottom: 100%;
+    }
+    h2 {
+      color: @vemgris;
+      font-size: 18px;
+      line-height: 26px;
+      text-transform: uppercase;
+      font-weight: 200;
+      letter-spacing: .05em;
+      .transition();
+    }
+    h1 {
+      padding-bottom: 50px;
+      font-size: 26px;
+      line-height: 1.2;
+      color: @vem;
+      .transition();
+    }
+    &.scroll-to-fixed-fixed {
+      height: 80px;
+      z-index: 9997;
+      h2 {
+        font-size: 14px;
+        line-height: 16px;
+      }
+      h1 {
+        font-size: 18px;
+        line-height: 24px;
+      }
+      .single_nav {
+        top: 5px;
+        height: 30px;
+      }
+    }
+    .single_nav {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      background-color: @blanc;
+      width: 100vw;
+      .flex();
+      align-items: center;
+      text-transform: uppercase;
+      color: @vemgris;
+      .shadow(0 0 5px fadeOut(@noir, 95%));
+      .transition();
+      div {
+        height: 100%;
+        font-size: 12px;
+        flex: 1;
+        padding: 10px 5px;
+      }
+      .onglet_actif {
+        position: relative;
+        color: @vem;
+        &:after {
+          content: '';
+          width: 100%;
+          height: 3px;
+          background-color: @vem;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+      }
+    }
+  }
+  .single_infos {
+    margin-top: 20px;
+    padding-bottom: 60px;
+    .transition();
+    .onglet {
+      a {
+        color: @vem;
+      }
+      .intro {
+        font-size: 18px;
+        padding: 0 30px;
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .gallery {
+        width: 100vw;
+        height: 200px;
+        position: relative;
+        .seeMore {
+          background-color: rgba(0, 0, 0, 0.6);
+          .flex();
+          position: absolute;
+          width: 100vw;
+          height: 200px;
+          top: 0;
+          left: 0;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          color: @blanc;
+          p {
+            margin-bottom: 0;
+          }
+        }
+        a {
+          width: 100vw;
+          height: 200px;
+          display: none;
+          background-position: center center;
+          background-size: cover;
+          color: @blanc;
+          &:first-child {
+            display: block;
+          }
+        }
+      }
+      .single_presentation {
+        font-size: 16px;
+        padding: 0 20px;
+        margin-top: 20px;
+        color: @vem_texte_fiche;
+        .titre_presentation {
+          text-transform: uppercase;
+          font-size: 18px;
+          font-weight: bold;
+          color: @vem_texte_fiche;
+        }
+        &:before {
+          content: '';
+          width: 100%;
+          height: 1px;
+          background-color: fadeOut(@vem_trait, 80%);
+          display: block;
+        }
+      }
+      .single_prestation {
+        font-size: 16px;
+        color: @vem_texte_fiche;
+        padding: 0 20px;
+        margin-top: 40px;
+        .titre_prestation {
+          text-transform: uppercase;
+          font-size: 18px;
+          font-weight: bold;
+          color: @vem_texte_fiche;
+        }
+        &:before {
+          content: '';
+          width: 100%;
+          height: 1px;
+          background-color: fadeOut(@vem_trait, 80%);
+          display: block;
+        }
+      }
+      &#onglet_tarifs {
+        font-size: 16px;
+        color: @vem_texte_fiche;
+        padding: 0 20px;
+        margin-top: 40px;
+        .titre_tarifs {
+          text-transform: uppercase;
+          font-size: 18px;
+          font-weight: bold;
+          color: @vem_texte_fiche;
+        }
+        &:before {
+          content: '';
+          width: 100%;
+          height: 1px;
+          background-color: fadeOut(@vem_trait, 80%);
+          display: block;
+        }
+      }
+      &#onglet_infos {
+        color: @vem_texte_fiche;
+        padding: 0 20px;
+        margin-top: 40px;
+        font-size: 16px;
+        margin-bottom: 60px;
+        .otherTypeContainer {
+          .flex();
+          flex-direction: column;
+          justify-content: space-around;
+          align-items: center;
+          width: 100%;
+          margin-top: 40px;
+          .otherType {
+            width: 100%;
+            position: relative;
+            height: 160px;
+            background-position: center center;
+            background-size: cover;
+            .comeSee {
+              height: 100%;
+              .flex();
+              flex-direction: column;
+              align-items: center;
+              justify-content: center;
+              background-color: rgba(0, 0, 0, 0.6);
+              color: @blanc;
+            }
+          }
+        }
+        .relativePosts {
+          position: relative;
+          width: 100%;
+          margin-top: 40px;
+          .slick-list {
+            min-width: 100%;
+            .slick-track {
+              width: 100% !important;
+              .post {
+                min-width: 100%;
+                .thumbnail {
+                  position: relative;
+                  height: 250px;
+                  background-position: center center;
+                  background-size: cover;
+                  background-repeat: no-repeat;
+                  display: block;
+                  .date {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    padding: 20px 10px;
+                    background-color: rgba(0, 0, 0, 0.5);
+                    font-size: .8em;
+                    font-weight: 300;
+                    letter-spacing: .02em;
+                    text-align: center;
+                    color: @blanc;
+                    width: 100%;
+                  }
+                }
+                .title {
+                  padding-top: 10px;
+                  font-size: 20px;
+                  color: @vem;
+                  line-height: 22px;
+                }
+                .description {
+                  width: 100%;
+                  height: 20px;
+                  p {
+                    color: @vemgris;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    width: 100%;
+                    height: 20px;
+                    margin-bottom: 0;
+                    line-height: 18px;
+                  }
+                }
+              }
+            }
+          }
+          .slick-dots {
+            list-style-type: none;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            width: 100vw;
+            padding-left: 0;
+            top: 0px;
+            left: 0;
+            margin-bottom: 0;
+            .flex();
+            li {
+              flex: 1;
+              margin: 10px;
+              button {
+                line-height: 0;
+                font-size: 0;
+                width: 100%;
+                height: 5px;
+                padding: 0 10px;
+                background-color: @vemgris;
+                .transition();
+              }
+              &.slick-active {
+                button {
+                  transform: scale(1.2);
+                  background-color: @vem;
+                }
+              }
+            }
+          }
+        }
+        &:before {
+          content: '';
+          width: 100%;
+          height: 1px;
+          background-color: fadeOut(@vem_trait, 80%);
+          display: block;
+        }
+      }
+    }
+  }
+  .single_slider {
+    width: 100%;
+    height: 220px;
+    .single_slide {
+      width: 100vw;
+      height: 220px;
+      background-size: cover;
+      background-position: center center;
+    }
+    .slick-dots {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      list-style: none;
+      .flex();
+      align-items: center;
+      padding-left: 0;
+      width: 100vw;
+      height: 40px;
+      justify-content: center;
+      box-sizing: border-box;
+      margin-bottom: 0;
+      li {
+        position: relative;
+        z-index: 9999;
+        width: 20px;
+        height: 20px;
+        text-align: center;
+        button {
+          width: 15px;
+          height: 15px;
+          font-size: 0;
+          line-height: 0;
+          background-color: transparent;
+          border: 2px solid @blanc;
+          border-radius: 50%;
+          &:focus {
+            outline: none;
+          }
+        }
+        &.slick-active {
+          button {
+            background-color: @vem;
+          }
+        }
+      }
+      &.slick-dots-buttons {
+        button {
+          border: 1px solid @vem;
+        }
+        .slick-active {
+          button {
+            background-color: @vem;
+          }
+        }
+      }
+    }
+  }
+}

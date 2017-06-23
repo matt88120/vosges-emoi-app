@@ -1,0 +1,172 @@
+// main: ./main.less
+main {
+  .screen {
+    height: auto;
+    display: none;
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100vh;
+    background: @blanc;
+    &.active {
+        .shadow(@string: -5px 0px 10px rgba(0,0,0,0.05));
+        .flex();
+        z-index: 9998;
+        position: relative;
+        &.left {
+            .animation(enterLeft .5s @ease forwards);
+        }
+        &.right {
+            .animation(enterRight .5s @ease forwards);
+            .shadow(@string: 5px 0px 10px rgba(0,0,0,0.05));
+        }
+    }
+    &.exit {
+        position: absolute;
+        top: 0;
+        left: 0;
+       .flex();
+       z-index: 9997;
+       &.left {
+          .animation(exitLeft .5s @ease forwards);
+       }
+       &.right {
+           .animation(exitRight .5s @ease forwards);
+       }
+    }
+    &.exit-to-home {
+      position: absolute;
+      top: 0;
+      left: 0;
+     .flex();
+     .animation(exitToHome .5s @ease forwards);
+     z-index: 9997;
+    }
+    &.exit-for-menu {
+      position: absolute;
+      top: 0;
+      left: 0;
+      .flex();
+      .animation(exitForMenu .5s @ease forwards);
+      z-index: 9997;
+    }
+    .load_zone {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      top: 40px;
+      left: 0;
+      z-index: 999;
+      background-color: @noir_transparent;
+      .loader {
+        width: 100%;
+        height: 40px;
+        position: absolute;
+        top: calc(~"50% - 40px");
+        padding: 0 20px;
+        .progress {
+          .progress-bar {
+            background-color: @vemfonce;
+            width: 100%;
+            height: 20px;
+          }
+        }
+      }
+    }
+    .content {
+      position: relative;
+      width: 100%;
+      height: calc(~"100% - 40px");
+    }
+  }
+  #restaurants, #hebergements, #activites {
+    flex-direction: column;
+    padding: 25px;
+    padding-bottom: 150px;
+    height: auto;
+    .content {
+      top: 50px;
+    }
+    .restaurants, .hebergements, .activites {
+      position: relative;
+      width: 100%;
+      margin-bottom: 40px;
+      .thumbnail {
+        width: 100%;
+        height: 220px;
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+        @media screen and (max-width: 359px) {
+          height: 160px;
+        }
+        @media screen and (min-width: 360px) and (max-width: 380px) {
+          height: 180px;
+        }
+        .loadbg {
+          position: relative;
+        }
+      }
+      .fav {
+        font-size: 3em;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        .transition();
+        &.fa-heart-o {
+          color: @blanc;
+        }
+        &.fa-heart {
+          color: @vem;
+        }
+      }
+      .sub-content {
+        .flex();
+        padding-top: 15px;
+        justify-content: space-between;
+      }
+      .name {
+        font-size: 20px;
+        color: @vem;
+        line-height: 25px;
+        padding-right: 5px;
+      }
+      .address, .zip_code {
+        font-size: 15px;
+        color: @vemgris;
+        margin-bottom: 0;
+      }
+      .distance {
+        font-weight: bold;
+        font-size: 15px;
+        color: @vem;
+      }
+      .contacts {
+        .circle {
+          width: 40px;
+          height: 40px;
+          background-color: @vemgris;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          color: @blanc;
+          margin-bottom: 20px;
+          i {
+            font-size: 1.6em;
+          }
+          &.phone {
+            .transform(rotateZ(260deg));
+          }
+        }
+      }
+    }
+  }
+  #restaurants, #hebergements, #activites {
+    .single {
+    }
+  }
+}

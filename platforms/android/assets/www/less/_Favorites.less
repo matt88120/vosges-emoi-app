@@ -1,0 +1,131 @@
+// main: ./main.less
+main {
+  .screen {
+    &.favorites_zone {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      flex-direction: column;
+      &.active {
+        .flex();
+      }
+      .fav_nav {
+        position: relative;
+        z-index: 9998;
+        top: 70px;
+        width: 100vw;
+        height: 40px;
+        .flex();
+        justify-content: space-around;
+        .filter {
+          border: 1px solid @grisclair;
+          flex: 1;
+          .flex();
+          align-items: center;
+          justify-content: center;
+          font-size: 14px;
+          text-transform: uppercase;
+          &.showFilteredData {
+            background-color: @vem;
+            color: @blanc;
+            font-weight: bold;
+          }
+        }
+      }
+      .restaurants_fav, .hebergements_fav, .activites_fav {
+        z-index: 9997;
+        display: none;
+        &.showFilteredData {
+          .flex();
+        }
+        flex-direction: column;
+        padding: 25px;
+        padding-bottom: 150px;
+        position: absolute;
+        width: 100vw;
+        height: auto;
+        min-height: 100%;
+        box-sizing: border-box;
+        .content {
+          top: 50px;
+        }
+        .restaurants, .hebergements, .activites {
+          top: 110px;
+          position: relative;
+          z-index: 9998;
+          width: 100%;
+          margin-bottom: 40px;
+          .thumbnail {
+            width: 100%;
+            height: 220px;
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+            @media screen and (max-width: 359px) {
+              height: 160px;
+            }
+            @media screen and (min-width: 360px) and (max-width: 380px) {
+              height: 180px;
+            }
+            .loadbg {
+              position: relative;
+            }
+          }
+          .fav {
+            font-size: 3em;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            .transition();
+            &.fa-heart-o {
+              color: @blanc;
+            }
+            &.fa-heart {
+              color: @vem;
+            }
+          }
+          .sub-content {
+            .flex();
+            padding-top: 15px;
+            justify-content: space-between;
+          }
+          .name {
+            font-size: 20px;
+            color: @vem;
+            line-height: 25px;
+            padding-right: 5px;
+          }
+          .address, .zip_code {
+            font-size: 15px;
+            color: @vemgris;
+            margin-bottom: 0;
+          }
+          .distance {
+            font-weight: bold;
+            font-size: 15px;
+            color: @vem;
+          }
+          .contacts {
+            .circle {
+              width: 40px;
+              height: 40px;
+              background-color: @vemgris;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              border-radius: 50%;
+              color: @blanc;
+              margin-bottom: 20px;
+              i {
+                font-size: 1.6em;
+              }
+              &.phone {
+                .transform(rotateZ(260deg));
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
