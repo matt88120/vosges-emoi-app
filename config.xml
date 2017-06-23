@@ -20,8 +20,6 @@
     <preference name="ios-statusbarstyle" value="black-opaque" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
-    <preference name="show-splash-screen-spinner" value="false" />
-    <preference name="auto-hide-splash-screen" value="true" />
     <preference name="disable-cursor" value="false" />
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
@@ -118,4 +116,5 @@
     <plugin name="uk.co.workingedge.phonegap.plugin.launchnavigator" spec="~3.2.2" />
     <plugin name="cordova-plugin-phonecaller" spec="~0.0.2" />
     <engine name="ios" spec="~4.4.0" />
+    <plugin name="cordova-plugin-x-socialsharing" spec="https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git" />
 </widget>

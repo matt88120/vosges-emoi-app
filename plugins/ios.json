@@ -83,10 +83,16 @@
         },
         "uk.co.workingedge.phonegap.plugin.launchnavigator": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
+        },
+        "cordova-plugin-x-socialsharing": {
+            "PACKAGE_NAME": "com.vosgesemoi.app"
         }
     },
     "dependent_plugins": {
         "cordova-plugin-actionsheet": {
+            "PACKAGE_NAME": "com.vosgesemoi.app"
+        },
+        "es6-promise-plugin": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         }
     }

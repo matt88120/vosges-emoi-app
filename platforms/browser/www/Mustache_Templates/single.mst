@@ -5,7 +5,10 @@
 
       </div>
     {{ /acf.image_principale }}
+    <i class="fa fa-heart-o fa-2x fav" aria-hidden="true"></i>
+    <i class="fa fa-share-alt fa-2x share" data-share="{{ link }}" data-thumbnail="{{ image_principale.sizes.extra }}" aria-hidden="true"></i>
     <div class="single_name">
+      <img src="./img/single-arrondi.png">
       <h2>{{ inf_name }}</h2>
       <h1>{{{ title.rendered }}}</h1>
       <div class="single_nav">

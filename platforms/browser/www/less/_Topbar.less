@@ -19,7 +19,7 @@
   .title  {
     text-transform: uppercase;
   }
-  
+
 }
 
 .home-screen {
@@ -36,6 +36,11 @@
   }
 }
 .content-topbar {
+  &.scrolled {
+    .showFavorites {
+      display: none;
+    }
+  }
   &.vem {
     background-color: @vem;
     color: @blanc;
@@ -49,7 +54,15 @@
     .returnHome {
         position: absolute;
     }
-  .buttons {
+    button {
+      background-color: transparent;
+      border: none;
+      outline: none;
+      &:focus {
+        outline: none;
+      }
+    }
+    .buttons {
       position: absolute;
       right: 20px;
       button {
@@ -103,7 +116,7 @@
           }
       }
   }
-  
+
   &.inactive {
     display: none;
   }

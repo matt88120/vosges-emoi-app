@@ -20,6 +20,7 @@ main {
         }
         &.right {
             .animation(enterRight .5s @ease forwards);
+            .shadow(@string: 5px 0px 10px rgba(0,0,0,0.05));
         }
     }
     &.exit {
@@ -29,7 +30,7 @@ main {
        .flex();
        z-index: 9997;
        &.left {
-          .animation(exitLeft .5s @ease forwards); 
+          .animation(exitLeft .5s @ease forwards);
        }
        &.right {
            .animation(exitRight .5s @ease forwards);
@@ -82,7 +83,6 @@ main {
     }
   }
   #restaurants, #hebergements, #activites {
-    overflow: scroll;
     flex-direction: column;
     padding: 25px;
     padding-bottom: 150px;
