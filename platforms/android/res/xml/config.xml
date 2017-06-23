@@ -81,9 +81,6 @@
         Lezards Creation
     </author>
     <content src="index.html" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.CALL_PRIVILEGED" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <access origin="*" />
     <allow-navigation href="tel:*" />
     <access launch-external="yes" origin="tel:*" />
