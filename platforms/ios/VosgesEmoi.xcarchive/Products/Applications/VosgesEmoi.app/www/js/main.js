@@ -1203,14 +1203,36 @@
     loadPosts();
   }
 
+  function cover (ctx, img, x, y, width, height, opts) {
+    opts = Object.assign({ cx: 0.5, cy: 0.5, zoom: 1, alpha: 1 }, opts || {});
+    if (opts.cx < 0 || opts.cx > 1) throw new Error('Make sure 0 < opt.cx < 1 ');
+    if (opts.cy < 0 || opts.cy > 1) throw new Error('Make sure 0 < opt.cy < 1 ');
+    if (opts.zoom < 1) throw new Error('opts.zoom not >= 1');
+
+    const ir = img.width / img.height;
+    const r = width / height;
+    // sw and sh are where we will start from in the image (we may be cropping it)
+    const sw = (ir < r ? img.width : img.height * r) / opts.zoom;
+    const sh = (ir < r ? img.width / r : img.height) / opts.zoom;
+    // sx and sy are the width/height to crop out
+    const sx = (img.width - sw) * opts.cx;
+    const sy = (img.height - sh) * opts.cy;
+    ctx.globalAlpha = opts.alpha;
+    ctx.drawImage(img, sx, sy, sw, sh, x, y, width, height);
+  }
+
   function insertPhotoIntoCanvas() {
     var context = window.photoCanvas.getContext('2d');
+    window.photoCanvas.width = window.innerWidth;
+    window.photoCanvas.height = window.innerWidth;
+    /*var context = window.photoCanvas.getContext('2d');
     window.photoCanvas.width = window.innerWidth;
     window.photoCanvas.height = window.innerWidth;
     var ratio = window.photoCanvas.width / 800;
     //context.scale(ratio, ratio);
     context.scale(ratio, ratio);
-    context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);
+    context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);*/
+    cover(context, window.takenPhoto, 0, 0, 800, 800);
   }
 
   function loadSVGIntoCanvas(svg, canvas) {
@@ -1377,10 +1399,7 @@
       encodingType: Camera.EncodingType.PNG,
       mediaType: Camera.MediaType.PICTURE,
       pictureSourceType: Camera.PictureSourceType.CAMERA,
-      correctOrientation: true,
-      targetWidth: 800,
-      targetHeight: 800,
-      allowEdit: true
+      correctOrientation: true
     };
     window.appliedFilter = false;
     Camera.getPicture(function cameraSuccess(data) {
@@ -1401,25 +1420,6 @@
       window.takenPhoto.addEventListener('load', function(e) {
         try {
           insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
-          insertPhotoIntoCanvas();
           $('.photoZone .getFilters').click(function() {
             $('.photoZone .change-filter-color').removeClass('selected');
             $(this).find('button').each(function(idx, $el) {
@@ -1427,24 +1427,6 @@
                 var photoCanvas = document.getElementsByTagName('canvas')[0];
                 if (window.appliedFilter) {
                   clearCanvas(photoCanvas);
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
                 }
                 window.appliedFilter = true;
@@ -1468,9 +1450,6 @@
               $(this).find('button').each(function(idx, el) {
                 $(el).click(function(e) {
                   clearCanvas(photoCanvas);
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
-                  insertPhotoIntoCanvas();
                   insertPhotoIntoCanvas();
                   var color = $(this).data('color');
                   $(window.loadedSVG).find('.cls-1').each(function(idx, el) {
