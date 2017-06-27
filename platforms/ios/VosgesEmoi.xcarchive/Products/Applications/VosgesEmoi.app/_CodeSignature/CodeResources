@@ -206,7 +206,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		g+9ohfe/VZv/kdR2xSI2N6ikXwY=
+		/ybnEqJTpJPN/zdODSLOqfD5TXk=
 		</data>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -214,7 +214,7 @@
 		</data>
 		<key>CDVLaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		DZYgg+UMzJNciB+PPxXaPWIYyEY=
+		BOrKA2Kxgqy95QqLDzl8zbiUGgo=
 		</data>
 		<key>CDVNotification.bundle/beep.wav</key>
 		<data>
@@ -282,7 +282,7 @@
 		</data>
 		<key>MainViewController.nib</key>
 		<data>
-		cgL5eo44+K1vHQ5c3AjMj2uRJGQ=
+		3p00+7uK9/iDbNOedmCEau4D7hI=
 		</data>
 		<key>PkgInfo</key>
 		<data>
@@ -338,7 +338,7 @@
 		</data>
 		<key>www/Mustache_Templates/single_post.mst</key>
 		<data>
-		I7ALI1B7biuJCUgABCpkJYYuQk0=
+		1ZSbckCAMqgSMGw2PufneLneNrs=
 		</data>
 		<key>www/cordova-js-src/exec.js</key>
 		<data>
@@ -366,11 +366,11 @@
 		</data>
 		<key>www/css/main.css</key>
 		<data>
-		0TRO4vRj0LUQ+IBVctqCGnbV1P8=
+		vUgna8i49p1I8Y/p7A3iiLrpnUA=
 		</data>
 		<key>www/css/main.css.map</key>
 		<data>
-		nGiUu7dtVdqZu9iFXNIy9ZrWaPw=
+		fxIu2Pogrw0Jg4OdxSV5/54ZPck=
 		</data>
 		<key>www/fonts/FontAwesome.otf</key>
 		<data>
@@ -446,7 +446,7 @@
 		</data>
 		<key>www/img/filter-cover.svg</key>
 		<data>
-		QSr3990uvJcr7U3tZT/rT/FKKOI=
+		Aa5xdNlF1FtIyUhgpewpr0IOy9E=
 		</data>
 		<key>www/img/filter-plain.svg</key>
 		<data>
@@ -502,11 +502,15 @@
 		</data>
 		<key>www/img/single-arrondi.png</key>
 		<data>
-		yvQS6Iq3unA/MBBqSDXqsZfTxt0=
+		dzYohCbSBoTVrsJvnGyasLS8Ue4=
+		</data>
+		<key>www/img/single-arrondi.svg</key>
+		<data>
+		4PmvajKJ9vYvAqEG10fmVY1z/Q0=
 		</data>
 		<key>www/index.html</key>
 		<data>
-		fsVLs4JRVJioZXyq4r7hid5dG8w=
+		CGk7LdAb8YxSMFktc/cEpv6dQgs=
 		</data>
 		<key>www/js/aos.js</key>
 		<data>
@@ -554,7 +558,7 @@
 		</data>
 		<key>www/js/main.js</key>
 		<data>
-		UUL3drzBrsOi7sX6MJyJJ4hewpo=
+		IAGq9HNMqH2uIujlDT/mAEMhHhA=
 		</data>
 		<key>www/js/md5.min.js</key>
 		<data>
@@ -618,7 +622,7 @@
 		</data>
 		<key>www/less/_Menu.less</key>
 		<data>
-		UIXU1cqPObufund9eD6r6z2ohsk=
+		S7DJWDXyZf7F5unQDnPkMwEbIY8=
 		</data>
 		<key>www/less/_Normalize.less</key>
 		<data>
@@ -626,7 +630,7 @@
 		</data>
 		<key>www/less/_Photo.less</key>
 		<data>
-		iJgbVED2SgxxtswVixJJ7lGIRKc=
+		oLUYbw54MG69Gb731YRJyoS9hmY=
 		</data>
 		<key>www/less/_Posts.less</key>
 		<data>
@@ -654,7 +658,7 @@
 		</data>
 		<key>www/less/_Topbar.less</key>
 		<data>
-		0U5OV/0Wyvqm/k+QyC4DOrn6GHM=
+		o3KN15OPpFC8lqTCGtwSUUU3qCk=
 		</data>
 		<key>www/less/_Variables.less</key>
 		<data>
@@ -1554,11 +1558,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			g+9ohfe/VZv/kdR2xSI2N6ikXwY=
+			/ybnEqJTpJPN/zdODSLOqfD5TXk=
 			</data>
 			<key>hash2</key>
 			<data>
-			o2uSrEfxnKEZ8wSfLQptTvh2pJrJN8hPYdQgyiDClCc=
+			9Uum5X73bXIgUz3qIdoS0WXnFuGFgX6TiwXM45hUns8=
 			</data>
 		</dict>
 		<key>CDVLaunchScreen.storyboardc/Info.plist</key>
@@ -1576,11 +1580,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			DZYgg+UMzJNciB+PPxXaPWIYyEY=
+			BOrKA2Kxgqy95QqLDzl8zbiUGgo=
 			</data>
 			<key>hash2</key>
 			<data>
-			N0bQI7zAPLxPgljCDHRklC1nxAiInWxKHmkkzZX0MBk=
+			58syi7mNh0aj7uJEk4dNJLIyhLL2nHATOvmFv6YkCsQ=
 			</data>
 		</dict>
 		<key>CDVNotification.bundle/beep.wav</key>
@@ -1752,11 +1756,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			cgL5eo44+K1vHQ5c3AjMj2uRJGQ=
+			3p00+7uK9/iDbNOedmCEau4D7hI=
 			</data>
 			<key>hash2</key>
 			<data>
-			g9vThqTOi7CjhEg5As635ZvkrLRWnPStfeBc208ell4=
+			bBkag783mNe9I15iZwlc35jUfBdV03pRX9ImNDkFLZk=
 			</data>
 		</dict>
 		<key>archived-expanded-entitlements.xcent</key>
@@ -1895,11 +1899,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			I7ALI1B7biuJCUgABCpkJYYuQk0=
+			1ZSbckCAMqgSMGw2PufneLneNrs=
 			</data>
 			<key>hash2</key>
 			<data>
-			RUOSilCx1YmYqBnZl7ZPsTmg2vtQgd0qqX+GLxDuSgY=
+			IRlPq8ZoFJGgpqSnKYEv8n5AjTXsUpiVbtA/fXdPA6M=
 			</data>
 		</dict>
 		<key>www/cordova-js-src/exec.js</key>
@@ -1972,22 +1976,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0TRO4vRj0LUQ+IBVctqCGnbV1P8=
+			vUgna8i49p1I8Y/p7A3iiLrpnUA=
 			</data>
 			<key>hash2</key>
 			<data>
-			jtRHQ0lCwknHzbeVBe9gTFh+JGG9N1WIHeTwYm8OBQA=
+			EuvdFuK0tDsPOe9n1DKq+/MJ/H/dKckqrdK6bFFN8y8=
 			</data>
 		</dict>
 		<key>www/css/main.css.map</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nGiUu7dtVdqZu9iFXNIy9ZrWaPw=
+			fxIu2Pogrw0Jg4OdxSV5/54ZPck=
 			</data>
 			<key>hash2</key>
 			<data>
-			zrmdqZklRLm64qdd+QlUwXdbJIY7p9rA23n+7vY70zk=
+			G/xwyTFteqXz2yOLYKE1iOPGXIWFr+go+Rd1w6OzjPY=
 			</data>
 		</dict>
 		<key>www/fonts/FontAwesome.otf</key>
@@ -2192,11 +2196,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			QSr3990uvJcr7U3tZT/rT/FKKOI=
+			Aa5xdNlF1FtIyUhgpewpr0IOy9E=
 			</data>
 			<key>hash2</key>
 			<data>
-			K0IZ+zORV28uBjUeOgi4y9nrYFIM5BDNZXNjEsSSx3c=
+			gjH2WlAg1INtCxpKa2Pw6QwcFF1lcoTpMASngkMWbAI=
 			</data>
 		</dict>
 		<key>www/img/filter-plain.svg</key>
@@ -2346,22 +2350,33 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			yvQS6Iq3unA/MBBqSDXqsZfTxt0=
+			dzYohCbSBoTVrsJvnGyasLS8Ue4=
 			</data>
 			<key>hash2</key>
 			<data>
-			nTSlSvoiTh5Y0DmsoBghu1T351tWjyGLNvXpMfMd/sg=
+			nC62MXt/B8DQtuCvu8TZpM7yQqPsWC475xRhHDRyiTg=
+			</data>
+		</dict>
+		<key>www/img/single-arrondi.svg</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			4PmvajKJ9vYvAqEG10fmVY1z/Q0=
+			</data>
+			<key>hash2</key>
+			<data>
+			DY2mqBQ/RmjRPvJGGBzqaq55yr1Q8AUH4HKJoTfE+uA=
 			</data>
 		</dict>
 		<key>www/index.html</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			fsVLs4JRVJioZXyq4r7hid5dG8w=
+			CGk7LdAb8YxSMFktc/cEpv6dQgs=
 			</data>
 			<key>hash2</key>
 			<data>
-			Ptczak899OES/X20vIqkF63v/llY/Y0UqDOenFO+Qss=
+			pxIggDoW2klhJBIe223pVk9Cf3MeYz620yLDaUlpMxE=
 			</data>
 		</dict>
 		<key>www/js/aos.js</key>
@@ -2489,11 +2504,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			UUL3drzBrsOi7sX6MJyJJ4hewpo=
+			IAGq9HNMqH2uIujlDT/mAEMhHhA=
 			</data>
 			<key>hash2</key>
 			<data>
-			vSJnNXS7ZVUFJBJ07DzqUBjN7xQZfCmOEyi55M+uJ8c=
+			glZaSHLhHCb/jz+dHgXdiTCX0HuJWLjafxfE9taAGLc=
 			</data>
 		</dict>
 		<key>www/js/md5.min.js</key>
@@ -2665,11 +2680,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			UIXU1cqPObufund9eD6r6z2ohsk=
+			S7DJWDXyZf7F5unQDnPkMwEbIY8=
 			</data>
 			<key>hash2</key>
 			<data>
-			Rp460UtuZvtCLz0gPkC7LoZSiVe7/eEiCr/u5Oxkg+k=
+			qfJVaKTDkA8DMPTDf88pNfPqlWj2xZ+/uZBQC9yTb4Y=
 			</data>
 		</dict>
 		<key>www/less/_Normalize.less</key>
@@ -2687,11 +2702,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			iJgbVED2SgxxtswVixJJ7lGIRKc=
+			oLUYbw54MG69Gb731YRJyoS9hmY=
 			</data>
 			<key>hash2</key>
 			<data>
-			fLGwLOyeFrxCgAgQ+GWEy/lU70eIvD4OKc7tc8/Ogto=
+			MjmYuqD6QD8yGNKN0tlplujTjvrlYMJRmXjikrgBfmI=
 			</data>
 		</dict>
 		<key>www/less/_Posts.less</key>
@@ -2764,11 +2779,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			0U5OV/0Wyvqm/k+QyC4DOrn6GHM=
+			o3KN15OPpFC8lqTCGtwSUUU3qCk=
 			</data>
 			<key>hash2</key>
 			<data>
-			hNdR2HhQntxRLjYpJbHHabSmD9L83v8tq7ApKocgJ60=
+			h3QE4RznRxC/j8ecgTKYSN9egMyQ9HD/32ph/Q+yrtM=
 			</data>
 		</dict>
 		<key>www/less/_Variables.less</key>

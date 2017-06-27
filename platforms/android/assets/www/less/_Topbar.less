@@ -45,12 +45,39 @@
     background-color: @vem;
     color: @blanc;
     .name {
-        text-align: center;
-          h1 {
-            color: @blanc;
-          }
+      text-align: center;
+      h1 {
+        color: @blanc;
+      }
+    }
+    .returnHome {
+      display: none;
+    }
+    .showFavorites {
+      display: none;
+    }
+    .name {
+      display: none;
+    }
+    .hamburger {
+      background-color: transparent;
+      outline: none;
+      .transform(scale(.8));
+      padding: 0;
+      .hamburger-inner {
+        background-color: @blanc !important;
+        .radius(0);
+        &:before {
+          background-color: @blanc !important;
+          .radius(0);
+        }
+        &:after {
+          background-color: @blanc !important;
+          .radius(0);
         }
       }
+    }
+  }
     .returnHome {
         position: absolute;
     }

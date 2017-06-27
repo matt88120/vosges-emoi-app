@@ -1,5 +1,5 @@
 (function($) {
-  const API_URL = "http://dev-serveur.fr/vosgesemoi2017/wp-json/wp/v2/"
+  const API_URL = "http://www.vosgesemoi.fr/wp-json/wp/v2/"
   var TEMPLATES_FOLDER = 'Mustache_Templates/';
   var restaurants_template;
   var hebergements_template;
@@ -14,6 +14,10 @@
   var maps = [];
   var favorites = [];
 
+
+function donothing() {
+  console.log("");
+}
 
   /*
   *  new_map
@@ -49,7 +53,7 @@
         map.setOptions({ draggable: true });
         setTimeout(function() {
           map.setOptions({ draggable: false });
-        }, 1500)
+        }, 15000);
     });
     // add a markers reference
     map.markers = [];
@@ -242,7 +246,9 @@
       // Do the usual XHR stuff
       var req = new XMLHttpRequest();
       req.open('GET', url);
-
+      if (typeof window.current_user !== "undefined") {
+        req.setRequestHeader('Authorization', 'Bearer ' + window.current_user.token);
+      }
       req.onload = function() {
         // This is called even on 404 etc
         // so check the status
@@ -306,7 +312,9 @@
       // Do the usual XHR stuff
       var req = new XMLHttpRequest();
       req.open('GET', url);
-
+      if (typeof window.current_user !== "undefined") {
+        req.setRequestHeader('Authorization', 'Bearer ' + window.current_user.token);
+      }
       req.onload = function() {
         // This is called even on 404 etc
         // so check the status
@@ -448,13 +456,13 @@
           $(target).addClass("active left");
           setTimeout(function() {
               current_screen.removeClass("exit left")
-          }, 400);
+          }, 450);
         } else {
           current_screen.removeClass("active right left").addClass("exit right");
           $(target).addClass("active right");
           setTimeout(function() {
               current_screen.removeClass("exit right")
-          }, 400);
+          }, 450);
         }
         removeOtherElementsClass('footer button', 'selected');
         el.addClass('selected');
@@ -463,7 +471,7 @@
         loadBG($(target));
         if ($('.screen.active').attr('id') == "carte") {
           setTimeout(function() {
-            alert("Vous devez appuyer sur la carte pour vous déplacer.");
+            navigator.notification.alert("Vous devez appuyer sur la carte pour vous déplacer.", donothing, 'Astuce', 'J\'ai compris.');
           }, 550);
           maps.map(function(map) {
             google.maps.event.trigger(map, 'resize');
@@ -682,10 +690,10 @@
       url: $(this).data('share')
     }
     var onSuccess = function(result) {
-      alert("Votre contenu a bien été partagé !");
+      navigator.notification.alert("Votre contenu a bien été partagé !", donothing, "Partage", "Merci !");
     }
     var onError = function(err) {
-      alert("Le partage de votre contenu a échoué !");
+      navigator.notification.alert("Le partage de votre contenu a échoué !", donothing, "Partage", "D'accord");
     }
     window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
   }
@@ -873,9 +881,9 @@
     var phoneNumber = $(this).attr('href');
     if ((typeof phoneNumber !== "undefined") && (phoneNumber.indexOf('tel:') >= 0)) {
       window.PhoneCaller.call(phoneNumber, function() {
-        alert("L'appel à bien été passé.");
+        navigator.notification.alert("L'appel à bien été passé.", donothing, "Appel", "Merci !");
       }, function() {
-        alert("L'appel n'a pas abouti.");
+        navigator.notification.alert("L'appel n'a pas abouti.", donothing, "Appel", "Merci !");
       });
     }
   }
@@ -1156,7 +1164,7 @@
           $('footer button').eq(0).click();
       });
     });
-    $('#hebergements, #activites, #carte').each(function(idx, el) {
+    $('#hebergements, #activites').each(function(idx, el) {
       var hamTmp = new Hammer(el);
       hamTmp.on('swiperight', function(e) {
         $('footer .selected').prev("button").click();
@@ -1222,17 +1230,14 @@
   }
 
   function insertPhotoIntoCanvas() {
+    window.photoCanvas.width = window.innerWidth;
+    window.photoCanvas.height = window.innerWidth;
     var context = window.photoCanvas.getContext('2d');
     window.photoCanvas.width = window.innerWidth;
     window.photoCanvas.height = window.innerWidth;
-    /*var context = window.photoCanvas.getContext('2d');
-    window.photoCanvas.width = window.innerWidth;
-    window.photoCanvas.height = window.innerWidth;
     var ratio = window.photoCanvas.width / 800;
-    //context.scale(ratio, ratio);
     context.scale(ratio, ratio);
-    context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);*/
-    cover(context, window.takenPhoto, 0, 0, 800, 800);
+    context.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);
   }
 
   function loadSVGIntoCanvas(svg, canvas) {
@@ -1294,10 +1299,11 @@
           files: [container.find('a').attr('href')],
         }
         var onSuccess = function(result) {
-          alert("Votre contenu a bien été partagé !");
+          if (navigator.platform = "ios")
+          navigator.notification.alert("Votre contenu a bien été partagé !", donothing, "Partage", "Merci !");
         }
         var onError = function(err) {
-          alert("Le partage de votre contenu a échoué !");
+          navigator.notification.alert("Le partage de votre contenu a échoué !", donothing, "Partage", "D'accord");
         }
         window.plugins.socialsharing.shareWithOptions(options, onSuccess, onError);
       });
@@ -1317,14 +1323,14 @@
               }
             });
             if (deleted) {
-              alert("Votre photo a bien été supprimée !");
+              navigator.notification.alert("Votre photo a bien été supprimée !", donothing, "Information", "Merci!");
               container.remove();
             } else {
-              alert("Une erreur s'est produite lors de la suppression de votre photo");
+              navigator.notification.alert("Une erreur s'est produite lors de la suppression de votre photo", donothing, "Erreur", "J'ai compris.");
             }
           }).catch(function(err) {
             if (err) {
-              alert("Une erreur s'est produite lors de la suppression de votre photo");
+              navigator.notification.alert("Une erreur s'est produite lors de la suppression de votre photo", donothing, "Erreur", "J'ai compris.");
             }
           });
         }
@@ -1333,6 +1339,7 @@
   }
 
   function sendPhotomaton(e) {
+    e.preventDefault();
     try {
       var md5Hash = md5(new Date().toString());
       var title = md5Hash + "photomaton" + window.current_user.user_id;
@@ -1343,9 +1350,9 @@
       clearCanvas(window.photoCanvas);
       tmpContext.drawImage(window.takenPhoto, 0, 0, window.takenPhoto.width, window.takenPhoto.height);
       loadSVGIntoCanvas(window.loadedSVG, window.photoCanvas);
-      $('.photoZone .loadbg').show();
+      $('.photoZone .loadbg').addClass('show');
       $.ajax({
-        url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/wp/v2/photomaton?title=" + title + "&status=publish",
+        url: "http://www.vosgesemoi.fr/wp-json/wp/v2/photomaton?title=" + title + "&status=publish",
         method: 'POST',
         headers: {
           "Authorization": "Bearer " + window.current_user.token
@@ -1356,9 +1363,8 @@
         navigator.geolocation.getCurrentPosition(function(pos) {
           lat = pos.coords.latitude;
           lng = pos.coords.longitude;
-          alert(lat + " " + lng);
           $.ajax({
-            url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/photomaton",
+            url: "http://www.vosgesemoi.fr/wp-json/vemapp/v2/photomaton",
             method: 'POST',
             headers: {
               "Authorization": "Bearer " + window.current_user.token
@@ -1371,23 +1377,24 @@
               lng: lng
             }
           }).then(function(data) {
-            alert("Votre image à bien été enregistrée !");
+            navigator.notification.alert("Votre image à bien été enregistrée !", donothing, "Information", "Merci !");
             $('.photoZone .loadbg').hide();
+            $('.photoZone .modifyPhoto .modify-submenu').removeClass('selected');
             $('.photoZone').hide();
             loadAndStore('photomaton', '?per_page=99').then(function() {
               loadMyPhotos();
             });
           }).catch(function(err) {
-            console.error("ERROR " + JSON.stringify(err));
+            console.error("ERROR : " + JSON.stringify(err));
           });
         }).catch(function(err) {
-          console.error("ERROR " + JSON.stringify(err));
+          console.error("ERROR 2 : " + JSON.stringify(err));
         });
       }).catch(function(err) {
-        alert(JSON.stringify(err));
+        console.error("ERROR 3 : " + JSON.stringify(err));
       });
     } catch(err) {
-      console.error("ERROR 2 : " + JSON.stringify(err));
+      console.error("ERROR 4 : " + JSON.stringify(err));
     }
   }
 
@@ -1399,13 +1406,16 @@
       encodingType: Camera.EncodingType.PNG,
       mediaType: Camera.MediaType.PICTURE,
       pictureSourceType: Camera.PictureSourceType.CAMERA,
-      correctOrientation: true
+      correctOrientation: true,
+      allowEdit: true,
+      targetWidth: 800,
+      targetHeight: 800
     };
     window.appliedFilter = false;
     Camera.getPicture(function cameraSuccess(data) {
       try {
         $('footer').hide();
-        //$('.screen.active').hide();
+        $('.screen.active').removeClass('active');
         $('.photoZone').show();
         $('.photoZone .leavePhotoZone').click(function() {
           $('footer').show();
@@ -1518,9 +1528,7 @@
     if (typeof window.current_user !== "undefined") {
       $('#menu .loggedin-username').show();
     }
-    setTimeout(function() {
-      $('#menu').addClass('showItems');
-    }, 550);
+    $('#menu').addClass('showItems');
   }
 
   function closeMenu(_this) {
@@ -1533,10 +1541,8 @@
       if (typeof window.current_user !== "undefined") {
         $('#menu .loggedin-username').hide();
       }
-      setTimeout(function() {
-        $('.home-screen .takePhoto').show();
-        $('.home-screen .topbar, .content-topbar').removeClass("vem");
-      }, 550);
+      $('.home-screen .takePhoto').show();
+      $('.home-screen .topbar, .content-topbar').removeClass("vem");
     }
   }
 
@@ -1547,6 +1553,14 @@
     });
     $('#menu .loadfavorites').click(showFavorites);
     $('#menu .gallery').click(loadMyPhotos);
+    $('#become_member').click(function(e) {
+      e.preventDefault();
+      $('#menu .register').addClass('registering');
+    });
+    $('#menu .register .hamburger.is-active').click(function(e) {
+      $('#menu .register').removeClass('registering');
+    });
+    $('#menu .register .registerUser').click(registerUser);
     $('.home-screen button.hamburger, .content-topbar button.hamburger').click(function (e) {
       if ($("#menu").hasClass("active")) {
         closeMenu(this);
@@ -1567,26 +1581,27 @@
   function loggedInUserUI() {
     if ((typeof window.current_user !== "undefined") && (window.current_user != null)) {
       $('.home-screen .username, #menu .loggedin-username').html(window.current_user.user_nicename);
-      $('#menu .connect').hide();
+      $('#menu .loggedin-username').show();
       $('#menu .avatar').css('background-image', 'url(' + window.current_user.user_object.avatar_urls["96"] + ')');
       $('#menu .logout').removeClass('not-loggedin');
       $('#menu .logout').click(logOutUser);
-      if (typeof window.current_user !== "undefined") {
-        $('#menu').removeClass('disconnected').addClass('connected');
-      } else {
-        $('#menu').removeClass('connected').addClass('disconnected');
-      }
+      $('#menu').removeClass('disconnected').addClass('connected');
     }
   }
 
-  function logOutUser() {
+  function logOutUser(e) {
+    e.preventDefault();
     delete window.current_user;
     localforage.removeItem('currentUser').then(function() {
-      alert("Vous êtes maintenant déconnecté !");
+      navigator.notification.alert("Vous êtes maintenant déconnecté !", donothing, "Information", "Merci !");
+    });
+    localforage.removeItem('favorites').then(function() {
+      console.log("favorites deleted");
     });
     $('.home-screen .username, #menu .loggedin-username').html("");
     $('#menu .loggedin-username').hide();
     $('#menu .connect').show();
+    $('#menu .connect .connect-area').show();
     $('#menu .avatar').css('background-image', '');
     $('#menu .logout').addClass('not-loggedin');
     initCameraButton();
@@ -1597,9 +1612,66 @@
     }
   }
 
+  function validateEmail(email) {
+    var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+  }
+
+  function registerUser(e) {
+    var uploading = true;
+    var pseudo = $('#menu .register .pseudo');
+    var name = $('#menu .register .name');
+    var fname = $('#menu .register .fname');
+    var mail = $('#menu .register .mail');
+    var pass = $('#menu .register .pass');
+    if (pseudo.val().length < 4) {
+      navigator.notification.alert("Votre pseudo doit contenir au moins 4 lettres", donothing, "Important", "J'ai compris.");
+      uploading = false;
+    } else if (name.val().length < 2) {
+      navigator.notification.alert("Votre nom doit contenir au moins 2 lettres", donothing, "Important", "J'ai compris.");
+      uploading = false;
+    } else if (fname.val().length < 2) {
+      navigator.notification.alert("Votre prénom doit contenir au moins 2 lettres", donothing, "Important", "J'ai compris.");
+      uploading = false;
+    } else if (!(validateEmail(mail.val()))) {
+      navigator.notification.alert("Votre mail doit être valide", donothing, "Important", "J'ai compris.");
+      uploading = false;
+    } else if (pass.val().length < 8) {
+      navigator.notification.alert("Votre mot de passe doit contenir au moins 8 caractères", donothing, "Important", "J'ai compris.");
+      uploading = false;
+    }
+    if (uploading) {
+      $.ajax({
+        url: "http://www.vosgesemoi.fr/wp-json/vemapp/v2/create/user",
+        method: 'POST',
+        crossDomain: true,
+        dataType: 'json',
+        data: {
+          username: pseudo.val(),
+          name: name.val(),
+          fname: fname.val(),
+          mail: mail.val(),
+          password: pass.val()
+        }
+      }).then(function(data) {
+        if (data) {
+          navigator.notification.alert("Vous êtes bien inscrits, vous pouvez maintenant vous connecter depuis le menu", donothing, "Information", "Merci !");
+        }
+      }).catch(function(err) {
+        if (err.responseJSON.errorData.errors) {
+          if (typeof err.responseJSON.errorData.errors.existing_user_login !== "undefined") {
+              navigator.notification.alert(err.responseJSON.errorData.errors.existing_user_login[0], donothing, "Erreur", "J'ai compris.");
+          } else if (typeof err.responseJSON.errorData.errors.existing_user_email !== "undefined") {
+              navigator.notification.alert(err.responseJSON.errorData.errors.existing_user_email[0], donothing, "Erreur", "J'ai compris.");
+          }
+        }
+      });
+    }
+  }
+
   function connectUser() {
     $.ajax({
-      url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/jwt-auth/v1/token",
+      url: "http://www.vosgesemoi.fr/wp-json/jwt-auth/v1/token",
       method: 'POST',
       crossDomain: true,
       dataType: 'json',
@@ -1609,12 +1681,14 @@
       }
     }).then(function(data) {
       $('#menu .input-area .alert').hide();
+      console.log("logged");
+      console.log(API_URL + 'users/' + data.user_id);
+      window.current_user = data;
       getJSON(API_URL + 'users/' + data.user_id).then(function(user_object) {
         data.user_object = user_object;
         localforage.setItem('currentUser', data).then(function() {
-          window.current_user = data;
           $.ajax({
-            url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/loadfavoris",
+            url: "http://www.vosgesemoi.fr/wp-json/vemapp/v2/loadfavoris",
             method: 'POST',
             headers: {
               "Authorization": "Bearer " + window.current_user.token
@@ -1740,7 +1814,7 @@
         });
         if (window.current_user) {
           $.ajax({
-            url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/favoris",
+            url: "http://www.vosgesemoi.fr/wp-json/vemapp/v2/favoris",
             method: 'POST',
             headers: {
               "Authorization": "Bearer " + window.current_user.token
@@ -1773,7 +1847,7 @@
         }
         if (window.current_user) {
           $.ajax({
-            url: "http://dev-serveur.fr/vosgesemoi2017/wp-json/vemapp/v2/delete/favoris",
+            url: "http://www.vosgesemoi.fr/wp-json/vemapp/v2/delete/favoris",
             method: 'POST',
             headers: {
               "Authorization": "Bearer " + window.current_user.token
@@ -1817,22 +1891,6 @@
               speed: 300,
               fade: true
           	});
-            /*$('#intro-slick').on('beforeChange', function(e, slickEL, curIdx, nxtIdx) {
-              if (nxtIdx > 0) {
-                $('#intro-slick .slick-dots').addClass('slick-dots-buttons');
-                if (!firstSwipe)
-                  $('.intro-screen .rectangle').css('opacity', 1);
-              } else {
-                $('#intro-slick .slick-dots').removeClass('slick-dots-buttons');
-                $('.intro-screen .rectangle').css('opacity', 0);
-              }
-            });
-            $('#intro-slick').on('afterChange', function(e, slickEL, idx) {
-              if (idx > 0 && firstSwipe) {
-                firstSwipe = false;
-                $('.intro-screen .rectangle').css('opacity', 1);
-              }
-            });*/
             $('#intro-slick .discover').click(function(e) {
               localforage.setItem('seenIntro', true).then(function() {
                 $('.intro-screen').hide();
@@ -1849,22 +1907,6 @@
             speed: 300,
             fade: true
           });
-          /*$('#intro-slick').on('beforeChange', function(e, slickEL, curIdx, nxtIdx) {
-            if (nxtIdx > 0) {
-              $('#intro-slick .slick-dots').addClass('slick-dots-buttons');
-              if (!firstSwipe)
-                $('.intro-screen .rectangle').css('opacity', 1);
-            } else {
-              $('#intro-slick .slick-dots').removeClass('slick-dots-buttons');
-              $('.intro-screen .rectangle').css('opacity', 0);
-            }
-          });
-          $('#intro-slick').on('afterChange', function(e, slickEL, idx) {
-            if (idx > 0 && firstSwipe) {
-              firstSwipe = false;
-              $('.intro-screen .rectangle').css('opacity', 1);
-            }
-          });*/
           $('#intro-slick .discover').click(function(e) {
             localforage.setItem('seenIntro', true).then(function() {
               $('.intro-screen').hide();
@@ -1881,7 +1923,7 @@
               window.current_user.user_object = data;
               loggedInUserUI();
               localforage.setItem('currentUser', window.current_user).then(function() {
-                alert("user updated");
+                console.log("user updated");
               });
             });
           } else {
