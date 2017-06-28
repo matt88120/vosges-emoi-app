@@ -1877,6 +1877,7 @@ function donothing() {
   }
 
   $(window).on('load', function(e) {
+      StatusBar.styleDefault();
       init();
       initFooter();
       initContentTopbar();
