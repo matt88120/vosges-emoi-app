@@ -122,6 +122,7 @@
     <preference name="PaginationMode" value="unpaginated" />
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarStyle" value="lightcontent" />
     <preference name="phonegap-version" value="cli-6.5.0" />
     <preference name="orientation" value="default" />
     <preference name="target-device" value="universal" />
@@ -136,6 +137,5 @@
     <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <preference name="android-build-tool" value="gradle" />
-    <preference name="StatusBarStyle" value="lightcontent" />
-    <preference name="StatusBarBackgroundColor" value="#C50034" />
+    <preference name="StatusBarBackgroundColor" value="#FFFFFF" />
 </widget>
