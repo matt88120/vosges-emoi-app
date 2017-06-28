@@ -89,7 +89,7 @@
     </feature>
     <name>VosgesEmoi</name>
     <description>
-        Application mobile de Vosges E;oi
+        Application mobile de Vosges Emoi
     </description>
     <author email="support@phonegap.com" href="http://phonegap.com">
         Lezards Creation
@@ -123,18 +123,18 @@
     <preference name="CameraUsesGeolocation" value="false" />
     <preference name="StatusBarOverlaysWebView" value="false" />
     <preference name="StatusBarStyle" value="lightcontent" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="phonegap-version" value="cli-6.5.0" />
-    <preference name="orientation" value="default" />
-    <preference name="target-device" value="universal" />
+    <preference name="orientation" value="portrait" />
+    <preference name="target-device" value="handset" />
     <preference name="fullscreen" value="false" />
     <preference name="webViewBounce" value="true" />
     <preference name="prerendered-icon" value="true" />
     <preference name="stay-in-webview" value="false" />
-    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="ios-statusbarstyle" value="default" />
     <preference name="detect-data-types" value="true" />
     <preference name="exit-on-suspend" value="false" />
     <preference name="disable-cursor" value="false" />
-    <preference name="android-minSdkVersion" value="14" />
     <preference name="android-installLocation" value="auto" />
     <preference name="android-build-tool" value="gradle" />
     <preference name="StatusBarBackgroundColor" value="#FFFFFF" />
