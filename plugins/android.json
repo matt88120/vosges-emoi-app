@@ -10,9 +10,6 @@
         "call-number": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
-        "cordova-plugin-battery-status": {
-            "PACKAGE_NAME": "com.vosgesemoi.app"
-        },
         "cordova-plugin-camera": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
@@ -20,9 +17,6 @@
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
         "cordova-plugin-console": {
-            "PACKAGE_NAME": "com.vosgesemoi.app"
-        },
-        "cordova-plugin-contacts": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
         "cordova-plugin-device": {
@@ -53,9 +47,6 @@
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
         "cordova-plugin-media": {
-            "PACKAGE_NAME": "com.vosgesemoi.app"
-        },
-        "cordova-plugin-media-capture": {
             "PACKAGE_NAME": "com.vosgesemoi.app"
         },
         "cordova-plugin-network-information": {

@@ -2,7 +2,6 @@
   <div class="content">
     {{ #acf.image_principale }}
       <div class="single_thumbnail" style="background-image: url({{ sizes.extra }});">
-
       </div>
     {{ /acf.image_principale }}
     <i class="fa fa-heart-o fa-2x fav" aria-hidden="true"></i>
@@ -30,6 +29,9 @@
         <div class="intro">
           {{{ acf.contenu_de_lintroduction }}}
         </div>
+        {{ #acf.activer_la_promotion_via_lapplication }}
+          <div class="promotion"><span class="titre">Promotion</span>{{ acf.detail_de_la_promotion }}</div>
+        {{ /acf.activer_la_promotion_via_lapplication }}
         <div class="gallery">
           {{ #acf.images_de_la_galerie }}
             <a data-fancybox="gallery" class="gallery-photo" href="{{ sizes.extra }}" style="background-image: url({{ sizes.extra }});"></a>
