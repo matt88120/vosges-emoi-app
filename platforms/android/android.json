@@ -103,7 +103,7 @@
                             "count": 1
                         },
                         {
-                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"false\" />",
+                            "xml": "<uses-feature android:name=\"android.hardware.telephony\" android:required=\"true\" />",
                             "count": 1
                         },
                         {
