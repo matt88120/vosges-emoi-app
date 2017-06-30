@@ -23,8 +23,97 @@
     display: none;
   }
 
+  .update {
+      display: none;
+      h5 {
+        margin-bottom: 20px;
+        text-align: center;
+      }
+      &.updating {
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.8);
+        z-index: 9999;
+        .flex();
+        align-items: center;
+      }
+      input {
+        color: @blanc;
+        background-color: @vem;
+        border: 1px solid rgba(255,255,255,0.3);
+        outline: none;
+        margin-bottom: 8px;
+        font-weight: bold;
+        &.pass2 {
+          margin-bottom: 15px;
+        }
+        &:focus {
+          outline: none;
+          border: 1px solid rgba(255,255,255,1);
+        }
+        &::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+            color:    @blanc;
+        }
+        &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+           color:    @blanc;
+           opacity:  1;
+        }
+        &::-moz-placeholder { /* Mozilla Firefox 19+ */
+           color:    @blanc;
+           opacity:  1;
+        }
+        &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+           color:    @blanc;
+        }
+        &::-ms-input-placeholder { /* Microsoft Edge */
+           color:    @blanc;
+        }
+      }
+      .updateUser {
+        background-color: @blanc;
+        color: @vem;
+        border: none;
+        font-weight: bold;
+        padding: 5px 30px;
+      }
+      .hamburger {
+        position: absolute;
+        top: 20px;
+        right: 15px;
+        background-color: transparent;
+        outline: none;
+        .hamburger-inner {
+          background-color: @blanc;
+          .radius(0);
+          &:before {
+            background-color: @blanc;
+            .radius(0);
+          }
+          &:after {
+            background-color: @blanc;
+            .radius(0);
+          }
+        }
+      }
+      .update-area {
+        .flex();
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        min-height: 300px;
+        padding: 50px;
+        justify-content: space-around;
+      }
+  }
+
   .register {
       display: none;
+      h4 {
+        margin-bottom: 20px;
+      }
       &.registering {
         position: fixed;
         width: 100vw;
@@ -41,6 +130,11 @@
         background-color: @vem;
         border: 1px solid rgba(255,255,255,0.3);
         outline: none;
+        margin-bottom: 8px;
+        font-weight: bold;
+        &.pass {
+          margin-bottom: 15px;
+        }
         &:focus {
           outline: none;
           border: 1px solid rgba(255,255,255,1);
@@ -66,6 +160,9 @@
       .registerUser {
         background-color: @blanc;
         color: @vem;
+        border: none;
+        font-weight: bold;
+        padding: 5px 30px;
       }
       .hamburger {
         position: absolute;
