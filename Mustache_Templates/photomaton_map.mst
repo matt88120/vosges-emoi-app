@@ -1,0 +1,4 @@
+<div class="photomaton">
+  <img src="{{{ thumbnail }}}" alt="{{ author }}" title="{{ author }}" />
+  <h3>{{{ author }}}</h3>
+</div>

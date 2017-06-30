@@ -1,0 +1,16 @@
+{{ #acf }}
+<div class="content_container">
+  {{ #acf.image_principale }}
+    <div class="single_thumbnail" style="background-image: url({{ sizes.extra }});">
+
+    </div>
+  {{ /acf.image_principale }}
+  <div class="single_name">
+    <h2></h2>
+    <h1>{{ title.rendered }}</h1>
+  </div>
+  <div class="content">
+    {{{ description }}}
+  </div>
+</div>
+{{ /acf}}

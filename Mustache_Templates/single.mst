@@ -1,0 +1,85 @@
+{{ #acf }}
+  <div class="content">
+    {{ #acf.image_principale }}
+      <div class="single_thumbnail" style="background-image: url({{ sizes.extra }});">
+      </div>
+    {{ /acf.image_principale }}
+    <i class="fa fa-heart-o fa-2x fav" aria-hidden="true"></i>
+    <i class="fa fa-share-alt fa-2x share" data-share="{{ link }}" data-thumbnail="{{ image_principale.sizes.extra }}" aria-hidden="true"></i>
+    <div class="single_name">
+      <img src="./img/single-arrondi.png">
+      <h2>{{ inf_name }}</h2>
+      <h1>{{{ title.rendered }}}</h1>
+      <div class="single_nav">
+        <div data-target="#onglet_{{ inf_name }}">
+          {{ inf_name }}
+        </div>
+        {{ #tarifs }}
+        <div data-target="#onglet_tarifs">
+          Tarifs
+        </div>
+        {{ /tarifs }}
+        <div data-target="#onglet_infos">
+          Infos Pratique
+        </div>
+      </div>
+    </div>
+    <div class="single_infos">
+      <div class="onglet" id="onglet_{{ inf_name }}">
+        <div class="intro">
+          {{{ acf.contenu_de_lintroduction }}}
+        </div>
+        {{ #acf.activer_la_promotion_via_lapplication }}
+          <div class="promotion"><span class="titre">Promotion</span>{{ acf.detail_de_la_promotion }}</div>
+        {{ /acf.activer_la_promotion_via_lapplication }}
+        <div class="gallery">
+          {{ #acf.images_de_la_galerie }}
+            <a data-fancybox="gallery" class="gallery-photo" href="{{ sizes.extra }}" style="background-image: url({{ sizes.extra }});"></a>
+          {{ /acf.images_de_la_galerie}}
+          <div class="seeMore">
+            <i class="fa fa-camera fa-3x" aria-hidden="true"></i>
+            <p>
+              Voir les photos
+            </p>
+          </div>
+        </div>
+        {{ #presentation_generale }}
+          <div class="single_presentation">
+            <h2 class="titre_presentation">Presentation</h2>
+            {{{ presentation_generale }}}
+          </div>
+        {{ /presentation_generale }}
+        {{ #prestations }}
+          <div class="single_prestation">
+            <h2 class="titre_prestation">Prestations</h2>
+            {{{ prestations }}}
+          </div>
+        {{ /prestations }}
+      </div>
+      {{ #tarifs }}
+        <div class="onglet" id="onglet_tarifs">
+          <h2 class="titre_tarifs">Tarifs</h2>
+          {{{ tarifs }}}
+        </div>
+      {{ /tarifs }}
+      <div class="onglet" id="onglet_infos">
+        <div class="otherTypeContainer">
+        {{ #otherType }}
+          <div id="{{ id }}" data-type="{{ type }}" class="otherType" style="background-image: url('{{ acf.image_principale.sizes.large }}');">
+            <div class="comeSee">
+              <i class="{{ icon }}" aria-hidden="true"></i>
+              <p>
+                {{ comeSee }}
+              </p>
+            </div>
+          </div>
+        {{ /otherType }}
+        </div>
+          {{ #hasPosts}}
+            <div class="relativePosts">
+            </div>
+          {{ /hasPosts }}
+      </div>
+    </div>
+  </div>
+{{ /acf }}

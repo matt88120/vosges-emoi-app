@@ -393,7 +393,13 @@ function donothing() {
       $('.single_contacts .single_phone').attr('href', "");
       $('.single_contacts .single_map').data('lat', '');
       $('.single_contacts .single_map').data('lng', '');
-      $('.content-topbar .name').html("<h1>" + $('footer .selected div').last().html() + "</h1>");
+      if (typeof $('footer .selected div').last().html() !== "undefined") {
+        $('.content-topbar .name').html("<h1>" + $('footer .selected div').last().html() + "</h1>");
+      } else if (typeof $('.favorites_zone .fav_nav .showFilteredData').html() !== "undefined") {
+        $('.content-topbar .name').html("<h1>" + $('.favorites_zone .fav_nav .showFilteredData').html() + "</h1>");
+      } else {
+        $('.content-topbar .name').html("");
+      }
       $('.content-topbar .single_nav').remove();
     }
     $('.content-topbar').removeClass('scrolled');
@@ -744,7 +750,6 @@ function donothing() {
               var tmp = _.find(favorites, function(row) {
                 return row  == id;
               });
-              console.log(tmp);
               if (tmp != null) {
                 $('.single.active .fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
               }
@@ -798,9 +803,7 @@ function donothing() {
             var tmp = _.find(favorites, function(row) {
               return row  == id;
             });
-            console.log(tmp);
             if (tmp != null) {
-              console.log("yay");
               $('.single.active .fa-heart-o').removeClass('fa-heart-o').addClass('fa-heart');
             }
             $('.single.active .fav').click(addOrDeleteFavorites);
@@ -953,7 +956,6 @@ function donothing() {
         });
       } else {
         try {
-          console.log("la");
           var container = document.createElement('div');
           $(container).addClass('single_post screen');
           $(container).attr('id', article.id);
@@ -1313,8 +1315,6 @@ function donothing() {
         var container = $(this).parent().parent();
         var id = container.attr('id');
         var imageID = container.data('imageid');
-        console.log(id);
-        console.log(imageID);
         if (confirm("Voulez vous vraiment supprimer cette photo ?")) {
           Promise.all([deleteOnServer(API_URL + 'photomaton/' + id + "?force=true"),
           deleteOnServer(API_URL + 'media/' + imageID + "?force=true")]).then(function(deletedArray) {
@@ -1457,6 +1457,7 @@ function donothing() {
             });
             $(this).addClass('selected');
           });
+          $('.photoZone .change-filter-color').unbind('click');
           $('.photoZone .change-filter-color').click(function() {
             if (window.appliedFilter) {
               $('.photoZone .getFilters').removeClass('selected');
@@ -1476,6 +1477,9 @@ function donothing() {
               console.error("Veuillez d'abord séléctionner un filtre !");
             }
           });
+          $('.photoZone .getFilters .filters').click();
+          $('.photoZone .getFilters .filters .plain').click();
+          $('.photoZone .saveAndSendPhoto').unbind('click');
           $('.photoZone .saveAndSendPhoto').click(sendPhotomaton);
         } catch(err) {
           console.error(err);
@@ -1555,15 +1559,15 @@ function donothing() {
       $('.connect-area').addClass('connecting');
     });
     $('#menu .loadfavorites').click(showFavorites);
-    $('#menu .gallery').click(loadMyPhotos);
     $('#become_member').click(function(e) {
       e.preventDefault();
       $('#menu .register').addClass('registering');
+      $('#menu .register .registerUser').click(registerUser);
     });
     $('#menu .register .hamburger.is-active').click(function(e) {
       $('#menu .register').removeClass('registering');
+      $('#menu .register .registerUser').unbind('click');
     });
-    $('#menu .register .registerUser').click(registerUser);
     $('.home-screen button.hamburger, .content-topbar button.hamburger').click(function (e) {
       if ($("#menu").hasClass("active")) {
         closeMenu(this);
@@ -1588,13 +1592,27 @@ function donothing() {
       $('#menu .avatar').css('background-image', 'url(' + window.current_user.user_object.avatar_urls["96"] + ')');
       $('#menu .logout').removeClass('not-loggedin');
       $('#menu .logout').click(logOutUser);
+      $('#menu .profil').click(function(e) {
+        $('#menu .update').addClass('updating');
+        $('#menu .update .hamburger.is-active').click(function(e) {
+          $('#menu .update').removeClass('updating');
+        });
+        $('#menu .updateUser').click(updateUser);
+      });
+      $('#menu .gallery').click(loadMyPhotos);
       $('#menu .connect').hide();
       $('#menu').removeClass('disconnected').addClass('connected');
     }
   }
 
   function logOutUser(e) {
-    e.preventDefault();
+    if (typeof e !== "undefined") {
+      if (typeof e.preventDefault !== "undefined")
+        e.preventDefault();
+    }
+    $(this).unbind('click');
+    $('#menu .gallery').unbind('click');
+    $('#menu .profil').unbind('click');
     delete window.current_user;
     localforage.removeItem('currentUser').then(function() {
       navigator.notification.alert("Vous êtes maintenant déconnecté !", donothing, "Information", "Merci !");
@@ -1608,7 +1626,6 @@ function donothing() {
     $('#menu .connect .connect-area').show();
     $('#menu .avatar').css('background-image', '');
     $('#menu .logout').addClass('not-loggedin');
-    initCameraButton();
     if (typeof window.current_user !== "undefined") {
       $('#menu').removeClass('disconnected').addClass('connected');
     } else {
@@ -1621,7 +1638,55 @@ function donothing() {
     return re.test(email);
   }
 
+  function updateUser(e) {
+    if (typeof e.preventDefault !== "undefined")
+      e.preventDefault();
+    var update = true;
+    var name = $('#menu .update .name');
+    var fname = $('#menu .update .fname');
+    var pass = $('#menu .update .pass');
+    var pass2 = $('#menu .update .pass');
+    if (name.val().length < 2) {
+      navigator.notification.alert("Votre nom doit contenir au moins 2 lettres", donothing, "Important", "J'ai compris.");
+      update = false;
+    } else if (fname.val().length < 2) {
+      navigator.notification.alert("Votre prénom doit contenir au moins 2 lettres", donothing, "Important", "J'ai compris.");
+      update = false;
+    } else if (pass.val().length < 8) {
+      navigator.notification.alert("Votre mot de passe doit contenir au moins 8 caractères", donothing, "Important", "J'ai compris.");
+      update = false;
+    }
+    if (pass.val() !== pass2.val()) {
+      update = false;
+    }
+    if (update) {
+      $.ajax({
+        url: "http://www.vosgesemoi.fr/wp-json/vemapp/v2/update/user",
+        method: 'POST',
+        crossDomain: true,
+        dataType: 'json',
+        data: {
+          user_id: window.current_user.user_id,
+          name: name.val(),
+          fname: fname.val(),
+          password: pass.val()
+        }
+      }).then(function(data) {
+        if (data) {
+          navigator.notification.alert("Vos Informations ont bien été mises à jour, veuillez vous connecter à nouveau", donothing, "Information", "Merci !");
+          $('#menu .update').removeClass('updating');
+          logOutUser();
+        }
+      }).catch(function(err) {
+        if (err) {
+          navigator.notification.alert("Une erreur est survenue lors de la mise à jour de vos informations", donothing, "Information", "D'accord");
+        }
+      });
+    }
+  }
+
   function registerUser(e) {
+    e.preventDefault();
     var uploading = true;
     var pseudo = $('#menu .register .pseudo');
     var name = $('#menu .register .name');
@@ -1685,8 +1750,6 @@ function donothing() {
       }
     }).then(function(data) {
       $('#menu .input-area .alert').hide();
-      console.log("logged");
-      console.log(API_URL + 'users/' + data.user_id);
       window.current_user = data;
       getJSON(API_URL + 'users/' + data.user_id).then(function(user_object) {
         data.user_object = user_object;
@@ -1712,8 +1775,6 @@ function donothing() {
               loggedInUserUI();
             }
           });
-          initCameraButton();
-          loggedInUserUI();
         });
       });
       $('#menu .connect-area').removeClass('connecting').hide();
@@ -1732,11 +1793,9 @@ function donothing() {
     closeMenu($('.hamburger.is-active'));
     var commonDatasName = ['restaurants', 'hebergements', 'activites'];
     var favorites_data = {};
-    console.log(favorites);
     Promise.all([localforage.getItem('restaurants'),
     localforage.getItem('hebergements'),
     localforage.getItem('activites')]).then(function(datas) {
-      console.log(datas);
       for (var i = 0; i < commonDatasName.length; i++) {
         favorites_data[commonDatasName[i]] = {};
         favorites_data[commonDatasName[i]].datas = [];
@@ -1755,6 +1814,7 @@ function donothing() {
         $('.favorites_zone .showFilteredData').removeClass('showFilteredData');
         $(this).addClass('showFilteredData');
         $($(this).data('filter')).addClass('showFilteredData');
+        $('.content-topbar .name').html("<h1>" + $('.favorites_zone .fav_nav .showFilteredData').html() + "</h1>");
       });
       loadTemplate('restaurants', restaurants_template).then(function(template) {
         $('.favorites_zone .restaurants_fav').html(Mustache.render(template, favorites_data['restaurants']));
@@ -1811,7 +1871,6 @@ function donothing() {
       if (!_.contains(favorites, id)) {
         favorites.push(id);
         localforage.setItem('favorites', favorites).then(function() {
-          console.log("favorites updated");
           $('.favNumber').html(favorites.length);
         }).catch(function(err) {
           console.error("Une erreur est survenue lors de la sauvegarde des favoris !");
@@ -1867,7 +1926,6 @@ function donothing() {
           });
         }
         localforage.setItem('favorites', favorites).then(function() {
-          console.log("favorites updated");
           $('.favNumber').html(favorites.length);
         }).catch(function(err) {
           console.error("Une erreur est survenue lors de la sauvegarde des favoris !");
